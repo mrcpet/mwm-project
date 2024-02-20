@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MWM-PROJEKT</MWM-PROJEKT></title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
     <link rel="stylesheet" href="/assets/scss/main.css" />
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="assets/script/login.js" defer></script>
   </head>
-  <body></body>
+  <body class="startpage">
+    <h1>Welcome to MWN</h1>
+    <main>
+      <input type="text" placeholder="Username" name="" id="" />
+      <input type="text" placeholder="Password" name="" id="" />
+      <button id="loginBtn">Log in</button>
+      <button id="registerBtn">Register new user</button>
+      <div class="overlayContainer"></div>
+    </main>
+    <dialog class="register-modal hidden" id="registerModal">
+      <h2>Register for MWN</h2>
+      <p>Fill in the required fields below.</p>
+      <input
+        type="text"
+        placeholder="Username"
+        name=""
+        id="registerUser"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Password"
+        name=""
+        id="registerPassword"
+        required
+      />
+      <button>Register New user</button>
+      <button>Close</button>
+    </dialog>
+  </body>
 </html>
