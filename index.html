@@ -14,34 +14,57 @@
     <!-- <script src="script.js"></script> -->
     <script src="assets/script/login.js" defer></script>
   </head>
-  <body class="startpage">
+  <body class="login">
     <h1>Welcome to MWN</h1>
     <main>
-      <input type="text" placeholder="Username" name="" id="" />
-      <input type="text" placeholder="Password" name="" id="" />
-      <button id="loginBtn">Log in</button>
-      <button id="registerBtn">Register new user</button>
-      <div class="overlayContainer"></div>
+      <!-- login form -->
+      <div class="loginContainer">
+        <form action="">
+          <label for="usernameInput">Username</label>
+          <input
+            type="text"
+            placeholder="Username"
+            name=""
+            id="usernameInput"
+          />
+          <label for="passwordInput">Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            name=""
+            id="passwordInput"
+          />
+        </form>
+        <button id="loginBtn">Log in</button>
+        <button id="registerBtn">Register new user</button>
+      </div>
     </main>
+    <div class="error-message">
+      
+    </div>
+    <div class="overlayContainer"></div>
+    <!-- register form modal -->
     <dialog class="register-modal hidden" id="registerModal">
       <h2>Register for MWN</h2>
       <p>Fill in the required fields below.</p>
-      <input
-        type="text"
-        placeholder="Username"
-        name=""
-        id="registerUser"
-        required
-      />
-      <input
-        type="text"
-        placeholder="Password"
-        name=""
-        id="registerPassword"
-        required
-      />
-      <button>Register New user</button>
-      <button>Close</button>
+      <form action="">
+        <input
+          type="text"
+          placeholder="Username"
+          name=""
+          id="registerUser"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          name=""
+          id="registerPassword"
+          required
+        />
+      </form>
+      <button id="registerUserBtn">Register me!</button>
+      <button id="closeModalBtn">Close</button>
     </dialog>
   </body>
 </html>

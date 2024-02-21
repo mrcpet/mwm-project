@@ -1,4 +1,79 @@
 /* Login Styles */
+.login {
+  margin: 0;
+}
+.login h1 {
+  text-align: center;
+  margin: 0;
+}
+.login main {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.login main .loginContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login main .loginContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login .error-message {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.login .error-message p {
+  border: 2px dashed red;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.login .register-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  height: 100vh;
+  top: 0;
+  width: 20rem;
+  margin: 0 auto;
+  padding: 1rem;
+  filter: drop-shadow(0 0 0.75rem gray);
+  z-index: 1000;
+}
+@media (min-width: 1080px) {
+  .login .register-modal {
+    height: 20rem;
+    top: auto;
+  }
+}
+.login .register-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Global Styles */
+.hidden {
+  visibility: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+/* Login Styles */
 .startpage {
   margin: 0;
 }
@@ -11,20 +86,10 @@
   display: flex;
   justify-content: center;
 }
-.startpage .register-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+.startpage main .quoteContainer blockquote {
   border: 1px solid black;
-  border-radius: 1rem;
-  height: 20rem;
-  width: 20rem;
-  margin: 0 auto;
   padding: 1rem;
-  filter: drop-shadow(0 0 0.75rem gray);
-  z-index: 1000;
+  border-radius: 1rem;
 }
 
 /* Global Styles */
