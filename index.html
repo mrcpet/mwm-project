@@ -11,60 +11,68 @@
       href="/assets/icons/favicon-32x32.png"
     />
     <link rel="stylesheet" href="/assets/scss/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Khula:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <!-- <script src="script.js"></script> -->
     <script src="assets/script/login.js" defer></script>
   </head>
   <body class="login">
-    <h1>Welcome to MWN</h1>
-    <main>
-      <!-- login form -->
-      <div class="loginContainer">
+    <div class="pageContainer">
+      <img src="assets/images/zencat.png" alt="meditating cartoon cat" />
+      <h1>Welcome to MWN!</h1>
+      <p>Please sign in to use our application.</p>
+      <main>
+        <!-- login form -->
+        <div class="loginContainer">
+          <form action="">
+            <label for="usernameInput">Username</label>
+            <input
+              type="text"
+              placeholder="Username"
+              name=""
+              id="usernameInput"
+            />
+            <label for="passwordInput">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              name=""
+              id="passwordInput"
+            />
+          </form>
+          <button id="loginBtn">Log in</button>
+          <button id="registerBtn">Register new user</button>
+        </div>
+      </main>
+      <div class="error-message"></div>
+      <div class="overlayContainer"></div>
+      <!-- register form modal -->
+      <dialog class="register-modal hidden" id="registerModal">
+        <h2>Register for MWN</h2>
+        <p>Fill in the required fields below.</p>
         <form action="">
-          <label for="usernameInput">Username</label>
           <input
             type="text"
             placeholder="Username"
             name=""
-            id="usernameInput"
+            id="registerUser"
+            required
           />
-          <label for="passwordInput">Password</label>
           <input
             type="password"
             placeholder="Password"
             name=""
-            id="passwordInput"
+            id="registerPassword"
+            required
           />
         </form>
-        <button id="loginBtn">Log in</button>
-        <button id="registerBtn">Register new user</button>
-      </div>
-    </main>
-    <div class="error-message">
-      
+        <button id="registerUserBtn">Register me!</button>
+        <button id="closeModalBtn">Close</button>
+      </dialog>
     </div>
-    <div class="overlayContainer"></div>
-    <!-- register form modal -->
-    <dialog class="register-modal hidden" id="registerModal">
-      <h2>Register for MWN</h2>
-      <p>Fill in the required fields below.</p>
-      <form action="">
-        <input
-          type="text"
-          placeholder="Username"
-          name=""
-          id="registerUser"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name=""
-          id="registerPassword"
-          required
-        />
-      </form>
-      <button id="registerUserBtn">Register me!</button>
-      <button id="closeModalBtn">Close</button>
-    </dialog>
   </body>
 </html>

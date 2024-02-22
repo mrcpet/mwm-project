@@ -32,6 +32,8 @@ const validateUser = (array, username, password) => {
     if (user.username === username && user.password === password) {
       //redirect to startpage on success
       window.location.href = "assets/html/startpage.html";
+      console.log(username);
+      localStorage.setItem("currentUser", username);
     } else {
       //placeholder message if user does not exist
       failedLogin();
