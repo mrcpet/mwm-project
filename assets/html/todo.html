@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="todo.js"></script>
+</head>
+
+<body class="body-todo">
+
+
+
+
+
+
+
+
+    <header>
+        <div id="navbar-header">
+            <button type="button" id="icon_filtering">
+                <img src="/MWM-projekt/assets/Icons/icon_filtering.svg" alt="" class="svg-icon">
+            </button>
+            <button type="button" id="icon_addtodo">
+                <img src="/MWM-projekt/assets/Icons/icon_addtodo.svg" alt="" class="svg-icon">
+            </button>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+
+        <div id="container-overview" style="display: none;">
+
+            <div id="todo-container"> <!-- Todos läggs till här dynamiskt med JavaScript -->
+                <div id="todo">
+                    <p class="todo-titel">Titel på todo</p>
+                    <button type="button" id="icon_checkbox">
+                        <img src="/MWM-projekt/assets/Icons/icon_checkbox.svg" alt="" class="svg-icon">
+                    </button>
+                    <button type="button" id="icon_checkboxDone" style="display: none;">
+                        <img src="/MWM-projekt/assets/Icons/icon-checkboxDone.svg" alt="" class="svg-icon">
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="container-todopage">
+            <div class="boxgroup-title">
+                <p class="todo-titel">Här finns titeln på todon</p>
+                <button type="button" id="icon_checkbox">
+                    <img src="/MWM-projekt/assets/Icons/icon_checkbox.svg" alt="" class="svg-icon">
+                </button>
+            </div>
+            <div class="boxgroup-description">
+                <p class="todo-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, sit iure
+                    molestias, inventore optio doloribus impedit,
+                    tempora veritatis officia ad hic! Deleniti voluptatem ratione dolorem dicta illo cumque magnam est.
+                </p>
+            </div>
+            <div class="todo-information">
+                <div class="boxgroup-deadline">
+                    <img src="/MWM-projekt/assets/Icons/icon_calendaryGrey.svg" alt="" class="svg-icon">
+                    <p class="text-todo-info">17 mars 2024</p>
+                </div>
+
+                <div class="boxgroup-timeestimate">
+                    <img src="/MWM-projekt/assets/Icons/icon-time.svg" alt="" class="svg-icon">
+                    <p class="text-todo-info">30 days</p>
+                </div>
+            </div>
+            <div class="boxgroup-icon">
+                <img src="/MWM-projekt/assets/Icons/icon_delete.svg" alt="" class="svg-icon">
+                <img src="/MWM-projekt/assets/Icons/icon_edit.svg" alt="" class="svg-icon">
+            </div>
+        </div>
+
+
+        <footer>
+            <div id="navbar-footer">
+                <button type="button" id="icon_todolist">
+                    <img src="/MWM-projekt/assets/Icons/icon_todolist.svg" alt="" class="svg-icon">
+                </button>
+                <button type="button" id="icon_habits">
+                    <img src="/MWM-projekt/assets/Icons/icon_habits.svg" alt="" class="svg-icon">
+                </button>
+                <button type="button" id="icon_home">
+                    <img src="/MWM-projekt/assets/Icons/icon_home.svg" alt="" class="svg-icon">
+                </button>
+                <button type="button" id="icon_weather">
+                    <img src="/MWM-projekt/assets/Icons/icon_weather.svg" alt="" class="svg-icon">
+                </button>
+                <button type="button" id="icon_calendary">
+                    <img src="/MWM-projekt/assets/Icons/icon_calendary.svg" alt="" class="svg-icon">
+                </button>
+
+            </div>
+        </footer>
+
+
+    </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+.body-todo {
+    background: grey;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: fit-content;
+    min-height: auto;
+    max-width: 600px;
+
+    header {
+        width: 100%;
+        background-color: aquamarine;
+
+        #navbar-header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+    }
+
+    footer {
+
+        width: 100%;
+        background-color: aquamarine;
+
+
+        #navbar-footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+
+
+
+    .content-wrapper {
+        width: 100%;
+        min-height: auto;
+        max-width: 600px;
+
+
+
+
+        #container-overview {
+            #todo {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: 2px solid lightgrey;
+
+
+                #icon_checkbox {
+                    border: none;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    transition-duration: 0.4s; // Övergångstid för hover-effekt
+
+
+
+                }
+
+                .todo-titel {
+                    font-size: 20px;
+                    padding: 20px;
+                }
+            }
+
+
+
+            button {
+                border: none;
+                background: none;
+                cursor: pointer;
+            }
+
+
+        }
+
+        #container-todopage {
+
+            .boxgroup-title,
+            .boxgroup-deadline,
+            .boxgroup-timeestimate,
+            .boxgroup-description {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin: 10px;
+
+            }
+
+            .boxgroup-icon {
+                display: flex;
+                justify-content: flex-end;
+                margin: 10px;
+                gap: 10px;
+            }
+
+        }
+    }
+}
