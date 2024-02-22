@@ -40,6 +40,7 @@
   font-size: 1rem;
   color: white;
   font-weight: bold;
+  letter-spacing: 0.125rem;
   padding: 0.5rem;
   border: 1px solid white;
   border-radius: 0.5rem;
@@ -113,6 +114,7 @@
   font-size: 1rem;
   color: white;
   font-weight: bold;
+  letter-spacing: 0.125rem;
   padding: 0.5rem;
   border: 1px solid white;
   border-radius: 0.5rem;

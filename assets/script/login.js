@@ -41,6 +41,19 @@ const validateUser = (array, username, password) => {
   });
 };
 
+// function to register user, store user object in array and add to local storage
+const storeUser = () => {
+  if (registerUser.value != "" && registerPassword.value != "") {
+    let user = newUser(registerUser.value, registerPassword.value);
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
+    registerModal.classList.toggle("hidden");
+    overlayContainer.classList.toggle("overlay");
+    registerUser.value = "";
+    registerPassword.value = "";
+  }
+};
+
 // function to render failed login attempt message
 const failedLogin = () => {
   errorMessage.innerHTML = "";
@@ -61,12 +74,17 @@ loginBtn.addEventListener("click", () => {
 
 // event listener to login using enter key
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+  if (event.key === "Enter" && registerModal.classList.contains("hidden")) {
     if (users.length >= 1) {
       validateUser(users, usernameInput.value, passwordInput.value);
     } else {
       failedLogin();
     }
+  } else if (
+    event.key === "Enter" &&
+    !registerModal.classList.contains("hidden")
+  ) {
+    storeUser();
   }
 });
 
@@ -84,11 +102,5 @@ closeModalBtn.addEventListener("click", () => {
 
 // register new user event listener
 registerUserBtn.addEventListener("click", () => {
-  let user = newUser(registerUser.value, registerPassword.value);
-  users.push(user);
-  localStorage.setItem("users", JSON.stringify(users));
-  registerModal.classList.toggle("hidden");
-  overlayContainer.classList.toggle("overlay");
-  registerUser.value = "";
-  registerPassword.value = "";
+  storeUser();
 });
