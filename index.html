@@ -45,7 +45,7 @@
               id="passwordInput"
               required
             />
-            <button id="loginBtn" name="login" type="submit">Log in</button>
+            <button id="loginBtn" name="login" type="button">Log in</button>
             <button id="registerBtn" type="button">Register new user</button>
           </form>
         </div>
@@ -55,7 +55,7 @@
       <!-- register form modal -->
       <dialog class="register-modal hidden" id="registerModal">
         <h2>Register for MWN</h2>
-        <p>Fill in the required fields below.</p>
+        <p class="registerMsg">Fill in the required fields below.</p>
         <form action="">
           <input
             type="text"
@@ -71,7 +71,7 @@
             id="registerPassword"
             required
           />
-          <button id="registerUserBtn" type="submit" name="register">
+          <button id="registerUserBtn" type="button" name="register">
             Register me!
           </button>
           <button id="closeModalBtn" type="button">Close</button>

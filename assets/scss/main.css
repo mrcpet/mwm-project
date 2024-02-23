@@ -72,6 +72,7 @@
   font-size: 1rem;
 }
 .login .pageContainer .error-message {
+  height: 8rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -84,6 +85,7 @@
   font-weight: bold;
 }
 .login .pageContainer .register-modal {
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -158,6 +160,10 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
+}
+
+.warning {
+  color: rgb(218, 0, 0);
 }
 
 /* Fonts */
