@@ -9,15 +9,42 @@
   </head>
   <body>
     <div class="container">
-      <img src="/assets/images/cat-with-list.jpeg" alt="a cat with a list" />
+      <img
+        src="/assets/images/cat-with-list.jpeg"
+        alt="a cat with a list"
+        id="cat"
+      />
       <input type="text" id="input-field" placeholder="Habit" />
       <select id="habit-prio">
-        <option value="">Pick Prio</option>
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
+        <option style="display: none">Pick Prio</option>
+        <option value="1">low</option>
+        <option value="2">medium</option>
+        <option value="3">high</option>
       </select>
       <button id="add-button">Add</button>
+      <div class="btn-container">
+        <button id="sort-btn">
+          <img
+            src="/assets/Icons/Icon/Outline/arrow-up.svg"
+            alt="up-arrow"
+            id="up-arrow"
+          />
+          <img
+            src="/assets/Icons/Icon/Outline/arrow-down.svg"
+            alt="down-arrow"
+            id="down-arrow"
+          />
+        </button>
+        <fieldset>
+          <legend>Filter</legend>
+          <label for="high-prio">high</label>
+          <input type="checkbox" name="filter" id="high-prio" value="3" />
+          <label for="medium-prio">medium</label>
+          <input type="checkbox" name="filter" id="medium-prio" value="2" />
+          <label for="low-prio">low</label>
+          <input type="checkbox" name="filter" id="low-prio" value="1" />
+        </fieldset>
+      </div>
 
       <ul id="habit-list"></ul>
     </div>

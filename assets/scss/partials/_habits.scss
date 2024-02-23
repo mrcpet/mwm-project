@@ -14,10 +14,14 @@ body {
   max-width: 320px;
   margin: 30px auto;
 
-  img {
+  #cat {
     width: 150px;
     margin: 0 auto;
   }
+  #up-arrow {
+    width: 25px;
+  }
+
   #habit-prio {
     background-color: #dce1eb;
     border: 0;

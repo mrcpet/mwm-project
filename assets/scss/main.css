@@ -16,9 +16,12 @@ body {
   max-width: 320px;
   margin: 30px auto;
 }
-.container img {
+.container #cat {
   width: 150px;
   margin: 0 auto;
+}
+.container #up-arrow {
+  width: 25px;
 }
 .container #habit-prio {
   background-color: #dce1eb;
