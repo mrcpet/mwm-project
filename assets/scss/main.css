@@ -112,21 +112,39 @@ body {
   flex-direction: column;
   gap: 0.5rem;
 }
-.login .pageContainer main .loginContainer button {
+.login .pageContainer main .loginContainer button:nth-of-type(1) {
   font-family: "Khula", sans-serif;
   font-size: 1rem;
+  background-color: #3dbb9c;
   color: white;
   font-weight: bold;
   letter-spacing: 0.125rem;
   padding: 0.5rem;
   border: 1px solid white;
   border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #3dbb9c);
 }
-.login .pageContainer main .loginContainer button:nth-of-type(1) {
-  background-color: #44a6a5;
+.login .pageContainer main .loginContainer button:nth-of-type(1):hover {
+  background-color: #30957c;
 }
 .login .pageContainer main .loginContainer button:nth-of-type(2) {
-  background-color: #7a87fc;
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.login .pageContainer main .loginContainer button:nth-of-type(2):hover {
+  background-color: #358281;
 }
 .login .pageContainer main .loginContainer form {
   display: flex;
@@ -149,6 +167,7 @@ body {
   font-size: 1rem;
 }
 .login .pageContainer .error-message {
+  height: 8rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -161,6 +180,7 @@ body {
   font-weight: bold;
 }
 .login .pageContainer .register-modal {
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -189,18 +209,53 @@ body {
 .login .pageContainer .register-modal button {
   font-family: "Khula", sans-serif;
   font-size: 1rem;
+  background-color: #44a6a5;
   color: white;
   font-weight: bold;
   letter-spacing: 0.125rem;
   padding: 0.5rem;
   border: 1px solid white;
   border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.login .pageContainer .register-modal button:hover {
+  background-color: #358281;
 }
 .login .pageContainer .register-modal button:nth-of-type(1) {
-  background-color: #44a6a5;
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #3dbb9c;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #3dbb9c);
+}
+.login .pageContainer .register-modal button:nth-of-type(1):hover {
+  background-color: #30957c;
 }
 .login .pageContainer .register-modal button:nth-of-type(2) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
   background-color: #c22d34;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #c22d34);
+}
+.login .pageContainer .register-modal button:nth-of-type(2):hover {
+  background-color: #992329;
 }
 .login .pageContainer .register-modal form {
   display: flex;
@@ -237,24 +292,67 @@ body {
   z-index: 999;
 }
 
+.warning {
+  color: rgb(218, 0, 0);
+}
+
 /* Fonts */
 /* Login Styles */
 .startpage {
   margin: 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.startpage h1 {
+.startpage .pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.startpage .pageContainer img {
+  width: 10rem;
+}
+.startpage .pageContainer h1 {
   text-align: center;
   margin: 0;
 }
-.startpage main {
+.startpage .pageContainer main {
   margin: 0 auto;
   display: flex;
   justify-content: center;
 }
-.startpage main .quoteContainer blockquote {
-  border: 1px solid black;
+.startpage .pageContainer main .quoteContainer blockquote {
+  border: 1px solid #ffffff;
   padding: 1rem;
   border-radius: 1rem;
+  max-width: 20rem;
+}
+.startpage .pageContainer nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+.startpage .pageContainer nav ul button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.startpage .pageContainer nav ul button:hover {
+  background-color: #358281;
 }
 
 /* Global Styles */

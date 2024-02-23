@@ -10,10 +10,11 @@ const passwordInput = document.querySelector("#passwordInput");
 const registerUser = document.querySelector("#registerUser");
 const registerPassword = document.querySelector("#registerPassword");
 
-// query selectors containers
+// query selectors containers and messages
 const registerModal = document.querySelector("#registerModal");
 const overlayContainer = document.querySelector(".overlayContainer");
 const errorMessage = document.querySelector(".error-message");
+const registerMsg = document.querySelector(".registerMsg");
 
 // array to store users and parse users stored in localstorage
 let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -41,16 +42,28 @@ const validateUser = (array, username, password) => {
   });
 };
 
+// function to check if username is taken
+const isUsernameTaken = (nameToCheck, userList) => {
+  return userList.some((user) => user.username == nameToCheck);
+};
+
 // function to register user, store user object in array and add to local storage
 const storeUser = () => {
-  if (registerUser.value != "" && registerPassword.value != "") {
-    let user = newUser(registerUser.value, registerPassword.value);
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-    registerModal.classList.toggle("hidden");
-    overlayContainer.classList.toggle("overlay");
+  if (isUsernameTaken(registerUser.value, users)) {
+    registerMsg.textContent = "Username is taken, please choose another.";
+    registerMsg.classList.add("warning");
     registerUser.value = "";
     registerPassword.value = "";
+  } else {
+    if (registerUser.value != "" && registerPassword.value != "") {
+      let user = newUser(registerUser.value, registerPassword.value);
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+      registerModal.classList.toggle("hidden");
+      overlayContainer.classList.toggle("overlay");
+      registerUser.value = "";
+      registerPassword.value = "";
+    }
   }
 };
 
