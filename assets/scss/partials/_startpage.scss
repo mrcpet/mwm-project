@@ -1,19 +1,47 @@
 /* Login Styles */
 .startpage {
   margin: 0;
-  h1 {
-    text-align: center;
-    margin: 0;
-  }
-  main {
-    margin: 0 auto;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff)
+    no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .pageContainer {
     display: flex;
-    justify-content: center;
-    .quoteContainer {
-      blockquote {
-        border: 1px solid black;
-        padding: 1rem;
-        border-radius: 1rem;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 10rem;
+    }
+    h1 {
+      text-align: center;
+      margin: 0;
+    }
+    main {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      .quoteContainer {
+        blockquote {
+          border: 1px solid #ffffff;
+          padding: 1rem;
+          border-radius: 1rem;
+          max-width: 20rem;
+        }
+      }
+    }
+    nav {
+      ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        button {
+          @include button($button-main);
+        }
       }
     }
   }
