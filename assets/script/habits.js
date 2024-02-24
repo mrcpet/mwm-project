@@ -5,11 +5,13 @@ const prioDropDown = document.querySelector("#habit-prio");
 const listEl = document.querySelector("#habit-list");
 const sortBtn = document.querySelector("#sort-btn");
 const checkboxes = document.querySelectorAll("[name = 'filter']");
-let myList = [];
-let trueOrFalse = false;
-
-// Kod-block 1
 const listFromLocalStorage = JSON.parse(localStorage.getItem("habits"));
+let myList = [];
+let myFilterList = [];
+let booleanForSorting = false;
+let booleanForCheckingFilters = false;
+
+// Kod
 
 if (listFromLocalStorage) {
   myList = listFromLocalStorage;
@@ -22,14 +24,17 @@ addHabitsBtn.addEventListener("click", () => {
 });
 
 sortBtn.addEventListener("click", () => {
-  trueOrFalse = !trueOrFalse;
-  sortByPrio(myList, trueOrFalse);
+  booleanForSorting = !booleanForSorting;
+  const listToSort = booleanForCheckingFilters ? myFilterList : myList;
+  sortByPrio(listToSort, booleanForSorting);
 });
+
 addCheckboxEventListeners(checkboxes);
 
-// Funktioner
+// ---------------------------------------Funktioner ----------------------------------------
+
 function sortByPrio(array, boolean) {
-  let newList;
+  let newList = [];
   if (boolean) {
     newList = array.sort((a, b) => {
       return b.prio - a.prio;
@@ -39,6 +44,7 @@ function sortByPrio(array, boolean) {
       return a.prio - b.prio;
     });
   }
+  cl(newList);
   renderData(newList);
 }
 
@@ -46,21 +52,28 @@ function addAndStoreHabit() {
   let habit = {};
   habit.title = inputField.value;
   habit.prio = prioDropDown.value;
+  habit.streak = 0;
+  habit.id = crypto.randomUUID();
   myList.push(habit);
   updateLocalStorage(myList);
   clearInput(inputField, prioDropDown);
+  uncheckerOfBoxes(true);
 }
 
 function renderData(array) {
   listEl.innerHTML = "";
   array.forEach((habit) => {
     let newLi = document.createElement("li");
-    newLi.textContent = habit.title;
-    newLi.dataset.title = habit.title;
+    newLi.innerHTML = `${habit.title} ${habit.streak}`;
     newLi.dataset.prio = habit.prio;
+    newLi.dataset.id = habit.id;
     newLi.addEventListener("click", (event) => {
-      deleteHabit(event.target.textContent);
-      cl(event.target);
+      let index = findIndex(event.target.dataset.id);
+      updateStreak(myList, index);
+    });
+    newLi.addEventListener("dblclick", (event) => {
+      deleteHabit(event.target.dataset.id);
+      // cl(event.target.dataset.id);
     });
     listEl.append(newLi);
   });
@@ -70,12 +83,12 @@ function cl(a) {
   console.log(a);
 }
 
-function deleteHabit(habit) {
-  const foundItem = myList.find((item) => item.title === habit);
-  let index = myList.indexOf(foundItem);
+function deleteHabit(idFromElement) {
+  let index = findIndex(idFromElement);
   myList.splice(index, 1);
   updateLocalStorage(myList);
   renderData(myList);
+  uncheckerOfBoxes(myList.length === 0);
 }
 
 function clearInput(input, dropdown) {
@@ -91,21 +104,40 @@ function addCheckboxEventListeners(checkBoxes) {
       const selectedFilters = document.querySelectorAll(
         "[name='filter']:checked"
       );
-      let activeFilters = [];
+      // Om inga checkBoxes är valda visa samtliga Habits.
+      if (selectedFilters.length === 0) {
+        booleanForCheckingFilters = false;
+        renderData(myList);
+      } else {
+        booleanForCheckingFilters = true;
+        let activeFilters = [];
+        selectedFilters.forEach((filter) => {
+          activeFilters.push(filter.value);
+        });
 
-      selectedFilters.forEach((filter) => {
-        activeFilters.push(filter.value);
-      });
-
-      // let filteredPokemons = PokedexData.filter((pokemon) => {
-      //   return pickedTypes.includes(pokemon.type);
-      // });
-
-      // let filteredHabits = myList.filter((habit)=>{
-      //   return activeFilters.includes()
-      // })
-
-      cl(activeFilters);
+        myFilterList = myList.filter((habit) => {
+          return activeFilters.includes(habit.prio);
+        });
+        renderData(myFilterList);
+      }
+      cl(booleanForCheckingFilters);
     });
   });
+}
+function uncheckerOfBoxes(boolean) {
+  if (boolean) {
+    document.querySelectorAll("[name = 'filter']").forEach((box) => {
+      box.checked = false;
+    });
+  }
+}
+function findIndex(id) {
+  const foundItem = myList.find((item) => item.id === id);
+  let index = myList.indexOf(foundItem);
+  return index;
+}
+function updateStreak(array, index) {
+  array[index].streak++;
+  updateLocalStorage(array);
+  renderData(array);
 }
