@@ -145,7 +145,22 @@ body {
   background: none;
   cursor: pointer;
 }
-.body-todo .content-wrapper #container-todopage {
+.body-todo .content-wrapper #container-todos {
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.body-todo .content-wrapper #container-todos #todo {
+  width: 100%;
+  display: flex;
+}
+.body-todo .content-wrapper #container-todos #todo .boxgroup {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.body-todo .content-wrapper #container-task {
   width: 100%;
   min-height: auto;
   display: flex;
@@ -153,21 +168,21 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
-.body-todo .content-wrapper #container-todopage #category-card {
+.body-todo .content-wrapper #container-task #category-card {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.body-todo .content-wrapper #container-todopage .boxgroup-title,
-.body-todo .content-wrapper #container-todopage .boxgroup-deadline,
-.body-todo .content-wrapper #container-todopage .boxgroup-timeestimate,
-.body-todo .content-wrapper #container-todopage .boxgroup-description {
+.body-todo .content-wrapper #container-task .boxgroup-title,
+.body-todo .content-wrapper #container-task .boxgroup-deadline,
+.body-todo .content-wrapper #container-task .boxgroup-timeestimate,
+.body-todo .content-wrapper #container-task .boxgroup-description {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
 }
-.body-todo .content-wrapper #container-todopage .boxgroup-icon {
+.body-todo .content-wrapper #container-task .boxgroup-icon {
   display: flex;
   justify-content: flex-end;
   margin: 10px;

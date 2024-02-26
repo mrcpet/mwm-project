@@ -94,9 +94,35 @@
             }
 
 
+
+
         }
 
-        #container-todopage {
+        #container-todos {
+            width: 100%;
+            margin-left: 5%;
+            margin-right: 5%;
+
+
+            #todo {
+                width: 100%;
+                display: flex;
+
+
+                .boxgroup {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: row;
+                }
+            }
+
+        }
+
+
+
+
+        #container-task {
             width: 100%;
             min-height: auto;
             display: flex;
