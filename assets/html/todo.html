@@ -5,106 +5,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="todo.js"></script>
-</head>
+    <link rel="stylesheet" href="/assets/scss/main.css">
+    <script src="/assets/script/todo.js" defer></script>
 
 <body class="body-todo">
 
+    <div class="wrapper">
 
-
-
-
-
-
-
-    <header>
-        <div id="navbar-header">
-            <button type="button" id="icon_filtering">
-                <img src="/MWM-projekt/assets/Icons/icon_filtering.svg" alt="" class="svg-icon">
-            </button>
-            <button type="button" id="icon_addtodo">
-                <img src="/MWM-projekt/assets/Icons/icon_addtodo.svg" alt="" class="svg-icon">
-            </button>
-        </div>
-    </header>
-
-    <div class="content-wrapper">
-
-        <div id="container-overview" style="display: none;">
-
-            <div id="todo-container"> <!-- Todos läggs till här dynamiskt med JavaScript -->
-                <div id="todo">
-                    <p class="todo-titel">Titel på todo</p>
-                    <button type="button" id="icon_checkbox">
-                        <img src="/MWM-projekt/assets/Icons/icon_checkbox.svg" alt="" class="svg-icon">
-                    </button>
-                    <button type="button" id="icon_checkboxDone" style="display: none;">
-                        <img src="/MWM-projekt/assets/Icons/icon-checkboxDone.svg" alt="" class="svg-icon">
-                    </button>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div id="container-todopage">
-            <div class="boxgroup-title">
-                <p class="todo-titel">Här finns titeln på todon</p>
-                <button type="button" id="icon_checkbox">
-                    <img src="/MWM-projekt/assets/Icons/icon_checkbox.svg" alt="" class="svg-icon">
+        <header>
+            <div id="navbar-header">
+                <button type="button" id="icon_filtering">
+                    <img src="/assets/Icons/icon_filtering.svg" alt="" class="svg-icon">
+                </button>
+                <button type="button" id="icon_addtodo">
+                    <img src="/assets/Icons/icon_addtodo.svg" alt="" class="svg-icon">
                 </button>
             </div>
-            <div class="boxgroup-description">
-                <p class="todo-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, sit iure
-                    molestias, inventore optio doloribus impedit,
-                    tempora veritatis officia ad hic! Deleniti voluptatem ratione dolorem dicta illo cumque magnam est.
-                </p>
-            </div>
-            <div class="todo-information">
-                <div class="boxgroup-deadline">
-                    <img src="/MWM-projekt/assets/Icons/icon_calendaryGrey.svg" alt="" class="svg-icon">
-                    <p class="text-todo-info">17 mars 2024</p>
+        </header>
+
+        <div class="content-wrapper">
+
+            <div id="container-category" style="display: none;">
+
+                <div id="category-card">
+                    <div class="icon-category">
+                        <a href="">
+                            <img src="/assets/images/svg_personal.svg" width="70px" alt="">
+                        </a>
+                    </div>
+                    <div id="card-text">
+                        <p class="todo-category">Personal</p>
+                        <p class="todo-taskcounting">Amount of tags</p>
+                    </div>
+
                 </div>
 
-                <div class="boxgroup-timeestimate">
-                    <img src="/MWM-projekt/assets/Icons/icon-time.svg" alt="" class="svg-icon">
-                    <p class="text-todo-info">30 days</p>
+                <div id="category-card">
+                    <div class="icon-category">
+                        <a href="">
+                            <img src="/assets/images/svg_work.svg" width="70px" alt="">
+                        </a>
+                    </div>
+                    <div id="card-text">
+                        <p class="todo-category">Work</p>
+                        <p class="todo-taskcounting">Amount of tags</p>
+                    </div>
+
+                </div>
+
+                <div id="category-card">
+                    <div class="icon-category">
+                        <a href="">
+                            <img src="/assets/images/img_shopping.jpg" width="70px" alt="">
+                        </a>
+                    </div>
+                    <div id="card-text">
+                        <p class="todo-category">Shopping</p>
+                        <p class="todo-taskcounting">Amount of tags</p>
+                    </div>
+
+                </div>
+
+                <div id="category-card">
+                    <div class="icon-category">
+                        <a href="">
+                            <img src="/assets/images/svg_health.svg" width="70px" alt="">
+                        </a>
+                    </div>
+                    <div id="card-text">
+                        <p class="todo-category">Health</p>
+                        <p class="todo-taskcounting">Amount of tags</p>
+                    </div>
+
+                </div>
+
+                <div id="category-card">
+                    <div class="icon-category">
+                        <a href="">
+                            <img src="/assets/images/svg_coding.svg" width="70px" alt="">
+                        </a>
+                    </div>
+                    <div id="card-text">
+                        <p class="todo-category">Coding</p>
+                        <p class="todo-taskcounting">Amount of tags</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="container-todopage" style="display: none;">
+                <div class="boxgroup-title">
+                    <p class="todo-titel">Här finns titeln på todon</p>
+                    <button type="button" id="icon_checkbox">
+                        <img src="/assets/Icons/icon_checkbox.svg" alt="" class="svg-icon">
+                    </button>
+                </div>
+                <div class="boxgroup-description">
+                    <p class="todo-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, sit
+                        iure
+                        molestias, inventore optio doloribus impedit,
+                        tempora veritatis officia ad hic! Deleniti voluptatem ratione dolorem dicta illo cumque
+                        magnam
+                        est.
+                    </p>
+                </div>
+                <div class="todo-information">
+                    <div class="boxgroup-deadline">
+                        <img src="/assets/Icons/icon_calendaryGrey.svg" alt="" class="svg-icon">
+                        <p class="text-todo-info">17 mars 2024</p>
+                    </div>
+
+                    <div class="boxgroup-timeestimate">
+                        <img src="/assets/Icons/icon-time.svg" alt="" class="svg-icon">
+                        <p class="text-todo-info">30 days</p>
+                    </div>
+                </div>
+                <div class="boxgroup-icon">
+                    <img src="/assets/Icons/icon_delete.svg" alt="" class="svg-icon">
+                    <img src="/assets/Icons/icon_edit.svg" alt="" class="svg-icon">
                 </div>
             </div>
-            <div class="boxgroup-icon">
-                <img src="/MWM-projekt/assets/Icons/icon_delete.svg" alt="" class="svg-icon">
-                <img src="/MWM-projekt/assets/Icons/icon_edit.svg" alt="" class="svg-icon">
+
+
+
+
+
+
+            <div id="todoInput">
+                <div class="boxgroup">
+                    <input type="text" id="todoName" placeholder="Task name">
+                </div>
+                <div class="boxgroup">
+                    <select id="todoCategory">
+                        <option value="" disabled selected hidden>Category</option>
+                        <option value="personal">Personal</option>
+                        <option value="arbete">Work</option>
+                        <option value="studier">Shopping</option>
+                        <option value="personal">Health</option>
+                        <option value="arbete">Coding</option>
+                    </select>
+                </div>
+                <div class="boxgroup">
+                    <label for="todoDeadline">Deadline:</label>
+                    <input type="date" id="todoDeadline" placeholder="Deadline">
+                </div>
+                <div class="boxgroup">
+                    <label for="todoDuration">Time estimate:</label>
+                    <input type="number" id="todoDuration" placeholder="Estimated time (minutes)">
+                </div>
+
+                <button id="addTodoButton">Lägg till todo</button>
+
+                <div class="boxgroup">
+                    <button id="deleteTodoBtn">
+                        <img src="/assets/Icons/icon_delete.svg" alt="" class="svg-icon">
+                    </button>
+                    <button id="editTodoBtn">
+                        <img src="/assets/Icons/icon_edit.svg" alt="" class="svg-icon">
+                    </button>
+                </div>
             </div>
         </div>
+
+
+
+
+
+
 
 
         <footer>
             <div id="navbar-footer">
                 <button type="button" id="icon_todolist">
-                    <img src="/MWM-projekt/assets/Icons/icon_todolist.svg" alt="" class="svg-icon">
+                    <img src="/assets/Icons/icon_todolist.svg" alt="" class="svg-icon">
                 </button>
                 <button type="button" id="icon_habits">
-                    <img src="/MWM-projekt/assets/Icons/icon_habits.svg" alt="" class="svg-icon">
+                    <img src="/assets/Icons/icon_habits.svg" alt="" class="svg-icon">
                 </button>
                 <button type="button" id="icon_home">
-                    <img src="/MWM-projekt/assets/Icons/icon_home.svg" alt="" class="svg-icon">
+                    <img src="/assets/Icons/icon_home.svg" alt="" class="svg-icon">
                 </button>
                 <button type="button" id="icon_weather">
-                    <img src="/MWM-projekt/assets/Icons/icon_weather.svg" alt="" class="svg-icon">
+                    <img src="/assets/Icons/icon_weather.svg" alt="" class="svg-icon">
                 </button>
                 <button type="button" id="icon_calendary">
-                    <img src="/MWM-projekt/assets/Icons/icon_calendary.svg" alt="" class="svg-icon">
+                    <img src="/assets/Icons/icon_calendary.svg" alt="" class="svg-icon">
                 </button>
 
             </div>
         </footer>
 
-
     </div>
 
 
 
+
+
+    </div>
 
 </body>
 

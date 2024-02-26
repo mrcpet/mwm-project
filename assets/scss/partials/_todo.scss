@@ -1,20 +1,27 @@
 .body-todo {
-    background: grey;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    min-height: fit-content;
-    min-height: auto;
-    max-width: 600px;
+    align-items: center;
+    min-height: 800px;
+    max-width: 1400px;
+
+    .wrapper {
+        height: 100%;
+        border: 2px solid black;
+        background-color: grey;
+    }
+
 
     header {
         width: 100%;
         background-color: aquamarine;
 
+        margin-bottom: 5%;
+
         #navbar-header {
-            width: 100%;
             display: flex;
             justify-content: flex-end;
             gap: 10px;
@@ -23,7 +30,6 @@
     }
 
     footer {
-
         width: 100%;
         background-color: aquamarine;
 
@@ -42,6 +48,10 @@
         width: 100%;
         min-height: auto;
         max-width: 600px;
+        background-color: grey;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        display: flex;
 
 
 
@@ -87,6 +97,20 @@
         }
 
         #container-todopage {
+            width: 100%;
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10%;
+            margin-right: 10%;
+
+
+
+            #category-card {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
 
             .boxgroup-title,
             .boxgroup-deadline,
@@ -105,6 +129,39 @@
                 margin: 10px;
                 gap: 10px;
             }
+
+
+
+        }
+
+        #todoInput {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+
+            label {
+                font-size: small;
+                color: black;
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            #addTodoButton {
+                width: 50%;
+                margin-left: 80px;
+
+            }
+
+            .boxgroup {
+                width: 100%;
+                margin: 5%;
+            }
+
+
 
         }
     }
