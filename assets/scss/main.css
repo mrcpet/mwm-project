@@ -150,11 +150,10 @@ body {
   margin-left: 5%;
   margin-right: 5%;
 }
-.body-todo .content-wrapper #container-todos #todo {
+.body-todo .content-wrapper #container-todos #container-todos {
   width: 100%;
-  display: flex;
 }
-.body-todo .content-wrapper #container-todos #todo .boxgroup {
+.body-todo .content-wrapper #container-todos #container-todos #todoList {
   width: 100%;
   display: flex;
   justify-content: space-between;

@@ -100,95 +100,98 @@
 
         #container-todos {
             width: 100%;
-            margin-left: 5%;
-            margin-right: 5%;
-
-
-            #todo {
-                width: 100%;
-                display: flex;
-
-
-                .boxgroup {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    flex-direction: row;
-                }
-            }
-
-        }
-
-
-
-
-        #container-task {
-            width: 100%;
-            min-height: auto;
             display: flex;
-            flex-direction: column;
-            margin-left: 10%;
-            margin-right: 10%;
 
 
 
-            #category-card {
-                width: 100%;
+
+
+
+            #todoList {
                 display: flex;
-                justify-content: space-between;
             }
 
-            .boxgroup-title,
-            .boxgroup-deadline,
-            .boxgroup-timeestimate,
-            .boxgroup-description {
-                display: flex;
+            .todo {
+                width: 100%;
+                justify-content: space-between;
                 flex-direction: row;
-                justify-content: space-between;
-                margin: 10px;
-
             }
-
-            .boxgroup-icon {
-                display: flex;
-                justify-content: flex-end;
-                margin: 10px;
-                gap: 10px;
-            }
-
 
 
         }
 
-        #todoInput {
+    }
+
+
+
+
+    #container-task {
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+        margin-right: 10%;
+
+
+
+        #category-card {
             width: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            justify-content: space-between;
+        }
 
-
-            label {
-                font-size: small;
-                color: black;
-            }
-
-            button {
-                cursor: pointer;
-            }
-
-            #addTodoButton {
-                width: 50%;
-                margin-left: 80px;
-
-            }
-
-            .boxgroup {
-                width: 100%;
-                margin: 5%;
-            }
-
-
+        .boxgroup-title,
+        .boxgroup-deadline,
+        .boxgroup-timeestimate,
+        .boxgroup-description {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 10px;
 
         }
+
+        .boxgroup-icon {
+            display: flex;
+            justify-content: flex-end;
+            margin: 10px;
+            gap: 10px;
+        }
+
+
+
     }
+
+    #todoInput {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+
+        label {
+            font-size: small;
+            color: black;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #addTodoButton {
+            width: 50%;
+            margin-left: 80px;
+
+        }
+
+        .boxgroup {
+            width: 100%;
+            margin: 5%;
+        }
+
+
+
+    }
+}
 }
