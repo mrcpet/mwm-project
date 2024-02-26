@@ -20,6 +20,7 @@
     align-items: center;
     img {
       width: 10rem;
+      padding-top: 1rem;
     }
     h1 {
       text-align: center;
@@ -52,10 +53,15 @@
             border: 1px solid black;
             border-radius: 0.5rem;
             padding-left: 0.5rem;
+            font-size: 1rem;
           }
           input::placeholder {
             font-family: "Khula", sans-serif;
             font-size: 1rem;
+          }
+          input:focus.failed {
+            border-color: red;
+            outline: red;
           }
         }
       }
@@ -117,6 +123,7 @@
           border: 1px solid black;
           border-radius: 0.5rem;
           padding-left: 0.5rem;
+          font-size: 1rem;
         }
         input::placeholder {
           font-family: "Khula", sans-serif;
@@ -142,6 +149,9 @@
 }
 .warning {
   color: rgb(218, 0, 0);
+}
+.required {
+  font-size: 0.75rem;
 }
 /* Fonts */
 

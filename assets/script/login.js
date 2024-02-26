@@ -10,11 +10,16 @@ const passwordInput = document.querySelector("#passwordInput");
 const registerUser = document.querySelector("#registerUser");
 const registerPassword = document.querySelector("#registerPassword");
 
+// query selectors FOR ALL REQUIRED INPUT FIELDS // TODO: rewrite this failed login logic for displaying error message and focusing input field
+const allInputs = document.querySelectorAll("input[type='text']");
+const allInputsPWs = document.querySelectorAll("input[type='password']");
+
 // query selectors containers and messages
 const registerModal = document.querySelector("#registerModal");
 const overlayContainer = document.querySelector(".overlayContainer");
 const errorMessage = document.querySelector(".error-message");
 const registerMsg = document.querySelector(".registerMsg");
+const requiredFields = document.querySelectorAll(".required");
 
 // array to store users and parse users stored in localstorage
 let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -35,6 +40,7 @@ const validateUser = (array, username, password) => {
       window.location.href = "assets/html/startpage.html";
       console.log(username);
       localStorage.setItem("currentUser", username);
+      localStorage.setItem("isLoggedIn", "true");
     } else {
       //placeholder message if user does not exist
       failedLogin();
@@ -63,16 +69,36 @@ const storeUser = () => {
       overlayContainer.classList.toggle("overlay");
       registerUser.value = "";
       registerPassword.value = "";
+    } else {
+      failedLogin();
     }
   }
 };
 
 // function to render failed login attempt message
 const failedLogin = () => {
-  errorMessage.innerHTML = "";
-  let p = document.createElement("p");
-  p.innerText = `Login attempt failed!`;
-  errorMessage.append(p);
+  requiredFields.forEach((field) => {
+    field.style.color = "red";
+  });
+  // errorMessage.innerHTML = "";
+  // let p = document.createElement("p");
+  // p.innerText = `Login attempt failed!`;
+  // errorMessage.append(p);
+  if (usernameInput.value == "" && registerUser.value == "") {
+    allInputs.forEach((input) => {
+      input.focus();
+      input.classList.add("failed");
+    });
+    // usernameInput.focus();
+    // usernameInput.classList.add("failed");
+  } else {
+    allInputsPWs.forEach((input) => {
+      input.focus();
+      input.classList.add("failed");
+    });
+    // passwordInput.focus();
+    // passwordInput.classList.add("failed");
+  }
 };
 
 // login button event listener

@@ -25,3 +25,20 @@
     background-color: darken($color, 10%);
   }
 }
+
+@mixin navButtons {
+  img {
+    width: 3rem;
+    height: 2rem;
+  }
+  span {
+    font-size: 0.75rem;
+  }
+}
+@mixin navButtonTest {
+  ul {
+    li {
+      border: 1px solid black;
+    }
+  }
+}

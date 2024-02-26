@@ -39,9 +39,9 @@
         display: flex;
         gap: 1rem;
         list-style: none;
-        button {
-          @include button($button-main);
-        }
+        // button {
+        //   @include button($button-main);
+        // }
       }
     }
   }

@@ -25,6 +25,7 @@
 }
 .login .pageContainer img {
   width: 10rem;
+  padding-top: 1rem;
 }
 .login .pageContainer h1 {
   text-align: center;
@@ -88,6 +89,7 @@
   border: 1px solid black;
   border-radius: 0.5rem;
   padding-left: 0.5rem;
+  font-size: 1rem;
 }
 .login .pageContainer main .loginContainer form input::-moz-placeholder {
   font-family: "Khula", sans-serif;
@@ -96,6 +98,10 @@
 .login .pageContainer main .loginContainer form input::placeholder {
   font-family: "Khula", sans-serif;
   font-size: 1rem;
+}
+.login .pageContainer main .loginContainer form input:focus.failed {
+  border-color: red;
+  outline: red;
 }
 .login .pageContainer .error-message {
   height: 8rem;
@@ -200,6 +206,7 @@
   border: 1px solid black;
   border-radius: 0.5rem;
   padding-left: 0.5rem;
+  font-size: 1rem;
 }
 .login .pageContainer .register-modal form input::-moz-placeholder {
   font-family: "Khula", sans-serif;
@@ -227,6 +234,10 @@
 
 .warning {
   color: rgb(218, 0, 0);
+}
+
+.required {
+  font-size: 0.75rem;
 }
 
 /* Fonts */
@@ -269,23 +280,6 @@
   display: flex;
   gap: 1rem;
   list-style: none;
-}
-.startpage .pageContainer nav ul button {
-  font-family: "Khula", sans-serif;
-  font-size: 1rem;
-  background-color: #44a6a5;
-  color: white;
-  font-weight: bold;
-  letter-spacing: 0.125rem;
-  padding: 0.5rem;
-  border: 1px solid white;
-  border-radius: 0.5rem;
-  opacity: 0.8;
-  border: none;
-  filter: drop-shadow(0 0 0.125rem #44a6a5);
-}
-.startpage .pageContainer nav ul button:hover {
-  background-color: #358281;
 }
 
 /* Global Styles */
@@ -379,4 +373,49 @@ body {
 .container ul li:hover {
   background-color: #ffecc7;
   cursor: pointer;
+}
+
+#footerNav {
+  width: 100%;
+  outline: 1px solid red;
+  position: fixed;
+  bottom: 0;
+  background-color: red;
+}
+#footerNav ul li {
+  border: 1px solid black;
+}
+#footerNav ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+#footerNav ul li #homeBtn img {
+  width: 3rem;
+  height: 2rem;
+}
+#footerNav ul li #homeBtn span {
+  font-size: 0.75rem;
+}
+#footerNav ul li #todoBtn img {
+  width: 3rem;
+  height: 2rem;
+}
+#footerNav ul li #todoBtn span {
+  font-size: 0.75rem;
+}
+#footerNav ul li #habitBtn img {
+  width: 3rem;
+  height: 2rem;
+}
+#footerNav ul li #habitBtn span {
+  font-size: 0.75rem;
+}
+#footerNav ul li #logOutBtn img {
+  width: 3rem;
+  height: 2rem;
+}
+#footerNav ul li #logOutBtn span {
+  font-size: 0.75rem;
 }/*# sourceMappingURL=main.css.map */
