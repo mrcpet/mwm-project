@@ -273,12 +273,19 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .startpage .pageContainer main .quoteContainer blockquote {
   border: 1px solid #ffffff;
   padding: 1rem;
   border-radius: 1rem;
   max-width: 20rem;
+  font-weight: bold;
+}
+.startpage .pageContainer main .quoteContainer blockquote footer {
+  font-weight: 400;
+  font-style: italic;
 }
 .startpage .pageContainer nav ul {
   display: flex;
@@ -527,4 +534,8 @@ body {
   display: block;
   font-size: 0.75rem;
   font-weight: bold;
+}
+
+main.calendar {
+  background-color: red;
 }/*# sourceMappingURL=main.css.map */
