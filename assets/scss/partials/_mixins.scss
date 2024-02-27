@@ -35,10 +35,34 @@
     font-size: 0.75rem;
   }
 }
-@mixin navButtonTest {
-  ul {
-    li {
-      border: 1px solid black;
+
+@mixin navButton($button-bg-color, $button-text-color) {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  // border: 1px solid $button-main;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: $button-text-color;
+  text-align: center;
+  @include desktop {
+    background-color: $button-bg-color;
+    border: 1px solid $button-main;
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: darken($button-bg-color, 10%);
     }
+  }
+  img {
+    display: block;
+    margin: 0 auto 5px;
+    height: 2rem;
+    width: 2rem;
+  }
+  span {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
   }
 }

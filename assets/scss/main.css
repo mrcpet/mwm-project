@@ -216,6 +216,10 @@
   font-family: "Khula", sans-serif;
   font-size: 1rem;
 }
+.login .pageContainer .register-modal form input:focus.failed {
+  border-color: red;
+  outline: red;
+}
 
 /* Global Styles */
 .hidden {
@@ -377,45 +381,150 @@ body {
 
 #footerNav {
   width: 100%;
-  outline: 1px solid red;
+  outline: 1px solid #5D50FA;
   position: fixed;
   bottom: 0;
-  background-color: red;
-}
-#footerNav ul li {
-  border: 1px solid black;
+  background: linear-gradient(to bottom, #876cf4, #9983f3, #a48eff) no-repeat;
+  background-size: cover;
 }
 #footerNav ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
 }
+@media (min-width: 1080px) {
+  #footerNav ul {
+    justify-content: center;
+    gap: 0;
+  }
+}
+#footerNav ul li {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+#footerNav ul li #homeBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #homeBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #homeBtn:hover {
+    background-color: #358281;
+  }
+}
 #footerNav ul li #homeBtn img {
-  width: 3rem;
+  display: block;
+  margin: 0 auto 5px;
   height: 2rem;
+  width: 2rem;
 }
 #footerNav ul li #homeBtn span {
+  display: block;
   font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #todoBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #todoBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #todoBtn:hover {
+    background-color: #358281;
+  }
 }
 #footerNav ul li #todoBtn img {
-  width: 3rem;
+  display: block;
+  margin: 0 auto 5px;
   height: 2rem;
+  width: 2rem;
 }
 #footerNav ul li #todoBtn span {
+  display: block;
   font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #habitBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #habitBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #habitBtn:hover {
+    background-color: #358281;
+  }
 }
 #footerNav ul li #habitBtn img {
-  width: 3rem;
+  display: block;
+  margin: 0 auto 5px;
   height: 2rem;
+  width: 2rem;
 }
 #footerNav ul li #habitBtn span {
+  display: block;
   font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #logOutBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #logOutBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #logOutBtn:hover {
+    background-color: #358281;
+  }
 }
 #footerNav ul li #logOutBtn img {
-  width: 3rem;
+  display: block;
+  margin: 0 auto 5px;
   height: 2rem;
+  width: 2rem;
 }
 #footerNav ul li #logOutBtn span {
+  display: block;
   font-size: 0.75rem;
+  font-weight: bold;
 }/*# sourceMappingURL=main.css.map */
