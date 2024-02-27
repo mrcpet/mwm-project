@@ -119,6 +119,23 @@ body {
   margin-bottom: 5%;
   display: flex;
 }
+.body-todo .content-wrapper #container-category {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.body-todo .content-wrapper #container-category #category-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.body-todo .content-wrapper #container-category .icon-category {
+  order: 2;
+}
+.body-todo .content-wrapper #container-category #card-text {
+  order: 1;
+}
 .body-todo .content-wrapper #container-overview #todo {
   width: 100%;
   display: flex;
@@ -147,19 +164,18 @@ body {
 }
 .body-todo .content-wrapper #container-todos {
   width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-.body-todo .content-wrapper #container-todos #container-todos {
-  width: 100%;
-}
-.body-todo .content-wrapper #container-todos #container-todos #todoList {
-  width: 100%;
   display: flex;
+}
+.body-todo .content-wrapper #container-todos #todoList {
+  display: flex;
+  flex-direction: column;
+}
+.body-todo .content-wrapper #container-todos .todo {
+  width: 100%;
   justify-content: space-between;
   flex-direction: row;
 }
-.body-todo .content-wrapper #container-task {
+.body-todo #container-task {
   width: 100%;
   min-height: auto;
   display: flex;
@@ -167,44 +183,39 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
-.body-todo .content-wrapper #container-task #category-card {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.body-todo .content-wrapper #container-task .boxgroup-title,
-.body-todo .content-wrapper #container-task .boxgroup-deadline,
-.body-todo .content-wrapper #container-task .boxgroup-timeestimate,
-.body-todo .content-wrapper #container-task .boxgroup-description {
+.body-todo #container-task .boxgroup-title,
+.body-todo #container-task .boxgroup-deadline,
+.body-todo #container-task .boxgroup-timeestimate,
+.body-todo #container-task .boxgroup-description {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
 }
-.body-todo .content-wrapper #container-task .boxgroup-icon {
+.body-todo #container-task .boxgroup-icon {
   display: flex;
   justify-content: flex-end;
   margin: 10px;
   gap: 10px;
 }
-.body-todo .content-wrapper #todoInput {
+.body-todo #todoInput {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.body-todo .content-wrapper #todoInput label {
+.body-todo #todoInput label {
   font-size: small;
   color: black;
 }
-.body-todo .content-wrapper #todoInput button {
+.body-todo #todoInput button {
   cursor: pointer;
 }
-.body-todo .content-wrapper #todoInput #addTodoButton {
+.body-todo #todoInput #addTodoButton {
   width: 50%;
   margin-left: 80px;
 }
-.body-todo .content-wrapper #todoInput .boxgroup {
+.body-todo #todoInput .boxgroup {
   width: 100%;
   margin: 5%;
 }/*# sourceMappingURL=main.css.map */

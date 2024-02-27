@@ -55,6 +55,27 @@
 
 
 
+        #container-category {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            #category-card {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .icon-category {
+                order: 2;
+            }
+
+            #card-text {
+                order: 1;
+            }
+        }
+
 
         #container-overview {
             #todo {
@@ -107,8 +128,10 @@
 
 
 
+
             #todoList {
                 display: flex;
+                flex-direction: column;
             }
 
             .todo {
@@ -135,11 +158,6 @@
 
 
 
-        #category-card {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
 
         .boxgroup-title,
         .boxgroup-deadline,
@@ -193,5 +211,4 @@
 
 
     }
-}
 }

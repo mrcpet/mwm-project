@@ -1,16 +1,16 @@
+
+
 let createTodo = () => {
     let createTodoBtn = document.getElementById("icon_addtodo");
-    let todoListContainer = document.getElementById("container-todos");
-    let todoInput = document.getElementById("todoInput");
+
 
     createTodoBtn.addEventListener('click', () => {
-        // Visar diven där en ny todo skapas
-        todoInput.style.display = 'block';
-        console.log("Du klickade på att skapa en todo!")
+        // Göm kategoriväljaren när användaren klickar på att skapa en ny todo
+        let containerCategory = document.getElementById("container-category");
+        containerCategory.style.display = 'none';
 
-
-        // Dölj todoListContainer när användaren väljer att skapa en ny todo
-        todoListContainer.style.display = 'none';
+        // Visa inputfälten för att skapa en ny todo
+        showElement("todoInput");
 
         // Rensa inputfälten och select-fältet
         document.getElementById("todoName").value = "";
@@ -18,57 +18,121 @@ let createTodo = () => {
         document.getElementById("todoDeadline").value = "";
         document.getElementById("todoDuration").value = "";
     });
-
-
 };
-
 // Anropa createTodo-funktionen när sidan laddas
 createTodo();
 
-
-
-let saveAndRenderTodo = () => {
+let saveTodo = () => {
     let addTodoBtn = document.getElementById("addTodoButton");
 
     addTodoBtn.addEventListener('click', () => {
-        let todoNameValue = document.getElementById("todoName").value;
-        let todoCategoryValue = document.getElementById("todoCategory").value;
-        let todoDeadlineValue = document.getElementById("todoDeadline").value;
-        let todoDurationValue = document.getElementById("todoDuration").value;
-
+        // Hämta värdena från inputfälten för den nya todo
         let todo = {
-            name: todoNameValue,
-            category: todoCategoryValue,
-            deadline: todoDeadlineValue,
-            duration: todoDurationValue
+            name: document.getElementById("todoName").value,
+            category: document.getElementById("todoCategory").value,
+            deadline: document.getElementById("todoDeadline").value,
+            duration: document.getElementById("todoDuration").value
         };
 
-        renderTodo(todo); // Anropa renderTodo med den nya todo för att visa den i listan
+        // Lägg till den nya todo i localStorage
+        saveTodoToLocalStorage(todo);
+
+        // Rendera den nya todo
+        renderTodo(todo);
+
+        // Visa listan med todos och dölj input-fältet för att skapa ny todo
+        showElement("container-todos");
     });
 };
 
+// Anropa saveTodo-funktionen när sidan laddas
+saveTodo();
+
+
+// Logik för spara todos i localstorage
+const saveTodoToLocalStorage = (todo) => {
+    // Hämta befintliga todos från localStorage
+    let todos = getSavedTodos();
+
+    // Lägg till den nya todo i listan
+    todos.push(todo);
+
+    // Konvertera todos till JSON-format och spara i localStorage
+    localStorage.setItem('todos', JSON.stringify(todos));
+
+};
+
+// Funktion för att hämta sparade todos från localStorage
+const getSavedTodos = () => {
+    // Hämta sparade todos från localStorage
+    const savedTodosJSON = localStorage.getItem('todos');
+
+    // Om det inte finns några sparade todos, returnera en tom array
+    // Annars, konvertera JSON-strängen till en array och returnera den
+    return savedTodosJSON ? JSON.parse(savedTodosJSON) : [];
+};
+// Funktion för att rendera en todo
 let renderTodo = (todo) => {
-    let todoListContainer = document.getElementById("container-todos");
 
-    todoListContainer.style.display = 'block';
-
-    let todoInput = document.getElementById("todoInput");
-    todoInput.style.display = 'none';
-
-    let todoList = document.getElementById("todoList");
-
+    // Skapa ett nytt <li> element för den nya todo
     let todoItem = document.createElement("li");
+    todoItem.textContent = todo.name;
 
-    todoItem.textContent = todo.name; // Använd textContent för att sätta innehållet till att endast visa namnet på todo
-
+    // Lägg till <li> i listan av todos
+    let todoList = document.getElementById("todoList");
     todoList.appendChild(todoItem);
 };
 
+// Hämta todos från localStorage och rendera dem när sidan laddas
+window.addEventListener('load', () => {
+    const savedTodos = getSavedTodos();
+    savedTodos.forEach(todo => {
+        renderTodo(todo);
+    });
+});
 
 
 
 
-saveAndRenderTodo();
+
+
+let todoFooterBtn = document.getElementById("icon_todolist");
+let containerCategory = document.getElementById("container-category");
+
+todoFooterBtn.addEventListener('click', () => {
+
+    showElement("container-category");
+
+    // När man trycker på iconen så ska användern navigeras till container-category
+
+});
+
+
+
+
+
+
+// Funktion som körs för att städa upp tidigare visade element och ersättas av det nya 
+// elementet
+let lastVisibleElement = null;
+
+function showElement(elementId) {
+    // Dölj det senast visade elementet, om det finns ett
+    if (lastVisibleElement !== null) {
+        lastVisibleElement.style.display = 'none';
+    }
+
+    // Visa det nya elementet
+    let elementToShow = document.getElementById(elementId);
+    if (elementToShow) {
+        elementToShow.style.display = 'block';
+        // Uppdatera referensen till det senast visade elementet
+        lastVisibleElement = elementToShow;
+    } else {
+        console.error(`Element with ID '${elementId}' not found.`);
+    }
+}
+
 
 
 
