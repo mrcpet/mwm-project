@@ -251,7 +251,7 @@
   font-family: "Khula", sans-serif;
   background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff) no-repeat;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -537,5 +537,18 @@ body {
 }
 
 main.calendar {
-  background-color: red;
+  background-color: gray;
+}
+main.calendar .calendarInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+main.calendar .listContainer ul {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+main.calendar .listContainer ul li {
+  border: 1px solid black;
 }/*# sourceMappingURL=main.css.map */

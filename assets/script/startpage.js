@@ -1,5 +1,6 @@
+// check if user is logged in
 let loggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
-console.log(loggedIn);
+// console.log(loggedIn);
 if (loggedIn === true) {
   // query selectors containers
   const quoteContainer = document.querySelector(".quoteContainer  ");
