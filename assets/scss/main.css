@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html,
 body {
   margin: 0;
@@ -115,8 +116,6 @@ body {
   min-height: auto;
   max-width: 600px;
   background-color: grey;
-  margin-top: 5%;
-  margin-bottom: 5%;
   display: flex;
 }
 .body-todo .content-wrapper #container-category {
@@ -165,17 +164,30 @@ body {
 .body-todo .content-wrapper #container-todos {
   width: 100%;
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 .body-todo .content-wrapper #container-todos #todoList {
   display: flex;
   flex-direction: column;
-}
-.body-todo .content-wrapper #container-todos .todo {
+  justify-content: flex-start;
   width: 100%;
-  justify-content: space-between;
-  flex-direction: row;
+  /* Lägg till denna regel för att få ul att fylla hela bredden */
+  margin: 0%;
 }
-.body-todo #container-task {
+.body-todo .content-wrapper #container-todos #todoList .todo-item {
+  width: 100%;
+  display: flex;
+  /* Använd flexbox för att justera innehållet */
+  justify-content: space-between;
+  margin: 0%;
+}
+.body-todo .content-wrapper #container-todos #todoList .delete-todo {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.body-todo .content-wrapper #container-task {
   width: 100%;
   min-height: auto;
   display: flex;
@@ -183,39 +195,39 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
-.body-todo #container-task .boxgroup-title,
-.body-todo #container-task .boxgroup-deadline,
-.body-todo #container-task .boxgroup-timeestimate,
-.body-todo #container-task .boxgroup-description {
+.body-todo .content-wrapper #container-task .boxgroup-title,
+.body-todo .content-wrapper #container-task .boxgroup-deadline,
+.body-todo .content-wrapper #container-task .boxgroup-timeestimate,
+.body-todo .content-wrapper #container-task .boxgroup-description {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
 }
-.body-todo #container-task .boxgroup-icon {
+.body-todo .content-wrapper #container-task .boxgroup-icon {
   display: flex;
   justify-content: flex-end;
   margin: 10px;
   gap: 10px;
 }
-.body-todo #todoInput {
+.body-todo .content-wrapper #todoInput {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.body-todo #todoInput label {
+.body-todo .content-wrapper #todoInput label {
   font-size: small;
   color: black;
 }
-.body-todo #todoInput button {
+.body-todo .content-wrapper #todoInput button {
   cursor: pointer;
 }
-.body-todo #todoInput #addTodoButton {
+.body-todo .content-wrapper #todoInput #addTodoButton {
   width: 50%;
   margin-left: 80px;
 }
-.body-todo #todoInput .boxgroup {
+.body-todo .content-wrapper #todoInput .boxgroup {
   width: 100%;
   margin: 5%;
 }/*# sourceMappingURL=main.css.map */

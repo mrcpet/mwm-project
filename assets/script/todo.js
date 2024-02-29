@@ -1,12 +1,92 @@
 
+// Definiera todos globalt
+let arrayTodos = [];
 
+// Funktion för att rendera en todo
+let renderTodo = (todo) => {
+
+    // Skapa ett nytt <li> element för den nya todo
+    let todoItem = document.createElement("li");
+    todoItem.textContent = todo.name;
+    todoItem.classList.add("todo-item");
+
+    // Lägg till <li> i listan av todos
+    let todoList = document.getElementById("todoList");
+    todoList.appendChild(todoItem);
+
+    // Skapa checkbox-spannet
+    let spanStatus = document.createElement("span");
+    spanStatus.classList.add("span-status");
+
+    // Skapa ett <i>-element för ikonen
+    let checkedIcon = document.createElement("i");
+    checkedIcon.classList.add("fas", "fa-check-square"); // För markerad (checked) ruta
+    let uncheckedIcon = document.createElement("i");
+    uncheckedIcon.classList.add("far", "fa-square"); // För omarkerad (unchecked) ruta
+
+    // Visa antingen checkedIcon eller uncheckedIcon baserat på todo.completed
+    if (todo.completed) {
+        checkedIcon.style.display = "inline-block";
+        uncheckedIcon.style.display = "none";
+    } else {
+        checkedIcon.style.display = "none";
+        uncheckedIcon.style.display = "inline-block";
+    }
+
+    // Lägg till ikonerna i spanStatus
+    spanStatus.appendChild(checkedIcon);
+    spanStatus.appendChild(uncheckedIcon);
+
+    // Lägg till klickhändelsen för att växla mellan checked och unchecked
+    spanStatus.addEventListener('click', () => {
+        // Ändra completed-egenskapen för todo
+        todo.completed = !todo.completed;
+
+        // Uppdatera ikonerna baserat på todo.completed
+        if (todo.completed) {
+            checkedIcon.style.display = "inline-block";
+            uncheckedIcon.style.display = "none";
+        } else {
+            checkedIcon.style.display = "none";
+            uncheckedIcon.style.display = "inline-block";
+        }
+
+        // Spara listan med todos i localStorage
+        saveTodosToLocalStorage();
+
+    });
+
+    // Lägg till spanStatus i todoItem
+    todoItem.appendChild(spanStatus);
+};
+
+// Funktion för att spara todos i localStorage
+let saveTodosToLocalStorage = (todo) => {
+    localStorage.setItem('todos', JSON.stringify(arrayTodos));
+};
+
+// Funktion för att hämta sparade todos från localStorage
+let getSavedTodos = () => {
+    const savedTodosJSON = localStorage.getItem('todos');
+    return savedTodosJSON ? JSON.parse(savedTodosJSON) : [];
+};
+
+// Funktion för att ladda todos när sidan laddas
+let loadTodos = () => {
+    arrayTodos = getSavedTodos();// Uppdatera arrayTodos med de sparade todos
+    console.log(arrayTodos);
+    arrayTodos.forEach(todo => {
+        renderTodo(todo);
+    });
+};
+
+// Funktion för att skapa en ny todo
 let createTodo = () => {
     let createTodoBtn = document.getElementById("icon_addtodo");
-
-
+    let containerCategory = document.getElementById("container-category");
     createTodoBtn.addEventListener('click', () => {
-        // Göm kategoriväljaren när användaren klickar på att skapa en ny todo
-        let containerCategory = document.getElementById("container-category");
+        // Göm kategoriväljaren
+
         containerCategory.style.display = 'none';
 
         // Visa inputfälten för att skapa en ny todo
@@ -19,98 +99,41 @@ let createTodo = () => {
         document.getElementById("todoDuration").value = "";
     });
 };
-// Anropa createTodo-funktionen när sidan laddas
+
 createTodo();
 
+
+
+// Funktion för att spara en ny todo
 let saveTodo = () => {
     let addTodoBtn = document.getElementById("addTodoButton");
-
     addTodoBtn.addEventListener('click', () => {
         // Hämta värdena från inputfälten för den nya todo
         let todo = {
             name: document.getElementById("todoName").value,
             category: document.getElementById("todoCategory").value,
             deadline: document.getElementById("todoDeadline").value,
-            duration: document.getElementById("todoDuration").value
+            duration: document.getElementById("todoDuration").value,
+            completed: false
         };
 
-        // Lägg till den nya todo i localStorage
-        saveTodoToLocalStorage(todo);
+
 
         // Rendera den nya todo
         renderTodo(todo);
 
-        // Visa listan med todos och dölj input-fältet för att skapa ny todo
+        arrayTodos.push(todo);
+        console.log(arrayTodos);
+
+        // Spara alla todos i localStorage
+        saveTodosToLocalStorage();
+
+        // Visa listan med todos och dölj input-fältet 
         showElement("container-todos");
     });
 };
 
-// Anropa saveTodo-funktionen när sidan laddas
 saveTodo();
-
-
-// Logik för spara todos i localstorage
-const saveTodoToLocalStorage = (todo) => {
-    // Hämta befintliga todos från localStorage
-    let todos = getSavedTodos();
-
-    // Lägg till den nya todo i listan
-    todos.push(todo);
-
-    // Konvertera todos till JSON-format och spara i localStorage
-    localStorage.setItem('todos', JSON.stringify(todos));
-
-};
-
-// Funktion för att hämta sparade todos från localStorage
-const getSavedTodos = () => {
-    // Hämta sparade todos från localStorage
-    const savedTodosJSON = localStorage.getItem('todos');
-
-    // Om det inte finns några sparade todos, returnera en tom array
-    // Annars, konvertera JSON-strängen till en array och returnera den
-    return savedTodosJSON ? JSON.parse(savedTodosJSON) : [];
-};
-// Funktion för att rendera en todo
-let renderTodo = (todo) => {
-
-    // Skapa ett nytt <li> element för den nya todo
-    let todoItem = document.createElement("li");
-    todoItem.textContent = todo.name;
-
-    // Lägg till <li> i listan av todos
-    let todoList = document.getElementById("todoList");
-    todoList.appendChild(todoItem);
-};
-
-// Hämta todos från localStorage och rendera dem när sidan laddas
-window.addEventListener('load', () => {
-    const savedTodos = getSavedTodos();
-    savedTodos.forEach(todo => {
-        renderTodo(todo);
-    });
-});
-
-
-
-
-
-
-let todoFooterBtn = document.getElementById("icon_todolist");
-let containerCategory = document.getElementById("container-category");
-
-todoFooterBtn.addEventListener('click', () => {
-
-    showElement("container-category");
-
-    // När man trycker på iconen så ska användern navigeras till container-category
-
-});
-
-
-
-
-
 
 // Funktion som körs för att städa upp tidigare visade element och ersättas av det nya 
 // elementet
@@ -132,6 +155,88 @@ function showElement(elementId) {
         console.error(`Element with ID '${elementId}' not found.`);
     }
 }
+
+
+let handleTodoFooter = () => {
+    let todoFooterBtn = document.getElementById("icon_todolist");
+    todoFooterBtn.addEventListener("click", () => {
+        showElement("container-category");
+    });
+};
+
+// Ladda todos när sidan laddas
+window.addEventListener('load', () => {
+    loadTodos();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
