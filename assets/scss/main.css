@@ -77,4 +77,12 @@ body {
 .container ul li:hover {
   background-color: #ffecc7;
   cursor: pointer;
+}
+
+.selected {
+  background-color: lightgreen;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

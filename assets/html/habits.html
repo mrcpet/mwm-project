@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Habits</title>
     <script src="/assets/script/habits.js" defer></script>
+    <script src="/assets/script/pomodoro.js"></script>
     <link rel="stylesheet" href="/assets/scss/main.css" />
   </head>
   <body>
     <div class="container">
+      <h1 id="welcome-title"></h1>
       <img
         src="/assets/images/cat-with-list.jpeg"
         alt="a cat with a list"
@@ -44,6 +46,32 @@
           <label for="low-prio">low</label>
           <input type="checkbox" name="filter" id="low-prio" value="1" />
         </fieldset>
+        <div class="action-container hidden">
+          <img
+            class="action-bar"
+            id="plus-sign"
+            src="/assets/icons/Icon/Outline/plus-square.svg"
+            alt="addition-sign"
+          />
+          <img
+            class="action-bar"
+            id="refresh-sign"
+            src="/assets/icons/Icon/Outline/refresh.svg"
+            alt="minus-sign"
+          />
+          <img
+            class="action-bar"
+            id="trash-can"
+            src="/assets/icons/Icon/Outline/trash-2.svg"
+            alt="trash-can"
+          />
+          <img
+            class="action-bar"
+            id="close-sign"
+            src="/assets/icons/Icon/Outline/close.svg"
+            alt="close-sign"
+          />
+        </div>
       </div>
 
       <ul id="habit-list"></ul>
