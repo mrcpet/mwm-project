@@ -551,4 +551,8 @@ main.calendar .listContainer ul {
 }
 main.calendar .listContainer ul li {
   border: 1px solid black;
+}
+main.calendar .listContainer ul li.oldEvent {
+  border: 1px solid red;
+  opacity: 0.5;
 }/*# sourceMappingURL=main.css.map */

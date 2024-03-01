@@ -13,6 +13,10 @@ main.calendar {
       li {
         border: 1px solid black;
       }
+      li.oldEvent {
+        border: 1px solid red;
+        opacity: 0.5;
+      }
     }
   }
 }

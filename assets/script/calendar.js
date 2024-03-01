@@ -15,47 +15,91 @@ if (loggedIn === true) {
   // get current user from local storage
   let currentUser = localStorage.getItem("currentUser");
 
+  // get current date
+  let timeNow = new Date();
+
   // array to store events and parse events stored in localstorage
   let events = JSON.parse(localStorage.getItem("events")) || [];
 
   // nice to have: a calendar view showing all days of the month, being able to click on a date to see events associated with that date
   // nice to have: import events from todo to calendar
 
+  // function to check overlapping events
+
+  const eventsOverlap = (event1, event2) => {
+    console.log("events overlap:", event1, event2);
+    let start1 = new Date(event1.start).getTime();
+    let end1 = new Date(event1.end).getTime();
+    let start2 = new Date(event2.start).getTime();
+    let end2 = new Date(event2.end).getTime();
+    console.log("overlap function variables:", start1, start2, end1, end2);
+    return start1 < end2 && end1 > start2;
+  };
+  // eventsOverlap(events[0], events[1]);
+  // console.log(eventsOverlap(events[1], events[2]));
+
+  // function to add event to array after checking overlap
+  const addEvent = (newEvent, eventArray) => {
+    for (let i = 0; i < eventArray.length; i++) {
+      if (eventsOverlap(newEvent, eventArray[i])) {
+        console.log("time slot not available.");
+        return;
+      }
+    }
+    eventArray.push(newEvent);
+    console.log("event added");
+  };
+
   // function to render events
   const renderEvents = (array) => {
     //clear container before rendering events to prevent doubles
     listContainer.innerHTML = "";
+
     //TODO render only events that is created by the current user
+    let currentUserEvents = array.filter((event) => event.user === currentUser);
     //sort array with events chronologically
-    let sortedArray = array.sort((a, b) => {
-      const dateA = new Date(a.start.date + "T" + a.start.time);
-      const dateB = new Date(b.start.date + "T" + b.start.time);
+    currentUserEvents.sort((a, b) => {
+      const dateA = new Date(a.start);
+      const dateB = new Date(b.start);
       console.log(dateA, dateB);
       return dateA - dateB;
     });
-    console.log(sortedArray);
+
     //create ul to render events inside
     const ul = document.createElement("ul");
-    array.forEach((event) => {
+    currentUserEvents.forEach((event) => {
       //destructuring the event object and create list element for each event
       const { title, start, end } = event;
       const li = document.createElement("li");
+      //add class to show events that passed in time
+      if (new Date(end) < timeNow) {
+        li.classList.add("oldEvent");
+      }
       //render title
       let titleP = document.createElement("p");
       titleP.textContent = `Title: ${title}`;
       li.append(titleP);
+      //object for localestring options
+      let timeDateFormat = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
       //render start date and time
-      Object.keys(start).forEach((key) => {
-        let p = document.createElement("p");
-        p.textContent = `Start ${key}: ${start[key]} `;
-        li.append(p);
-      });
-      //render end date and time
-      Object.keys(end).forEach((key) => {
-        let p = document.createElement("p");
-        p.textContent = `End ${key}: ${end[key]}`;
-        li.append(p);
-      });
+      let startInfo = document.createElement("p");
+      startInfo.textContent = `Start: ${new Date(start).toLocaleString(
+        "en-GB",
+        timeDateFormat
+      )}`;
+      let endInfo = document.createElement("p");
+      endInfo.textContent = `End: ${new Date(end).toLocaleString(
+        "en-GB",
+        timeDateFormat
+      )}`;
+      li.append(startInfo, endInfo);
+      console.log("render date object:", start, end);
       ul.append(li);
       listContainer.append(ul);
     });
@@ -67,19 +111,15 @@ if (loggedIn === true) {
     localStorage.setItem("events", JSON.stringify(array));
     renderEvents(events);
   };
+
   // function to take inputs and create event object
   const getEventData = (title, startDate, startTime, endDate, endTime) => {
     return {
       user: currentUser,
       title: title,
-      start: {
-        date: startDate,
-        time: startTime,
-      },
-      end: {
-        date: endDate,
-        time: endTime,
-      },
+      //create date object from date and time inputs
+      start: new Date(startDate + "T" + startTime),
+      end: new Date(endDate + "T" + endTime),
     };
   };
   // function to render inputs to create new calendar event
@@ -87,7 +127,7 @@ if (loggedIn === true) {
     // create input container
     const calendarInputContainer = document.createElement("div");
     calendarInputContainer.classList.add("calendarInputContainer");
-
+    //TODO refactor this code using a separate function to create label/input, then call that function with an array of defined input configs
     // create event title input with input
     const titleLabel = document.createElement("label");
     titleLabel.setAttribute("for", "eventTitleInput");
@@ -159,7 +199,7 @@ if (loggedIn === true) {
           endDate,
           endTime
         );
-        events.push(eventData);
+        addEvent(eventData, events);
         saveEvents(events);
       } else {
         console.log("please fill out the required fields"); //TODO Handle this showing an error message the user can see
@@ -187,5 +227,6 @@ if (loggedIn === true) {
     // console.log(year, month, today);
   });
 } else {
+  // redirect user to login page if not logged in
   window.location.href = "../../index.html";
 }
