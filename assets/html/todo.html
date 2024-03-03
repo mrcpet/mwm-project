@@ -13,203 +13,76 @@
 
     <div class="wrapper">
 
-        <header>
-            <div id="navbar-header">
-                <button type="button" id="icon_filtering">
-                    <img src="/assets/Icons/icon_filtering.svg" alt="" class="svg-icon">
-                </button>
-                <button type="button" id="icon_addtodo">
-                    <img src="/assets/Icons/icon_addtodo.svg" alt="" class="svg-icon">
-                </button>
+        <form id="todoForm">
+
+            <div>
+                <input type="checkbox" id="Personal" name="category" value="Personal">
+                <label for="category1">Personal</label>
             </div>
-        </header>
-
-        <div class="content-wrapper">
-
-            <div id="container-category">
-
-                <div id="category-card">
-                    <div class="icon-category">
-                        <a href="">
-                            <img src="/assets/images/svg_personal.svg" width="70px" alt="">
-                        </a>
-                    </div>
-                    <div id="card-text">
-                        <p class="todo-category">Personal</p>
-                        <p class="todo-taskcounting">Amount of tags</p>
-                    </div>
-
-                </div>
-
-                <div id="category-card">
-                    <div class="icon-category">
-                        <a href="">
-                            <img src="/assets/images/svg_work.svg" width="70px" alt="">
-                        </a>
-                    </div>
-                    <div id="card-text">
-                        <p class="todo-category">Work</p>
-                        <p class="todo-taskcounting">Amount of tags</p>
-                    </div>
-
-                </div>
-
-                <div id="category-card">
-                    <div class="icon-category">
-                        <a href="">
-                            <img src="/assets/images/img_shopping.jpg" width="70px" alt="">
-                        </a>
-                    </div>
-                    <div id="card-text">
-                        <p class="todo-category">Shopping</p>
-                        <p class="todo-taskcounting">Amount of tags</p>
-                    </div>
-
-                </div>
-
-                <div id="category-card">
-                    <div class="icon-category">
-                        <a href="">
-                            <img src="/assets/images/svg_health.svg" width="70px" alt="">
-                        </a>
-                    </div>
-                    <div id="card-text">
-                        <p class="todo-category">Health</p>
-                        <p class="todo-taskcounting">Amount of tags</p>
-                    </div>
-
-                </div>
-
-                <div id="category-card">
-                    <div class="icon-category">
-                        <a href="">
-                            <img src="/assets/images/svg_coding.svg" width="70px" alt="">
-                        </a>
-                    </div>
-                    <div id="card-text">
-                        <p class="todo-category">Coding</p>
-                        <p class="todo-taskcounting">Amount of tags</p>
-                    </div>
-
-                </div>
-
-
+            <div>
+                <input type="checkbox" id="Work" name="category" value="Work">
+                <label for="category2">Work</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Shopping" name="category" value="Shopping">
+                <label for="category2">Shopping</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Health" name="category" value="Health">
+                <label for="category2">Health</label>
+            </div>
+            <div>
+                <input type="checkbox" id="selectAll" name="selectAll">
+                <label for="selectAll">Select All</label>
             </div>
 
+            <label for="todoTitle">Todo Title:</label><br>
+            <input type="text" id="todoTitle" name="todoTitle"><br><br>
 
-            <div id="container-task" style="display: none;">
-                <div class="boxgroup-title">
-                    <p class="todo-titel">Här finns titeln på todon</p>
-                    <button type="button" id="icon_checkbox">
-                        <img src="/assets/Icons/icon_checkbox.svg" alt="" class="svg-icon">
-                    </button>
-                </div>
-                <div class="boxgroup-description">
-                    <p class="todo-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, sit
-                        iure
-                        molestias, inventore optio doloribus impedit,
-                        tempora veritatis officia ad hic! Deleniti voluptatem ratione dolorem dicta illo cumque
-                        magnam
-                        est.
-                    </p>
-                </div>
-                <div class="todo-information">
-                    <div class="boxgroup-deadline">
-                        <img src="/assets/Icons/icon_calendaryGrey.svg" alt="" class="svg-icon">
-                        <p class="text-todo-info">17 mars 2024</p>
-                    </div>
+            <label for="todoDescription">Description:</label><br>
+            <textarea id="todoDescription" name="todoDescription"></textarea><br><br>
 
-                    <div class="boxgroup-timeestimate">
-                        <img src="/assets/Icons/icon-time.svg" alt="" class="svg-icon">
-                        <p class="text-todo-info">30 days</p>
-                    </div>
-                </div>
-                <div class="boxgroup-icon">
-                    <img src="/assets/Icons/icon_delete.svg" alt="" class="svg-icon">
-                    <img src="/assets/Icons/icon_edit.svg" alt="" class="svg-icon">
-                </div>
-            </div>
+            <label for="todoCategory">Category:</label><br>
+            <select id="todoCategory" name="todoCategory">
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Other">Other</option>
+            </select><br><br>
 
-            <div id="container-todos" style="display: none;">
-                <ul id="todoList"></ul>
-            </div>
+            <label for="todoDate">Date:</label><br>
+            <input type="date" id="todoDate" name="todoDate"><br><br>
 
+            <label for="todoDuration">Duration (hours):</label><br>
+            <input type="number" id="todoDuration" name="todoDuration" min="1"><br><br>
 
+            <label for="todoDeadline">Deadline:</label><br>
+            <input type="date" id="todoDeadline" name="todoDeadline"><br><br>
 
+            <button id="addTodo">Add Todo</button>
+        </form>
 
+        <div id="todoListContainer">
+            <ul id="todoList"></ul>
+        </div>
 
-
-            <div id="todoInput" style="display: none;">
-                <div class="boxgroup">
-                    <input type="text" id="todoName" placeholder="Task name">
-                </div>
-                <div class="boxgroup">
-                    <select id="todoCategory">
-                        <option value="" disabled selected hidden>Category</option>
-                        <option value="personal">Personal</option>
-                        <option value="arbete">Work</option>
-                        <option value="studier">Shopping</option>
-                        <option value="personal">Health</option>
-                        <option value="arbete">Coding</option>
-                    </select>
-                </div>
-                <div class="boxgroup">
-                    <label for="todoDeadline">Deadline:</label>
-                    <input type="date" id="todoDeadline" placeholder="Deadline">
-                </div>
-                <div class="boxgroup">
-                    <label for="todoDuration">Time estimate:</label>
-                    <input type="number" id="todoDuration" placeholder="Estimated time (minutes)">
-                </div>
-
-                <button id="addTodoButton">Lägg till todo</button>
-
-                <div class="boxgroup">
-                    <button id="deleteTodoBtn">
-                        <img src="/assets/Icons/icon_delete.svg" alt="" class="svg-icon">
-                    </button>
-                    <button id="editTodoBtn">
-                        <img src="/assets/Icons/icon_edit.svg" alt="" class="svg-icon">
-                    </button>
-                </div>
-            </div>
+        <div id="todoDetailsContainer" style="display: none;">
+            <p><strong>Title:</strong> <span id="todoTitleDisplay"></span></p>
+            <p><strong>Description:</strong> <span id="todoDescriptionDisplay"></span></p>
+            <p><strong>Category:</strong> <span id="todoCategoryDisplay"></span></p>
+            <p><strong>Date:</strong> <span id="todoDateDisplay"></span></p>
+            <p><strong>Duration:</strong> <span id="todoDurationDisplay"></span></p>
+            <p><strong>Deadline:</strong> <span id="todoDeadlineDisplay"></span></p>
         </div>
 
 
-
-
-
-
-
-
-        <footer>
-            <div id="navbar-footer">
-                <button type="button" id="icon_todolist">
-                    <img src="/assets/Icons/icon_todolist.svg" alt="" class="svg-icon">
-                </button>
-                <button type="button" id="icon_habits">
-                    <img src="/assets/Icons/icon_habits.svg" alt="" class="svg-icon">
-                </button>
-                <button type="button" id="icon_home">
-                    <img src="/assets/Icons/icon_home.svg" alt="" class="svg-icon">
-                </button>
-                <button type="button" id="icon_weather">
-                    <img src="/assets/Icons/icon_weather.svg" alt="" class="svg-icon">
-                </button>
-                <button type="button" id="icon_calendary">
-                    <img src="/assets/Icons/icon_calendary.svg" alt="" class="svg-icon">
-                </button>
-
-            </div>
-        </footer>
-
     </div>
 
 
 
 
 
-    </div>
+
 
 </body>
 
