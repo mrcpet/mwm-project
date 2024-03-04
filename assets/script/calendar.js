@@ -185,6 +185,11 @@ if (loggedIn === true) {
       const startTime = startTimeInput.value;
       const endDate = endDateInput.value;
       const endTime = endTimeInput.value;
+      //TODO write a function that works on all empty required inputs both for calendar and login/register user to show warning, idea below
+      // const allInputs = document.querySelectorAll("input[type='text']");
+      // const emptyInputs = Array.from(allInputs).filter(
+      //   (input) => input.value === null || input.value === ""
+      // );
       if (
         eventTitle !== "" &&
         startDate !== "" &&
