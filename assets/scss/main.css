@@ -88,146 +88,36 @@ body {
   max-width: 1400px;
 }
 .body-todo .wrapper {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: auto;
   border: 2px solid black;
   background-color: grey;
 }
-.body-todo header {
-  width: 100%;
-  background-color: aquamarine;
-  margin-bottom: 5%;
-}
-.body-todo header #navbar-header {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-.body-todo footer {
-  width: 100%;
-  background-color: aquamarine;
-}
-.body-todo footer #navbar-footer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.body-todo .content-wrapper {
-  width: 100%;
-  min-height: auto;
-  max-width: 600px;
-  background-color: grey;
-  display: flex;
-}
-.body-todo .content-wrapper #container-category {
-  width: 100%;
+.body-todo .wrapper #todoListContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-.body-todo .content-wrapper #container-category #category-card {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-.body-todo .content-wrapper #container-category .icon-category {
-  order: 2;
-}
-.body-todo .content-wrapper #container-category #card-text {
-  order: 1;
-}
-.body-todo .content-wrapper #container-overview #todo {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 2px solid lightgrey;
-}
-.body-todo .content-wrapper #container-overview #todo #icon_checkbox {
-  border: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-}
-.body-todo .content-wrapper #container-overview #todo .todo-titel {
-  font-size: 20px;
-  padding: 20px;
-}
-.body-todo .content-wrapper #container-overview button {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-.body-todo .content-wrapper #container-todos {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  width: 80%;
 }
-.body-todo .content-wrapper #container-todos #todoList {
+.body-todo .wrapper #todoListContainer .todo {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
-  /* Lägg till denna regel för att få ul att fylla hela bredden */
-  margin: 0%;
+  border: 1px solid #ddd;
 }
-.body-todo .content-wrapper #container-todos #todoList .todo-item {
-  width: 100%;
-  display: flex;
-  /* Använd flexbox för att justera innehållet */
-  justify-content: space-between;
-  margin: 0%;
+.body-todo .wrapper #todoListContainer .todo .todo .delete-icon {
+  /* Lägg till dina stilar för deleteIcon här */
+  color: red; /* Till exempel, ändra färgen till röd */
+  cursor: pointer; /* Ändra markören till en pekare för att visa att den är klickbar */
 }
-.body-todo .content-wrapper #container-todos #todoList .delete-todo {
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-}
-.body-todo .content-wrapper #container-task {
-  width: 100%;
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-.body-todo .content-wrapper #container-task .boxgroup-title,
-.body-todo .content-wrapper #container-task .boxgroup-deadline,
-.body-todo .content-wrapper #container-task .boxgroup-timeestimate,
-.body-todo .content-wrapper #container-task .boxgroup-description {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 10px;
-}
-.body-todo .content-wrapper #container-task .boxgroup-icon {
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px;
-  gap: 10px;
-}
-.body-todo .content-wrapper #todoInput {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.body-todo .content-wrapper #todoInput label {
-  font-size: small;
-  color: black;
-}
-.body-todo .content-wrapper #todoInput button {
-  cursor: pointer;
-}
-.body-todo .content-wrapper #todoInput #addTodoButton {
-  width: 50%;
-  margin-left: 80px;
-}
-.body-todo .content-wrapper #todoInput .boxgroup {
-  width: 100%;
-  margin: 5%;
+.body-todo .wrapper #todoListContainer #todoDetailsContainer {
+  width: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: grey;
 }/*# sourceMappingURL=main.css.map */

@@ -9,223 +9,51 @@
     max-width: 1400px;
 
     .wrapper {
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: auto;
         border: 2px solid black;
         background-color: grey;
-    }
-
-
-    header {
-        width: 100%;
-        background-color: aquamarine;
-
-        margin-bottom: 5%;
-
-        #navbar-header {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-    }
-
-    footer {
-        width: 100%;
-        background-color: aquamarine;
-
-
-        #navbar-footer {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-    }
 
 
 
 
-    .content-wrapper {
-        width: 100%;
-        min-height: auto;
-        max-width: 600px;
-        background-color: grey;
-        display: flex;
+        #todoListContainer {
 
-
-
-        #container-category {
-            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-
-            #category-card {
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-            }
-
-            .icon-category {
-                order: 2;
-            }
-
-            #card-text {
-                order: 1;
-            }
-        }
-
-
-        #container-overview {
-            #todo {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                border: 2px solid lightgrey;
-
-
-                #icon_checkbox {
-                    border: none;
-                    padding: 15px 32px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 16px;
-                    margin: 4px 2px;
-                    transition-duration: 0.4s; // Övergångstid för hover-effekt
-
-
-
-                }
-
-                .todo-titel {
-                    font-size: 20px;
-                    padding: 20px;
-                }
-            }
-
-
-
-            button {
-                border: none;
-                background: none;
-                cursor: pointer;
-            }
-
-
-
-
-        }
-
-        #container-todos {
-            width: 100%;
-            display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
+            width: 80%;
 
-        
-
-            #todoList {
+            .todo {
                 display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
+                justify-content: center;
                 width: 100%;
-                /* Lägg till denna regel för att få ul att fylla hela bredden */
-                margin: 0%;
+                border: 1px solid #ddd;
 
-
-
-                .todo-item {
-                    width: 100%;
-                    display: flex;
-                    /* Använd flexbox för att justera innehållet */
-                    justify-content: space-between;
-                    margin: 0%;
+                .todo .delete-icon {
+                    /* Lägg till dina stilar för deleteIcon här */
+                    color: red; /* Till exempel, ändra färgen till röd */
+                    cursor: pointer; /* Ändra markören till en pekare för att visa att den är klickbar */
                 }
+                
+               
+            }
 
 
-                .delete-todo {
+            #todoDetailsContainer {
 
-                    color: white;
-                    font-size: 20px;
-                    cursor: pointer;
-
-                }
-
-
-
-
-
+                width: auto;
+                height: fit-content;
+                background-color: grey;
             }
 
         }
 
-
-
-
-        #container-task {
-            width: 100%;
-            min-height: auto;
-            display: flex;
-            flex-direction: column;
-            margin-left: 10%;
-            margin-right: 10%;
-
-
-
-
-            .boxgroup-title,
-            .boxgroup-deadline,
-            .boxgroup-timeestimate,
-            .boxgroup-description {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                margin: 10px;
-
-            }
-
-            .boxgroup-icon {
-                display: flex;
-                justify-content: flex-end;
-                margin: 10px;
-                gap: 10px;
-            }
-
-
-
-        }
-
-        #todoInput {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-
-            label {
-                font-size: small;
-                color: black;
-            }
-
-            button {
-                cursor: pointer;
-            }
-
-            #addTodoButton {
-                width: 50%;
-                margin-left: 80px;
-
-            }
-
-            .boxgroup {
-                width: 100%;
-                margin: 5%;
-            }
-
-
-
-        }
     }
 
 }

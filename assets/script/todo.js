@@ -41,6 +41,7 @@ addTodoBtn.addEventListener('click', (event) => {
     event.preventDefault();
     todoForm.style.display = "none";
     todoListContainer.style.display = "block";
+    checkboxDiv.style.display = "block";
     createTodo();
     renderAllTodos();
 
@@ -116,6 +117,10 @@ let renderTodo = (todo, index) => {
     let todoElement = document.createElement('div');
     todoElement.classList.add('todo');
 
+    // Skapa ett element för att visa todo-titeln
+    let titleElement = document.createElement('span');
+    titleElement.textContent = todo.titel;
+
     // Skapa ikon för delete
     let deleteIcon = document.createElement('i');
     deleteIcon.classList.add('far', 'fa-trash-alt', 'delete-icon');
@@ -123,21 +128,33 @@ let renderTodo = (todo, index) => {
     // Sätt indexattributet för papperskorgsikonen
     deleteIcon.dataset.index = index;
 
+    let statusIcon = document.createElement('i');
+    if (todo.completed) {
+        statusIcon.classList.add('todo-completed', 'far', 'fa-check-circle');
+    } else {
+        statusIcon.classList.add('todo-incomplete', 'far', 'fa-circle');
+    }
 
-    let statusIcon = todo.completed ? '<i class="far fa-check-circle status-icon"></i>' : '<i class="far fa-circle status-icon"></i>';
-    todoElement.innerHTML = `${statusIcon}${todo.titel}`;
+    // Lägg till statusIcon till todoElement
+    todoElement.appendChild(statusIcon);
+
+    //Lägg till title till todoElement
+    todoElement.appendChild(titleElement);
 
     // Lägg till delete-ikonen i todo-elementet
     todoElement.appendChild(deleteIcon);
 
     // Lägg till eventlyssnare för delete-ikonen
-    deleteIcon.addEventListener('click', () => {
+    deleteIcon.addEventListener('click', (event) => {
+
+        // Förhindra att händelsen sprids till förälderelementet
+        event.stopPropagation();
         // Hämta index från dataset-attributet på papperskorgsikonen
         let todoIndex = event.target.dataset.index;
         deleteTodo(todoIndex); // Anropa deleteTodo med det hämtade indexet
     });
 
-    return todoElement;
+
 
     //Gör detta till en funktion istället. 
     todoElement.addEventListener('click', () => {
