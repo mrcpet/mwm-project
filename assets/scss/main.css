@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html,
 body {
   margin: 0;
@@ -77,6 +78,7 @@ body {
 .container ul li:hover {
   background-color: #ffecc7;
   cursor: pointer;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }/*# sourceMappingURL=main.css.map */
 /* Login Styles */
@@ -386,4 +388,51 @@ body {
 p {
   font-size: 50px;
 >>>>>>> wille
+=======
+}
+
+.body-todo {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 800px;
+  max-width: 1400px;
+}
+.body-todo .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: auto;
+  border: 2px solid black;
+  background-color: grey;
+}
+.body-todo .wrapper #todoListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+.body-todo .wrapper #todoListContainer .todo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+.body-todo .wrapper #todoListContainer .todo .todo .delete-icon {
+  /* Lägg till dina stilar för deleteIcon här */
+  color: red; /* Till exempel, ändra färgen till röd */
+  cursor: pointer; /* Ändra markören till en pekare för att visa att den är klickbar */
+}
+.body-todo .wrapper #todoListContainer #todoDetailsContainer {
+  width: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: grey;
+>>>>>>> Madde
 }/*# sourceMappingURL=main.css.map */
