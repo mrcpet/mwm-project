@@ -84,3 +84,9 @@ body {
     cursor: pointer;
   }
 }
+.selected {
+  background-color: lightgreen;
+}
+.hidden {
+  display: none;
+}

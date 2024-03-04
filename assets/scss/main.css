@@ -77,6 +77,7 @@ body {
 .container ul li:hover {
   background-color: #ffecc7;
   cursor: pointer;
+<<<<<<< HEAD
 }/*# sourceMappingURL=main.css.map */
 /* Login Styles */
 .login {
@@ -371,4 +372,18 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
+=======
+}
+
+.selected {
+  background-color: lightgreen;
+}
+
+.hidden {
+  display: none;
+}
+
+p {
+  font-size: 50px;
+>>>>>>> wille
 }/*# sourceMappingURL=main.css.map */
