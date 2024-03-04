@@ -41,7 +41,6 @@ addTodoBtn.addEventListener('click', (event) => {
     event.preventDefault();
     todoForm.style.display = "none";
     todoListContainer.style.display = "block";
-    checkboxDiv.style.display = "block";
     createTodo();
     renderAllTodos();
 
