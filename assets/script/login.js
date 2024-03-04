@@ -34,6 +34,7 @@ const newUser = (username, password) => {
 
 // function to validate user
 const validateUser = (array, username, password) => {
+  let isValidUser = false;
   array.forEach((user) => {
     if (user.username === username && user.password === password) {
       //redirect to startpage on success
@@ -41,11 +42,13 @@ const validateUser = (array, username, password) => {
       console.log(username);
       localStorage.setItem("currentUser", username);
       localStorage.setItem("isLoggedIn", "true");
-    } else {
-      //placeholder message if user does not exist
-      failedLogin();
+      isValidUser = true;
     }
   });
+  //failed login is only run if no matching user is found
+  if (!isValidUser) {
+    failedLogin();
+  }
 };
 
 // function to check if username is taken
@@ -55,14 +58,19 @@ const isUsernameTaken = (nameToCheck, userList) => {
 
 // function to register user, store user object in array and add to local storage
 const storeUser = () => {
-  if (isUsernameTaken(registerUser.value, users)) {
+  //check if username is already taken, parse user input to lowercase
+  if (isUsernameTaken(registerUser.value.toLowerCase(), users)) {
     registerMsg.textContent = "Username is taken, please choose another.";
     registerMsg.classList.add("warning");
     registerUser.value = "";
     registerPassword.value = "";
   } else {
     if (registerUser.value != "" && registerPassword.value != "") {
-      let user = newUser(registerUser.value, registerPassword.value);
+      let user = newUser(
+        //store username as lowercase always
+        registerUser.value.toLowerCase(),
+        registerPassword.value
+      );
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
       registerModal.classList.toggle("hidden");
@@ -77,6 +85,7 @@ const storeUser = () => {
 
 // function to render failed login attempt message
 const failedLogin = () => {
+  console.log("failedLogin function körs");
   requiredFields.forEach((field) => {
     field.style.color = "red";
   });
@@ -105,7 +114,7 @@ const failedLogin = () => {
 loginBtn.addEventListener("click", () => {
   // check if there are registered users
   if (users.length >= 1) {
-    validateUser(users, usernameInput.value, passwordInput.value);
+    validateUser(users, usernameInput.value.toLowerCase(), passwordInput.value);
   } else {
     failedLogin();
   }
@@ -115,7 +124,11 @@ loginBtn.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && registerModal.classList.contains("hidden")) {
     if (users.length >= 1) {
-      validateUser(users, usernameInput.value, passwordInput.value);
+      validateUser(
+        users,
+        usernameInput.value.toLowerCase(),
+        passwordInput.value
+      );
     } else {
       failedLogin();
     }
