@@ -33,7 +33,7 @@ if (loggedIn === true) {
     let start2 = new Date(event2.start).getTime();
     let end2 = new Date(event2.end).getTime();
     console.log("overlap function variables:", start1, start2, end1, end2);
-    return start1 < end2 && end1 > start2;
+    return start1 < end2 && end1 > start2 && event1.user == event2.user;
   };
   // eventsOverlap(events[0], events[1]);
   // console.log(eventsOverlap(events[1], events[2]));
@@ -204,8 +204,23 @@ if (loggedIn === true) {
           endDate,
           endTime
         );
-        addEvent(eventData, events);
-        saveEvents(events);
+        console.log(
+          "event objekt att jämföra för korrekta tider",
+          "sluttid",
+          eventData.end.getTime(),
+          "starttid",
+          eventData.start.getTime()
+        );
+        //condition to verify that the event being created has valid time inputs
+        if (eventData.start.getTime() < eventData.end.getTime()) {
+          addEvent(eventData, events);
+          saveEvents(events);
+        } else {
+          //tell the user the time inputs are not valid
+          console.log(
+            "end time must be after start time for event to be valid"
+          );
+        }
       } else {
         console.log("please fill out the required fields"); //TODO Handle this showing an error message the user can see
       }
@@ -219,6 +234,32 @@ if (loggedIn === true) {
   // functionality to prevent events from being created if an event already exists on that time
   // function to remove events from calendar(DOM) AND localstorage/array
   // function to render correct events based on currentUser
+
+  // failed input test
+  // const requiredInputs = document.querySelectorAll("input[required]");
+
+  // const addRedOutline = (elements) => {
+  //   let firstElement = elements[0];
+  //   elements.forEach((element) => {
+  //     element.style.outline = "1px solid red";
+  //     firstElement.focus();
+  //   });
+  // };
+
+  // const removeRedOutLine = (elements) => {
+  //   elements.forEach((element) => {
+  //     element.style.outline = "";
+  //   });
+  // };
+
+  // const testBtn = document.querySelector("#testBtn");
+  // testBtn.addEventListener("click", () => {
+  //   const emptyInputs = Array.from(requiredInputs).filter(function (input) {
+  //     return input.value === "" || input.value === null;
+  //   });
+  //   removeRedOutLine(requiredInputs);
+  //   addRedOutline(emptyInputs);
+  // });
 
   // event listener calendar button
   calendarBtn.addEventListener("click", () => {
