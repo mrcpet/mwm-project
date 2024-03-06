@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/scss/main.css">
+    <script src="https://kit.fontawesome.com/bd92cc43eb.js" crossorigin="anonymous"></script>
+    <script src="/assets/script/todo.js" defer></script>
+
+<body class="body-todo">
+
+    <div class="wrapper">
+
+        <form id="todoForm">
+
+
+
+            <label for="todoTitle">Todo Title:</label><br>
+            <input type="text" id="todoTitle" name="todoTitle"><br><br>
+
+            <label for="todoDescription">Description:</label><br>
+            <textarea id="todoDescription" name="todoDescription"></textarea><br><br>
+
+            <label for="todoCategory">Category:</label><br>
+            <select id="todoCategory" name="todoCategory">
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+
+            <label for="todoDate">Date:</label><br>
+            <input type="date" id="todoDate" name="todoDate"><br><br>
+
+            <label for="todoDuration">Duration (hours):</label><br>
+            <input type="number" id="todoDuration" name="todoDuration" min="1"><br><br>
+
+            <label for="todoDeadline">Deadline:</label><br>
+            <input type="date" id="todoDeadline" name="todoDeadline"><br><br>
+
+            <button id="addTodo">Add Todo</button>
+        </form>
+
+        <div id="todoListContainer" style="display: none;">
+            <div id="checkboxDiv">
+                <input type="checkbox" id="Personal" name="category" value="Personal">
+                <label for="Personal">Personal</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Work" name="category" value="Work">
+                <label for="Work">Work</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Study" name="category" value="Study">
+                <label for="Study">Study</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Other" name="category" value="Other">
+                <label for="Other">Other</label>
+            </div>
+            <div>
+                <input type="checkbox" id="selectAll" name="selectAll">
+                <label for="selectAll">Select All</label>
+            </div>
+
+            <ul id="todoList"></ul>
+        </div>
+
+
+        <div id="todoDetailsContainer" style="display: none;">
+            <p><strong>Title:</strong> <span id="todoTitleDisplay"></span></p>
+            <p><strong>Description:</strong> <span id="todoDescriptionDisplay"></span></p>
+            <p><strong>Category:</strong> <span id="todoCategoryDisplay"></span></p>
+            <p><strong>Date:</strong> <span id="todoDateDisplay"></span></p>
+            <p><strong>Duration:</strong> <span id="todoDurationDisplay"></span></p>
+            <p><strong>Deadline:</strong> <span id="todoDeadlineDisplay"></span></p>
+        </div>
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

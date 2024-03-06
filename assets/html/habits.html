@@ -5,19 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Habits</title>
     <script src="/assets/script/habits.js" defer></script>
+    <script src="/assets/script/pomodoro.js"></script>
     <link rel="stylesheet" href="/assets/scss/main.css" />
   </head>
   <body>
     <div class="container">
-      <img src="/assets/images/cat-with-list.jpeg" alt="a cat with a list" />
+<<<<<<< HEAD
+      <h1 id=""></h1>
+=======
+      <h1 id="welcome-title"></h1>
+>>>>>>> wille
+      <img
+        src="/assets/images/cat-with-list.jpeg"
+        alt="a cat with a list"
+        id="cat"
+      />
       <input type="text" id="input-field" placeholder="Habit" />
       <select id="habit-prio">
-        <option value="">Pick Prio</option>
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
+        <option style="display: none">Pick Prio</option>
+        <option value="1">low</option>
+        <option value="2">medium</option>
+        <option value="3">high</option>
       </select>
       <button id="add-button">Add</button>
+      <div class="btn-container">
+        <button id="sort-btn">
+          <img
+            src="/assets/Icons/Icon/Outline/arrow-up.svg"
+            alt="up-arrow"
+            id="up-arrow"
+          />
+          <img
+            src="/assets/Icons/Icon/Outline/arrow-down.svg"
+            alt="down-arrow"
+            id="down-arrow"
+          />
+        </button>
+        <fieldset>
+          <legend>Filter</legend>
+          <label for="high-prio">high</label>
+          <input type="checkbox" name="filter" id="high-prio" value="3" />
+          <label for="medium-prio">medium</label>
+          <input type="checkbox" name="filter" id="medium-prio" value="2" />
+          <label for="low-prio">low</label>
+          <input type="checkbox" name="filter" id="low-prio" value="1" />
+        </fieldset>
+        <div class="action-container hidden">
+          <img
+            class="action-bar"
+            id="plus-sign"
+            src="/assets/icons/Icon/Outline/plus-square.svg"
+            alt="addition-sign"
+          />
+          <img
+            class="action-bar"
+            id="refresh-sign"
+            src="/assets/icons/Icon/Outline/refresh.svg"
+            alt="minus-sign"
+          />
+          <img
+            class="action-bar"
+            id="trash-can"
+            src="/assets/icons/Icon/Outline/trash-2.svg"
+            alt="trash-can"
+          />
+          <img
+            class="action-bar"
+            id="close-sign"
+            src="/assets/icons/Icon/Outline/close.svg"
+            alt="close-sign"
+          />
+        </div>
+      </div>
 
       <ul id="habit-list"></ul>
     </div>

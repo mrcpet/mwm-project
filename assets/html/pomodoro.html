@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro</title>
+    <script src="/assets/script/pomodoro.js" defer></script>
+    <link rel="stylesheet" href="/assets/scss/main.css" />
+  </head>
+  <body>
+    <h1>Time to Focus</h1>
+    <div class="pomodoro-container" id="pomodoro-container">
+      <div class="button-wrapper">
+        <button id="pomodoro" class="button pomodoro" value="25">
+          Pomodoro
+        </button>
+        <button id="short-break" class="button short-break" value="5">
+          Short Break
+        </button>
+        <button id="long-break" class="button long-break" value="15">
+          Long break
+        </button>
+        <button id="custom-time" class="custom button">Custom Time</button>
+      </div>
+      <p id="timer-display"></p>
+      <div class="button-wrapper">
+        <button id="start-pause-button">
+          <img
+            src="/assets/icons/Icon/pomodoro/Icon/Outline/play-circle.svg"
+            alt="start"
+          />
+        </button>
+        <button id="restart-button" class="hidden">
+          <img
+            src="/assets/Icons/Icon/habit/refresh.svg"
+            alt="restart button "
+          />
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
