@@ -1,0 +1,22 @@
+main.calendar {
+  background-color: gray;
+  .calendarInputContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .listContainer {
+    ul {
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      list-style: none;
+      li {
+        border: 1px solid black;
+      }
+      li.oldEvent {
+        border: 1px solid red;
+        opacity: 0.5;
+      }
+    }
+  }
+}

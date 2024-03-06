@@ -5,7 +5,7 @@
   background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff)
     no-repeat;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -25,12 +25,19 @@
       margin: 0 auto;
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
       .quoteContainer {
         blockquote {
           border: 1px solid #ffffff;
           padding: 1rem;
           border-radius: 1rem;
           max-width: 20rem;
+          font-weight: bold;
+          footer {
+            font-weight: 400;
+            font-style: italic;
+          }
         }
       }
     }
@@ -39,9 +46,9 @@
         display: flex;
         gap: 1rem;
         list-style: none;
-        button {
-          @include button($button-main);
-        }
+        // button {
+        //   @include button($button-main);
+        // }
       }
     }
   }
