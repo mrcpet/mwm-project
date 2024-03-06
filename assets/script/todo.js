@@ -18,23 +18,39 @@ let todoCategoryDisplay = document.getElementById("todoCategoryDisplay");
 let todoDateDisplay = document.getElementById("todoDateDisplay");
 let todoDurationDisplay = document.getElementById("todoDurationDisplay");
 let todoDeadlineDisplay = document.getElementById("todoDeadlineDisplay");
+let goBackButton = document.getElementById("goBackButton");
 
 //Variabler för todo list 
 let todoListContainer = document.getElementById("todoListContainer");
 let todoList = document.getElementById("todoList");
+let addIcon = document.getElementById("addIcon");
 
-//Varibaler checkboxes 
+//Varibaler checkboxes categories
 
-let categoryCheckboxes = document.querySelectorAll("input[type= 'checkbox']");
+let categoryCheckboxes = document.querySelectorAll("input[type= 'checkbox'][name='category']");
 let selectAllCheckbox = document.getElementById("selectAll");
 
 
-//Event  listeners 
 
 
 selectAllCheckbox.addEventListener("change", function () {
     toggleSelectAll();
+    saveTodosToLocalStorage();
 });
+
+//Kollar om select all är iklickad, om den är det så blir alla checkboxar iklickade
+//Om den inte är iklickad så blir alla checkboxar avmarkerade. 
+function toggleSelectAll() {
+    if (selectAllCheckbox.checked) {
+        categoryCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = true;
+        });
+    } else {
+        categoryCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+    }
+}
 
 
 addTodoBtn.addEventListener('click', (event) => {
@@ -53,6 +69,7 @@ let saveTodosToLocalStorage = () => {
     localStorage.setItem('todos', JSON.stringify(arrayTodos));
 };
 
+
 // Funktion för att hämta sparade todos från localStorage
 let getSavedTodos = () => {
     const savedTodosJSON = localStorage.getItem('todos');
@@ -67,6 +84,7 @@ let loadTodos = () => {
 // Ladda todos när sidan laddas
 window.addEventListener('load', () => {
     loadTodos(); // Ladda sparade todos från localStorage
+    renderAllTodos();
 
 
 });
@@ -75,19 +93,6 @@ window.addEventListener('load', () => {
 
 
 
-//Kollar om select all är iklickad, om den är det så blir alla checkboxar iklickade
-//Om den inte är iklickad så blir alla checkboxar avmarkerade. 
-function toggleSelectAll() {
-    if (selectAllCheckbox.checked) {
-        categoryCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = true;
-        });
-    } else {
-        categoryCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = false;
-        });
-    }
-}
 
 let createTodo = () => {
     //spara värdena i formuläret 
@@ -109,55 +114,64 @@ let createTodo = () => {
 
     // Rendera den nya todo och appenda till todoList
     let todoElement = renderTodo(todo);
-    todoListContainer.appendChild(todoElement);
+    todoList.appendChild(todoElement);
+
+
 }
+
+
 
 let renderTodo = (todo, index) => {
     let todoElement = document.createElement('div');
     todoElement.classList.add('todo');
+    todoElement.dataset.index = index;
+
+    // Skapa en checkbox
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+
+    // Om todo.completed är true, markera checkboxen som checked
+    checkbox.checked = todo.completed;
+
+
 
     // Skapa ett element för att visa todo-titeln
     let titleElement = document.createElement('span');
+    titleElement.classList.add('todoTitle');
     titleElement.textContent = todo.titel;
+
 
     // Skapa ikon för delete
     let deleteIcon = document.createElement('i');
     deleteIcon.classList.add('far', 'fa-trash-alt', 'delete-icon');
-
-    // Sätt indexattributet för papperskorgsikonen
     deleteIcon.dataset.index = index;
 
-    let statusIcon = document.createElement('i');
-    if (todo.completed) {
-        statusIcon.classList.add('todo-completed', 'far', 'fa-check-circle');
-    } else {
-        statusIcon.classList.add('todo-incomplete', 'far', 'fa-circle');
-    }
-
-    // Lägg till statusIcon till todoElement
-    todoElement.appendChild(statusIcon);
-
-    //Lägg till title till todoElement
+    // Lägg till statusikon, titel och delete-ikon till todoElement
+    todoElement.appendChild(checkbox);
     todoElement.appendChild(titleElement);
-
-    // Lägg till delete-ikonen i todo-elementet
     todoElement.appendChild(deleteIcon);
 
-    // Lägg till eventlyssnare för delete-ikonen
+    // Lägg till en eventlistener för att hantera klickhändelsen på delete-ikonen för varje deleteIcon
     deleteIcon.addEventListener('click', (event) => {
-
-        // Förhindra att händelsen sprids till förälderelementet
+        // Förhindra händelsen från att bubbla upp till förälderelementen
         event.stopPropagation();
-        // Hämta index från dataset-attributet på papperskorgsikonen
-        let todoIndex = event.target.dataset.index;
-        deleteTodo(todoIndex); // Anropa deleteTodo med det hämtade indexet
+        // Hämta index från dataset-attributet på deleteIcon
+        let todoIndex = deleteIcon.dataset.index;
+        // Anropa deleteTodo med det hämtade indexet
+        deleteTodo(todoIndex);
     });
 
+    // Lägg till en eventlistener för att hantera klickhändelsen på todoElement
+    titleElement.addEventListener('click', (event) => {
+        // Förhindra standardbeteendet för händelsen, om det behövs
+        event.preventDefault();
 
+        // Hämta index från dataset-attributet på todoElement
+        let todoIndex = todoElement.dataset.index;
 
-    //Gör detta till en funktion istället. 
-    todoElement.addEventListener('click', () => {
-        // Din kod för vad som ska hända när ett todoElement klickas på
+        // Hämta den aktuella todo från arrayTodos med hjälp av indexet
+        let todo = arrayTodos[todoIndex];
+
         // Uppdatera detaljerna i todoDetailsContainer med informationen från den klickade todo
         todoTitleDisplay.textContent = todo.titel;
         todoDescriptionDisplay.textContent = todo.description;
@@ -169,40 +183,80 @@ let renderTodo = (todo, index) => {
         // Visa todoDetailsContainer
         todoDetailsContainer.style.display = "block";
         todoListContainer.style.display = "none";
+    });
 
-        console.log('Todo clicked:', todo);
+    // Lägg till en eventlyssnare för klickhändelser
+    goBackButton.addEventListener('click', () => {
+        // Dölj todoDetailsContainer och visa todoListContainer
+        todoDetailsContainer.style.display = "none";
+        todoListContainer.style.display = "block";
+    });
+    // Lägg till en eventlistener för att hantera ändringar i checkboxen för varje todo
+    checkbox.addEventListener('change', (event) => {
+        // Hämta förälderelementet som innehåller checkboxen
+        let todoElement = event.target.parentNode;
+        // Hämta index från dataset-attributet på todoElement
+        let todoIndex = todoElement.dataset.index;
+
+        // Uppdatera todo.completed baserat på checkboxens status
+        arrayTodos[todoIndex].completed = event.target.checked;
+        // Spara ändringar i localStorage
+        saveTodosToLocalStorage();
     });
 
     return todoElement;
+};
 
-
+// Rendera alla todos
+let renderAllTodos = () => {
+    todoList.innerHTML = ''; // Rensa todoList innan du renderar igen
+    arrayTodos.forEach((todo, index) => {
+        let todoElement = renderTodo(todo, index);
+        todoList.appendChild(todoElement);
+    });
 }
+
+
+
+
+
+
+
 
 // Uppdatera deleteTodo för att ta bort den aktuella todo med angivet index
 let deleteTodo = (index) => {
     arrayTodos.splice(index, 1); // Ta bort todo med angivet index
-    saveTodosToLocalStorage(); // Spara ändringar i localStorage
+
+    if (arrayTodos.length === 0) {
+        // Om arrayen är tom, rensa localStorage
+        localStorage.removeItem('todos');
+    } else {
+        saveTodosToLocalStorage(); // Spara ändringar i localStorage
+    }
+
     renderAllTodos(); // Uppdatera vyn
 }
 
-// Rendera alla todos
-let renderAllTodos = () => {
-    todoListContainer.innerHTML = ''; // Rensa todoList innan du renderar igen
-    arrayTodos.forEach((todo, index) => {
-        let todoElement = renderTodo(todo, index);
-        todoListContainer.appendChild(todoElement);
-    });
-}
 
 
 
 
 
 
-//Funktioner för att hantera checkboxar 
 
 
-//Event listener
+
+
+
+// Event listener för att visa todoForm och dölja todoListContainer när användaren klickar på addIcon
+addIcon.addEventListener('click', () => {
+    todoForm.style.display = "block";
+    todoListContainer.style.display = "none";
+
+    // Återställ innehållet i todoForm
+    [...document.querySelectorAll('#todoForm input, #todoForm textarea')].forEach(field => field.value = "");
+});
+
 
 
 
