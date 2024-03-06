@@ -9,6 +9,10 @@ let selectedtime = 0; // ska alltid vara i sekunder
 let countDown;
 let isTimerRunning = false;
 
+// ----------- Kod Flöde---------------------
+
+startState(25);
+
 pomodoroBtn.addEventListener("click", () => {
   handleButtonClick(pomodoroBtn.value);
 });
@@ -61,13 +65,17 @@ function startTimer(time) {
 function stopTimer(interval) {
   clearInterval(interval);
 }
+
+// Ta bort hidden klassen som består av display:none
 function removeHidden(elem) {
   elem.classList.remove("hidden");
 }
+// Lägger till hidden klassen som består av display:none
 function addHidden(elem) {
   elem.classList.add("hidden");
 }
 
+// Ändrar iconer i DOMen beroende om timer är igång eller inte.
 function changeIconSet(boolean) {
   boolean
     ? ((startPauseBtn.innerHTML =
@@ -76,4 +84,8 @@ function changeIconSet(boolean) {
     : ((startPauseBtn.innerHTML =
         '<img src="/assets/icons/Icon/pomodoro/Icon/Outline/play-circle.svg" />'),
       addHidden(restartBtn));
+}
+function startState(time) {
+  selectedtime = transformToSeconds(time);
+  updateDisplay(selectedtime);
 }
