@@ -1,0 +1,27 @@
+/* Media Queries */
+
+@mixin desktop {
+  @media (min-width: 1080px) {
+    @content;
+  }
+}
+
+/* Buttons */
+
+@mixin button($color) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: $color;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem $color);
+  &:hover {
+    background-color: darken($color, 10%);
+  }
+}

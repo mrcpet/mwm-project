@@ -11,12 +11,18 @@
     <h1>Time to Focus</h1>
     <div class="pomodoro-container" id="pomodoro-container">
       <div class="button-wrapper">
-        <button id="pomodoro" class="button pomodoro">Pomodoro</button>
-        <button id="short-break" class="button short-break">Short Break</button>
-        <button id="long-break" class="button long-break">Long break</button>
-        <button class="custom button" id="custom-btn">Custom Time</button>
+        <button id="pomodoro" class="button pomodoro" value="25">
+          Pomodoro
+        </button>
+        <button id="short-break" class="button short-break" value="5">
+          Short Break
+        </button>
+        <button id="long-break" class="button long-break" value="15">
+          Long break
+        </button>
+        <button id="custom-time" class="custom button">Custom Time</button>
       </div>
-      <p id="timer-display">25:00</p>
+      <p id="timer-display"></p>
       <div class="button-wrapper">
         <button id="start-pause-button">
           <img
@@ -24,10 +30,10 @@
             alt="start"
           />
         </button>
-        <button>
+        <button id="restart-button" class="hidden">
           <img
-            src="/assets/icons/Icon/pomodoro/Icon/Outline/skip-forward.svg"
-            alt="skip button"
+            src="/assets/Icons/Icon/habit/refresh.svg"
+            alt="restart button "
           />
         </button>
       </div>
