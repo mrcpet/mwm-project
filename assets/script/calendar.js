@@ -1,3 +1,5 @@
+import { addRedOutline, removeRedOutLine } from "./warning.js";
+console.log(addRedOutline, removeRedOutLine);
 // check if user is logged in
 loggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
 // console.log(loggedIn);
@@ -16,7 +18,7 @@ if (loggedIn === true) {
   let currentUser = localStorage.getItem("currentUser");
 
   // get current date
-  let timeNow = new Date();
+  let currentTime = new Date();
 
   // array to store events and parse events stored in localstorage
   let events = JSON.parse(localStorage.getItem("events")) || [];
@@ -72,7 +74,7 @@ if (loggedIn === true) {
       const { title, start, end } = event;
       const li = document.createElement("li");
       //add class to show events that passed in time
-      if (new Date(end) < timeNow) {
+      if (new Date(end) < currentTime) {
         li.classList.add("oldEvent");
       }
       //render title
@@ -122,56 +124,86 @@ if (loggedIn === true) {
       end: new Date(endDate + "T" + endTime),
     };
   };
+  // function to render warning message
+  const renderWarning = (message, element) => {
+    const requiredInputs = document.querySelectorAll("input[required]");
+    let parsedNodeList = Array.from(requiredInputs);
+    const emptyInputs = parsedNodeList.filter((input) => {
+      return input.value === "" || input.value === null;
+    });
+    console.log(parsedNodeList);
+    removeRedOutLine(parsedNodeList);
+    addRedOutline(emptyInputs);
+    element.textContent = message;
+    element.classList.add("warning");
+    setTimeout(() => {
+      element.classList.remove("warning");
+    }, 1000);
+  };
+  // function to create label and input elements
+  const createInput = (inputConfig, container) => {
+    //destructure inputConfig
+    const { labelText, inputType, inputId, required } = inputConfig;
+    //create label
+    const label = document.createElement("label");
+    label.setAttribute("for", inputId);
+    label.textContent = labelText;
+    //create input
+    const input = document.createElement("input");
+    input.setAttribute("type", inputType);
+    input.setAttribute("id", inputId);
+    input.setAttribute("required", "required");
+    //append
+    container.append(label, input);
+  };
+
   // function to render inputs to create new calendar event
   const renderCalendarControl = () => {
     // create input container
     const calendarInputContainer = document.createElement("div");
     calendarInputContainer.classList.add("calendarInputContainer");
-    //TODO refactor this code using a separate function to create label/input, then call that function with an array of defined input configs
-    // create event title input with input
-    const titleLabel = document.createElement("label");
-    titleLabel.setAttribute("for", "eventTitleInput");
-    titleLabel.textContent = "Event title";
-    const eventTitleInput = document.createElement("input");
-    eventTitleInput.setAttribute("type", "text");
-    eventTitleInput.setAttribute("id", "eventTitleInput");
-    calendarInputContainer.append(titleLabel, eventTitleInput);
-
-    // create start date input with label
-    const startDateLabel = document.createElement("label");
-    startDateLabel.setAttribute("for", "startDateInput");
-    startDateLabel.textContent = "Select a start date";
-    const startDateInput = document.createElement("input");
-    startDateInput.setAttribute("type", "date");
-    startDateInput.setAttribute("id", "startDateInput");
-    calendarInputContainer.append(startDateLabel, startDateInput);
-
-    // create start time input with label
-    const startLabel = document.createElement("label");
-    startLabel.setAttribute("for", "startTimeInput");
-    startLabel.textContent = "Select a start time";
-    const startTimeInput = document.createElement("input");
-    startTimeInput.setAttribute("type", "time");
-    startTimeInput.setAttribute("id", "startTimeInput");
-    calendarInputContainer.append(startLabel, startTimeInput);
-
-    // create start date input with label
-    const endDateLabel = document.createElement("label");
-    endDateLabel.setAttribute("for", "endDateInput");
-    endDateLabel.textContent = "Select an end date";
-    const endDateInput = document.createElement("input");
-    endDateInput.setAttribute("type", "date");
-    endDateInput.setAttribute("id", "endDateInput");
-    calendarInputContainer.append(endDateLabel, endDateInput);
-
-    // create end time input with label
-    const endLabel = document.createElement("label");
-    endLabel.setAttribute("for", "endTimeInput");
-    endLabel.textContent = "Select an end time";
-    const endTimeInput = document.createElement("input");
-    endTimeInput.setAttribute("type", "time");
-    endTimeInput.setAttribute("id", "endTimeInput");
-    calendarInputContainer.append(endLabel, endTimeInput);
+    const calendarHeading = document.createElement("h2");
+    calendarHeading.textContent = "Calendar";
+    const calendarMsg = document.createElement("p");
+    calendarMsg.textContent = "Fill in the fields to add an event.";
+    calendarInputContainer.append(calendarHeading, calendarMsg);
+    // array with input configurations for all the input and label combinations to create
+    const inputConfigs = [
+      {
+        labelText: "Event title",
+        inputType: "text",
+        inputId: "eventTitleInput",
+        required: true,
+      },
+      {
+        labelText: "Select a start date",
+        inputType: "date",
+        inputId: "startDateInput",
+        required: true,
+      },
+      {
+        labelText: "Select a start time",
+        inputType: "time",
+        inputId: "startTimeInput",
+        required: true,
+      },
+      {
+        labelText: "Select an end date",
+        inputType: "date",
+        inputId: "endDateInput",
+        required: true,
+      },
+      {
+        labelText: "Select an end time",
+        inputType: "time",
+        inputId: "endTimeInput",
+        required: true,
+      },
+    ];
+    // actually render the inputs
+    inputConfigs.forEach((inputConfig) => {
+      createInput(inputConfig, calendarInputContainer);
+    });
 
     // create save event button
     const saveEventBtn = document.createElement("button");
@@ -215,14 +247,31 @@ if (loggedIn === true) {
         if (eventData.start.getTime() < eventData.end.getTime()) {
           addEvent(eventData, events);
           saveEvents(events);
+          //empty input fields after success
+          eventTitleInput.value = "";
+          startDateInput.value = "";
+          startTimeInput.value = "";
+          endDateInput.value = "";
+          endTimeInput.value = "";
         } else {
           //tell the user the time inputs are not valid
           console.log(
             "end time must be after start time for event to be valid"
           );
+          renderWarning("Invalid end time or end date.", calendarMsg);
         }
       } else {
         console.log("please fill out the required fields"); //TODO Handle this showing an error message the user can see
+        //TODO rewrite this toa  function taking element array or single element + text element to change as inputs, similar to renderWarning in login.js
+        // const requiredInputs = document.querySelectorAll("input");
+        // let parsedNodeList = Array.from(requiredInputs);
+        // const emptyInputs = parsedNodeList.filter((input) => {
+        //   return input.value === "" || input.value === null;
+        // });
+        // console.log(parsedNodeList);
+        // removeRedOutLine(parsedNodeList);
+        // addRedOutline(emptyInputs);
+        renderWarning("Please fill out the required fields!", calendarMsg);
       }
     });
 
@@ -235,42 +284,12 @@ if (loggedIn === true) {
   // function to remove events from calendar(DOM) AND localstorage/array
   // function to render correct events based on currentUser
 
-  // failed input test
-  // const requiredInputs = document.querySelectorAll("input[required]");
-
-  // const addRedOutline = (elements) => {
-  //   let firstElement = elements[0];
-  //   elements.forEach((element) => {
-  //     element.style.outline = "1px solid red";
-  //     firstElement.focus();
-  //   });
-  // };
-
-  // const removeRedOutLine = (elements) => {
-  //   elements.forEach((element) => {
-  //     element.style.outline = "";
-  //   });
-  // };
-
-  // const testBtn = document.querySelector("#testBtn");
-  // testBtn.addEventListener("click", () => {
-  //   const emptyInputs = Array.from(requiredInputs).filter(function (input) {
-  //     return input.value === "" || input.value === null;
-  //   });
-  //   removeRedOutLine(requiredInputs);
-  //   addRedOutline(emptyInputs);
-  // });
-
   // event listener calendar button
   calendarBtn.addEventListener("click", () => {
     main.innerHTML = "";
     main.classList.add("calendar");
     renderCalendarControl();
     renderEvents(events);
-    const today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth();
-    // console.log(year, month, today);
   });
 } else {
   // redirect user to login page if not logged in

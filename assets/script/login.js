@@ -1,3 +1,5 @@
+import { addRedOutline, removeRedOutLine } from "./warning.js";
+console.log(addRedOutline, removeRedOutLine);
 // query selectors buttons
 const registerBtn = document.querySelector("#registerBtn");
 const loginBtn = document.querySelector("#loginBtn");
@@ -13,6 +15,8 @@ const registerPassword = document.querySelector("#registerPassword");
 // query selectors FOR ALL REQUIRED INPUT FIELDS // TODO: rewrite this failed login logic for displaying error message and focusing input field
 const allInputs = document.querySelectorAll("input[type='text']");
 const allInputsPWs = document.querySelectorAll("input[type='password']");
+const requiredInputs = document.querySelectorAll("input[required]");
+console.log(requiredInputs);
 
 // query selectors containers and messages
 const registerModal = document.querySelector("#registerModal");
@@ -20,6 +24,7 @@ const overlayContainer = document.querySelector(".overlayContainer");
 const errorMessage = document.querySelector(".error-message");
 const registerMsg = document.querySelector(".registerMsg");
 const requiredFields = document.querySelectorAll(".required");
+const loginMessage = document.querySelector("#loginMessage");
 
 // array to store users and parse users stored in localstorage
 let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -47,7 +52,16 @@ const validateUser = (array, username, password) => {
   });
   //failed login is only run if no matching user is found
   if (!isValidUser) {
-    failedLogin();
+    // failedLogin();
+    renderWarning("Username or password is invalid.", loginMessage);
+    console.log("validate fail");
+    if (usernameInput.value == "") {
+      addRedOutline(usernameInput);
+      console.log("username input skickas till red outline");
+    } else {
+      addRedOutline(passwordInput);
+      console.log("password input skickas till red outline");
+    }
   }
 };
 
@@ -78,11 +92,30 @@ const storeUser = () => {
       registerUser.value = "";
       registerPassword.value = "";
     } else {
-      failedLogin();
+      // failedLogin();
+      renderWarning("Please fill the required forms.", registerMsg);
     }
   }
 };
-
+// new function to render failed input warning
+const renderWarning = (message, element) => {
+  const emptyInputs = Array.from(requiredInputs).filter((input) => {
+    return input.value === "" || input.value === null;
+  });
+  removeRedOutLine(requiredInputs);
+  addRedOutline(emptyInputs);
+  console.log("addRedOutLine and removeRedOutLine should run");
+  element.textContent = message;
+  element.classList.add("warning");
+  setTimeout(() => {
+    element.classList.remove("warning");
+  }, 1000);
+  requiredFields.forEach((field) => {
+    field.style.color = "red";
+  });
+  console.log("not valid user msg should show");
+};
+//TODO Remove this unused function?
 // function to render failed login attempt message
 const failedLogin = () => {
   console.log("failedLogin function körs");
@@ -115,8 +148,12 @@ loginBtn.addEventListener("click", () => {
   // check if there are registered users
   if (users.length >= 1) {
     validateUser(users, usernameInput.value.toLowerCase(), passwordInput.value);
+  } else if (users.length == 0) {
+    renderWarning("Please register a user to log in.", loginMessage);
   } else {
-    failedLogin();
+    // failedLogin();
+
+    renderWarning("Username or password is invalid.", loginMessage);
   }
 });
 
@@ -130,7 +167,8 @@ document.addEventListener("keydown", (event) => {
         passwordInput.value
       );
     } else {
-      failedLogin();
+      // failedLogin();
+      renderWarning("Username or password is invalid.", loginMessage);
     }
   } else if (
     event.key === "Enter" &&
@@ -144,12 +182,14 @@ document.addEventListener("keydown", (event) => {
 registerBtn.addEventListener("click", () => {
   registerModal.classList.toggle("hidden");
   overlayContainer.classList.toggle("overlay");
+  removeRedOutLine(requiredInputs);
 });
 
 // close modal button event listener
 closeModalBtn.addEventListener("click", () => {
   registerModal.classList.toggle("hidden");
   overlayContainer.classList.toggle("overlay");
+  removeRedOutLine(requiredInputs);
 });
 
 // register new user event listener
