@@ -327,27 +327,133 @@
   border: 2px solid black;
   background-color: grey;
 }
-.body-todo .wrapper #todoListContainer {
+.body-todo .wrapper #todoForm #goToTodosButton {
+  margin-left: -100px;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #9619c7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-todo .wrapper #todoForm #goToTodosButton i {
+  color: white;
+  /* Vit färg för att kontrastera mot bakgrundsfärgen */
+  font-size: 24px;
+  /* Justera storleken på ikonen efter behov */
+}
+.body-todo #todoListContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 80%;
+  margin: 10%;
 }
-.body-todo .wrapper #todoListContainer .todo {
+.body-todo #todoListContainer #addIconDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.body-todo #todoListContainer #addIconDiv #addIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #9619c7;
+  border: none;
+  cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.body-todo #todoListContainer #addIconDiv #addIcon i {
+  color: white;
+  /* Färg på ikonen */
+  font-size: 20px;
+  /* Storlek på ikonen */
+}
+.body-todo #todoListContainer #filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.body-todo #todoListContainer #filterOptions #checkboxRowOne {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.body-todo #todoListContainer #filterOptions #checkboxRowOne input[type=checkbox] {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.body-todo #todoListContainer #filterOptions #checkboxRowOne label {
+  cursor: pointer;
+  /* Gör muspekaren till en hand när du hoverar över etiketterna */
+}
+.body-todo #todoListContainer #filterOptions #checkboxRowTwo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.body-todo #todoListContainer #filterOptions #checkboxRowTwo input[type=checkbox] {
+  margin-left: 5%;
+}
+.body-todo #todoListContainer #filterOptions #checkboxRowTwo label {
+  /* Avstånd mellan etiketterna */
+  cursor: pointer;
+  /* Gör muspekaren till en hand när du hoverar över etiketterna */
+}
+.body-todo .todo {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 50px;
   border: 1px solid #ddd;
+  position: relative;
 }
-.body-todo .wrapper #todoListContainer .todo .todo .delete-icon {
-  /* Lägg till dina stilar för deleteIcon här */
-  color: red; /* Till exempel, ändra färgen till röd */
-  cursor: pointer; /* Ändra markören till en pekare för att visa att den är klickbar */
+.body-todo .delete-icon {
+  position: absolute;
+  /* Gör ikonen absolut positionerad */
+  top: 50%;
+  /* Placera ikonen i mitten vertikalt */
+  right: 10px;
+  /* Placera ikonen 10px från högerkanten */
+  transform: translateY(-50%);
+  /* Justera ikonen för att placera den perfekt vertikalt i mitten */
+  color: red;
+  cursor: pointer;
+  font-size: 25px;
 }
-.body-todo .wrapper #todoListContainer #todoDetailsContainer {
+.body-todo #todoDetailsContainer {
+  display: flex;
   width: auto;
   height: -moz-fit-content;
   height: fit-content;
   background-color: grey;
 }
+.body-todo #todoDetailsContainer #goBackButton {
+  margin-left: -110px;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #9619c7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-todo #todoDetailsContainer #goBackButton i {
+  color: white;
+  /* Vit färg för att kontrastera mot bakgrundsfärgen */
+  font-size: 24px;
+  /* Justera storleken på ikonen efter behov */
+}/*# sourceMappingURL=main.css.map */

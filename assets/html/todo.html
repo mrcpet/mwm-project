@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/scss/main.css">
-    <script src="https://kit.fontawesome.com/bd92cc43eb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="/assets/script/todo.js" defer></script>
+</head>
 
 <body class="body-todo">
 
     <div class="wrapper">
 
         <form id="todoForm">
-
+            <div id="goToTodosButton">
+                <i class="fas fa-arrow-left"></i>
+            </div>
 
 
             <label for="todoTitle">Todo Title:</label><br>
@@ -44,41 +47,83 @@
         </form>
 
         <div id="todoListContainer" style="display: none;">
-            <div id="checkboxDiv">
-                <input type="checkbox" id="Personal" name="category" value="Personal">
-                <label for="Personal">Personal</label>
-            </div>
-            <div>
-                <input type="checkbox" id="Work" name="category" value="Work">
-                <label for="Work">Work</label>
-            </div>
-            <div>
-                <input type="checkbox" id="Study" name="category" value="Study">
-                <label for="Study">Study</label>
-            </div>
-            <div>
-                <input type="checkbox" id="Other" name="category" value="Other">
-                <label for="Other">Other</label>
-            </div>
-            <div>
-                <input type="checkbox" id="selectAll" name="selectAll">
-                <label for="selectAll">Select All</label>
+
+
+            <div id="addIconDiv">
+                <button id="addIcon">
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
 
-            <ul id="todoList"></ul>
+            <div id="filterOptions">
+                <div id="checkboxRowOne">
+                    <div>
+                        <input type="checkbox" id="selectAll" name="selectAll">
+                        <label for="selectAll">Select All</label>
+                    </div>
+                </div>
+
+                <div id="checkboxRowTwo">
+                    <div>
+                        <input type="checkbox" id="Personal" name="category" value="Personal">
+                        <label for="Personal">Personal</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Work" name="category" value="Work">
+                        <label for="Work">Work</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Study" name="category" value="Study">
+                        <label for="Study">Study</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Other" name="category" value="Other">
+                        <label for="Other">Other</label>
+                    </div>
+
+                </div>
+                <div id="checkboxRowThree">
+                    <div>
+                        <input type="checkbox" id="hideDoneTasks" name="hideDoneTasks">
+                        <label for="hideDoneTasks">Hide done tasks</label>
+                    </div>
+                </div>
+
+                <div id="divContainingSortSelect">
+                    <label for="sortSelect">Sort By:</label>
+                    <div>
+                        <input type="checkbox" id="sortByDeadline" name="sortBy" value="deadline">
+                        <label for="sortByDeadline">Deadline</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="sortByDuration" name="sortBy" value="duration">
+                        <label for="sortByDuration">Duration</label>
+                    </div>
+                    <select id="sortOrderSelect">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>
+
+                <ul id="todoList"></ul>
+            </div>
+
+
+            <div id="todoDetailsContainer" style="display: none;">
+                <div id="goBackButton">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div id="todoInfo">
+                    <p><strong>Title:</strong> <span id="todoTitleDisplay"></span></p>
+                    <p><strong>Description:</strong> <span id="todoDescriptionDisplay"></span></p>
+                    <p><strong>Category:</strong> <span id="todoCategoryDisplay"></span></p>
+                    <p><strong>Date:</strong> <span id="todoDateDisplay"></span></p>
+                    <p><strong>Duration:</strong> <span id="todoDurationDisplay"></span></p>
+                    <p><strong>Deadline:</strong> <span id="todoDeadlineDisplay"></span></p>
+                </div>
+            </div>
+
         </div>
-
-
-        <div id="todoDetailsContainer" style="display: none;">
-            <p><strong>Title:</strong> <span id="todoTitleDisplay"></span></p>
-            <p><strong>Description:</strong> <span id="todoDescriptionDisplay"></span></p>
-            <p><strong>Category:</strong> <span id="todoCategoryDisplay"></span></p>
-            <p><strong>Date:</strong> <span id="todoDateDisplay"></span></p>
-            <p><strong>Duration:</strong> <span id="todoDurationDisplay"></span></p>
-            <p><strong>Deadline:</strong> <span id="todoDeadlineDisplay"></span></p>
-        </div>
-
-    </div>
 
 
     </div>

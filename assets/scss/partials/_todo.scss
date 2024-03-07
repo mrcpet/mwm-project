@@ -18,42 +18,181 @@
         border: 2px solid black;
         background-color: grey;
 
+        #todoForm {
 
-
-
-        #todoListContainer {
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 80%;
-
-            .todo {
+            #goToTodosButton {
+                margin-left: -100px;
+                margin-top: 10px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #9619c7;
+                border: none;
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
-                width: 100%;
-                border: 1px solid #ddd;
+                align-items: center;
+            }
 
-                .todo .delete-icon {
-                    /* Lägg till dina stilar för deleteIcon här */
-                    color: red; /* Till exempel, ändra färgen till röd */
-                    cursor: pointer; /* Ändra markören till en pekare för att visa att den är klickbar */
+            #goToTodosButton i {
+                color: white;
+                /* Vit färg för att kontrastera mot bakgrundsfärgen */
+                font-size: 24px;
+                /* Justera storleken på ikonen efter behov */
+            }
+        }
+    }
+
+
+
+
+
+    #todoListContainer {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        margin: 10%;
+
+        #addIconDiv {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+
+            #addIcon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #9619c7;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i {
+                    color: white;
+                    /* Färg på ikonen */
+                    font-size: 20px;
+                    /* Storlek på ikonen */
                 }
-                
-               
             }
 
-
-            #todoDetailsContainer {
-
-                width: auto;
-                height: fit-content;
-                background-color: grey;
-            }
 
         }
 
+
+        #filterOptions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            #checkboxRowOne {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+
+
+                input[type="checkbox"] {
+                    margin-top: 5%;
+                    margin-bottom: 5%;
+                }
+
+                label {
+
+                    cursor: pointer;
+                    /* Gör muspekaren till en hand när du hoverar över etiketterna */
+                }
+            }
+
+            #checkboxRowTwo {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+
+                input[type="checkbox"] {
+                    margin-left: 5%;
+                }
+
+                label {
+                    /* Avstånd mellan etiketterna */
+                    cursor: pointer;
+                    /* Gör muspekaren till en hand när du hoverar över etiketterna */
+                }
+
+            }
+        }
+
+
+
+
+
+
     }
 
+    .todo {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #ddd;
+        position: relative;
+
+
+
+
+
+
+    }
+
+
+
+    .delete-icon {
+        position: absolute;
+        /* Gör ikonen absolut positionerad */
+        top: 50%;
+        /* Placera ikonen i mitten vertikalt */
+        right: 10px;
+        /* Placera ikonen 10px från högerkanten */
+        transform: translateY(-50%);
+        /* Justera ikonen för att placera den perfekt vertikalt i mitten */
+        color: red;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+
+    #todoDetailsContainer {
+        display: flex;
+        width: auto;
+        height: fit-content;
+        background-color: grey;
+
+        #goBackButton {
+            margin-left: -110px;
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #9619c7;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #goBackButton i {
+            color: white;
+            /* Vit färg för att kontrastera mot bakgrundsfärgen */
+            font-size: 24px;
+            /* Justera storleken på ikonen efter behov */
+        }
+    }
 }
