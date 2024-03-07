@@ -4,7 +4,7 @@ console.log(addRedOutline, removeRedOutLine);
 loggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
 // console.log(loggedIn);
 if (loggedIn === true) {
-  // query selectors containers
+  // query selectors containers and text elements
   const main = document.querySelector("main");
 
   //create list container
@@ -45,6 +45,7 @@ if (loggedIn === true) {
     for (let i = 0; i < eventArray.length; i++) {
       if (eventsOverlap(newEvent, eventArray[i])) {
         console.log("time slot not available.");
+        renderWarning("Time slot unavailable.", calendarMsg);
         return;
       }
     }
@@ -54,12 +55,12 @@ if (loggedIn === true) {
 
   // function to render events
   const renderEvents = (array) => {
-    //clear container before rendering events to prevent doubles
+    // clear container before rendering events to prevent doubles
     listContainer.innerHTML = "";
 
     //TODO render only events that is created by the current user
     let currentUserEvents = array.filter((event) => event.user === currentUser);
-    //sort array with events chronologically
+    // sort array with events chronologically
     currentUserEvents.sort((a, b) => {
       const dateA = new Date(a.start);
       const dateB = new Date(b.start);
@@ -67,12 +68,35 @@ if (loggedIn === true) {
       return dateA - dateB;
     });
 
-    //create ul to render events inside
+    // create lists to render events inside headings for lists
     const ul = document.createElement("ul");
+    const oldUl = document.createElement("ul");
+    oldUl.classList.add("hideList");
+    // buttons to toggle visibility,
+    const upcomingBtn = document.createElement("button");
+    const oldBtn = document.createElement("button");
+    upcomingBtn.textContent = "Upcoming events";
+    oldBtn.textContent = "Past events";
+    // list headings
+    const upcomingHeader = document.createElement("li");
+    const pastHeader = document.createElement("li");
+    upcomingHeader.innerHTML = "<h3>Upcoming</h3>";
+    pastHeader.innerHTML = "<h3>Past</h3>";
+    ul.append(upcomingHeader);
+    oldUl.append(pastHeader);
+    // event listeners for toggle buttons
+    upcomingBtn.addEventListener("click", () => {
+      ul.classList.toggle("hideList");
+    });
+    oldBtn.addEventListener("click", () => {
+      oldUl.classList.toggle("hideList");
+    });
+
     currentUserEvents.forEach((event) => {
       //destructuring the event object and create list element for each event
-      const { title, start, end } = event;
+      const { title, start, end, eventId } = event;
       const li = document.createElement("li");
+      li.dataset.id = eventId;
       //add class to show events that passed in time
       if (new Date(end) < currentTime) {
         li.classList.add("oldEvent");
@@ -102,8 +126,12 @@ if (loggedIn === true) {
       )}`;
       li.append(startInfo, endInfo);
       console.log("render date object:", start, end);
-      ul.append(li);
-      listContainer.append(ul);
+      if (li.classList.contains("oldEvent")) {
+        oldUl.append(li);
+      } else {
+        ul.append(li);
+      }
+      listContainer.append(upcomingBtn, oldBtn, ul, oldUl);
     });
     main.append(listContainer);
   };
@@ -116,12 +144,15 @@ if (loggedIn === true) {
 
   // function to take inputs and create event object
   const getEventData = (title, startDate, startTime, endDate, endTime) => {
+    //random id test to implement functionality to delete event
+    let randomId = crypto.randomUUID();
     return {
       user: currentUser,
       title: title,
       //create date object from date and time inputs
       start: new Date(startDate + "T" + startTime),
       end: new Date(endDate + "T" + endTime),
+      eventId: randomId,
     };
   };
   // function to render warning message
@@ -140,6 +171,7 @@ if (loggedIn === true) {
       element.classList.remove("warning");
     }, 1000);
   };
+
   // function to create label and input elements
   const createInput = (inputConfig, container) => {
     //destructure inputConfig
@@ -165,6 +197,7 @@ if (loggedIn === true) {
     const calendarHeading = document.createElement("h2");
     calendarHeading.textContent = "Calendar";
     const calendarMsg = document.createElement("p");
+    calendarMsg.setAttribute("id", "calendarMsg");
     calendarMsg.textContent = "Fill in the fields to add an event.";
     calendarInputContainer.append(calendarHeading, calendarMsg);
     // array with input configurations for all the input and label combinations to create
@@ -212,6 +245,7 @@ if (loggedIn === true) {
 
     // save event event listener
     saveEventBtn.addEventListener("click", () => {
+      const calendarMsg = document.querySelector("#calendarMsg");
       const eventTitle = eventTitleInput.value;
       const startDate = startDateInput.value;
       const startTime = startTimeInput.value;
@@ -247,6 +281,7 @@ if (loggedIn === true) {
         if (eventData.start.getTime() < eventData.end.getTime()) {
           addEvent(eventData, events);
           saveEvents(events);
+          calendarMsg.textContent = "Fill in the fields to add an event.";
           //empty input fields after success
           eventTitleInput.value = "";
           startDateInput.value = "";
