@@ -9,6 +9,7 @@ let todoDate = document.getElementById("todoDate");
 let todoDuration = document.getElementById("todoDuration");
 let todoDeadline = document.getElementById("todoDeadline");
 let addTodoBtn = document.getElementById("addTodo");
+let goToTodosButton = document.getElementById("goToTodosButton");
 
 //Variabler todo details 
 let todoDetailsContainer = document.getElementById("todoDetailsContainer");
@@ -29,28 +30,191 @@ let addIcon = document.getElementById("addIcon");
 
 let categoryCheckboxes = document.querySelectorAll("input[type= 'checkbox'][name='category']");
 let selectAllCheckbox = document.getElementById("selectAll");
+let hideDoneTasksCheckbox = document.getElementById("hideDoneTasks");
+selectedCategories = [];
+
+//Variabler för sortering och dropdown
+let divContainingSortSelect = document.getElementById('divContainingSortSelect');
+
+divContainingSortSelect.addEventListener('change', function (event) {
+    // Hämta det valda sorteringssättet från dropdown-menyn
+    let sortBy = '';
+    let sortOrder = '';
+
+    // Kontrollera om det valda sorteringssättet är efter deadline eller duration
+    if (event.target.id === 'sortByDeadline' || event.target.id === 'sortByDuration') {
+        // Hämta det valda sorteringssättet
+        sortBy = event.target.value;
+    } else if (event.target.id === 'sortOrderSelect') {
+        // Hämta det valda sorteringsordningen
+        sortOrder = event.target.value;
+    }
+
+    // Sortera todos baserat på det valda sorteringssättet och ordningen
+    if (sortBy === 'deadline') {
+        if (sortOrder === 'asc') {
+            // Sortera todos efter deadline i stigande ordning
+            arrayTodos.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+        } else if (sortOrder === 'desc') {
+            // Sortera todos efter deadline i fallande ordning
+            arrayTodos.sort((a, b) => new Date(b.deadline) - new Date(a.deadline));
+        }
+    } else if (sortBy === 'duration') {
+        if (sortOrder === 'asc') {
+            // Sortera todos efter tidsestimat i stigande ordning
+            arrayTodos.sort((a, b) => parseInt(a.duration) - parseInt(b.duration));
+        } else if (sortOrder === 'desc') {
+            // Sortera todos efter tidsestimat i fallande ordning
+            arrayTodos.sort((a, b) => parseInt(b.duration) - parseInt(a.duration));
+        }
+    }
+
+    // Uppdatera listan med todos efter sortering
+    filterAndRenderTodos();
+});
 
 
 
 
 selectAllCheckbox.addEventListener("change", function () {
-    toggleSelectAll();
+    if (selectAllCheckbox.checked) {
+        selectAllCategories();
+    } else {
+        unselectAllCategories();
+    }
     saveTodosToLocalStorage();
 });
 
-//Kollar om select all är iklickad, om den är det så blir alla checkboxar iklickade
-//Om den inte är iklickad så blir alla checkboxar avmarkerade. 
-function toggleSelectAll() {
-    if (selectAllCheckbox.checked) {
-        categoryCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = true;
-        });
-    } else {
-        categoryCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = false;
-        });
-    }
+
+
+
+// Funktion för att markera "Select All" och alla kategorikryssrutor
+function selectAllCategories() {
+    // Markera "Select All" kryssrutan
+    selectAllCheckbox.checked = true;
+
+    // Markera alla kategorikryssrutor
+    categoryCheckboxes.forEach(checkbox => {
+        checkbox.checked = true;
+    });
+
+    // Uppdatera listan med valda kategorier
+    selectedCategories = Array.from(categoryCheckboxes).map(checkbox => checkbox.value);
+
+    // Anropa filterAndRenderTodos för att filtrera och rendera todos baserat på de valda kategorierna
+    filterAndRenderTodos();
 }
+
+// Funktion för att avmarkera "Select All" och rensa todo-listan
+function unselectAllCategories() {
+    // Avmarkera "Select All" kryssrutan
+    selectAllCheckbox.checked = false;
+
+    // Avmarkera alla kategorikryssrutor
+    categoryCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Återställ listan med valda kategorier
+    selectedCategories = [];
+
+    // Rensa todo-listan
+    todoList.innerHTML = '';
+}
+
+// Lägg till en eventlyssnare för klickhändelser på "Select All" checkboxen
+selectAllCheckbox.addEventListener('change', () => {
+    if (selectAllCheckbox.checked) {
+        selectAllCategories();
+    } else {
+        unselectAllCategories();
+    }
+});
+
+
+
+// Funktion för att filtrera och rendera todos baserat på deras completed-status
+function filterAndRenderTodos() {
+    // Rensa todoList innan du renderar igen
+    todoList.innerHTML = '';
+
+    // Filtrera todos baserat på deras completed-status
+    const filteredTodos = arrayTodos.filter(todo => {
+        // Om hideDoneTasksCheckbox är ikryssad, filtrera bort färdiga todos
+        if (hideDoneTasksCheckbox.checked && todo.completed) {
+            return false;
+        }
+        // Om inga kategorier är valda, inkludera alla todos
+        if (selectedCategories.length === 0) {
+            return true;
+        }
+
+        // Annars, kontrollera om todo tillhör någon av de valda kategorierna
+        return selectedCategories.includes(todo.category);
+
+
+    });
+
+    // Rendera de filtrerade todos
+    filteredTodos.forEach((todo, index) => {
+        let todoElement = renderTodo(todo, index);
+        todoList.appendChild(todoElement);
+    });
+}
+
+// Eventlyssnare för klickhändelser på checkboxar för kategorier
+categoryCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        filterByCategories();
+    });
+});
+
+// Funktion för att filtrera och rendera todos baserat på valda kategorier
+function filterByCategories() {
+    // Om "Select All" är markerad, avmarkera den
+    if (selectAllCheckbox.checked) {
+        selectAllCheckbox.checked = false;
+    }
+
+    // Återställ listan med valda kategorier
+    selectedCategories = [];
+
+    // Loopa genom checkboxarna för kategorier och lägg till de valda kategorierna i listan
+    categoryCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedCategories.push(checkbox.value);
+        }
+    });
+
+    // Om alla kategorier är markerade, markera "Select All"
+    if (selectedCategories.length === categoryCheckboxes.length) {
+        selectAllCheckbox.checked = true;
+    } else {
+        selectAllCheckbox.checked = false;
+    }
+
+    // Anropa filterAndRenderTodos för att filtrera och rendera todos baserat på de valda kategorierna
+    filterAndRenderTodos();
+}
+
+
+// Uppdatera eventlyssnaren för hideDoneTasksCheckbox för att anropa filterAndRenderTodos()
+hideDoneTasksCheckbox.addEventListener('change', () => {
+    filterAndRenderTodos();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 addTodoBtn.addEventListener('click', (event) => {
@@ -62,6 +226,19 @@ addTodoBtn.addEventListener('click', (event) => {
 
 });
 
+// Lägg till en eventlyssnare för klickhändelser på knappen
+goToTodosButton.addEventListener('click', () => {
+    // Dölj todoForm och visa todoListContainer
+    todoForm.style.display = "none";
+    todoListContainer.style.display = "block";
+
+    // Markera "Select All" och alla kategorikryssrutor
+    selectAllCategories();
+
+    // Anropa filterAndRenderTodos för att filtrera och rendera todos baserat på de valda kategorierna
+    filterAndRenderTodos();
+
+});
 
 
 //Funktion för att spara todos i localstorage 
@@ -133,7 +310,10 @@ let renderTodo = (todo, index) => {
     // Om todo.completed är true, markera checkboxen som checked
     checkbox.checked = todo.completed;
 
-
+    // Kontrollera om todo är färdig, om så är fallet, inaktivera checkboxen
+    if (todo.completed) {
+        checkbox.disabled = true;
+    }
 
     // Skapa ett element för att visa todo-titeln
     let titleElement = document.createElement('span');
@@ -190,6 +370,7 @@ let renderTodo = (todo, index) => {
         // Dölj todoDetailsContainer och visa todoListContainer
         todoDetailsContainer.style.display = "none";
         todoListContainer.style.display = "block";
+
     });
     // Lägg till en eventlistener för att hantera ändringar i checkboxen för varje todo
     checkbox.addEventListener('change', (event) => {

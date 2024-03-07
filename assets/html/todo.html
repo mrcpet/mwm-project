@@ -15,7 +15,9 @@
     <div class="wrapper">
 
         <form id="todoForm">
-
+            <div id="goToTodosButton">
+                <i class="fas fa-arrow-left"></i>
+            </div>
 
 
             <label for="todoTitle">Todo Title:</label><br>
@@ -87,36 +89,41 @@
                     </div>
                 </div>
 
-                <div id="checkboxRowFour">
+                <div id="divContainingSortSelect">
                     <label for="sortSelect">Sort By:</label>
-                    <select id="sortSelect">
-                        <option value="deadline_asc">Deadline (Ascending)</option>
-                        <option value="deadline_desc">Deadline (Descending)</option>
-                        <option value="duration_asc">Duration (Ascending)</option>
-                        <option value="duration_desc">Duration (Descending)</option>
+                    <div>
+                        <input type="checkbox" id="sortByDeadline" name="sortBy" value="deadline">
+                        <label for="sortByDeadline">Deadline</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="sortByDuration" name="sortBy" value="duration">
+                        <label for="sortByDuration">Duration</label>
+                    </div>
+                    <select id="sortOrderSelect">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
                     </select>
+                </div>
+
+                <ul id="todoList"></ul>
+            </div>
+
+
+            <div id="todoDetailsContainer" style="display: none;">
+                <div id="goBackButton">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div id="todoInfo">
+                    <p><strong>Title:</strong> <span id="todoTitleDisplay"></span></p>
+                    <p><strong>Description:</strong> <span id="todoDescriptionDisplay"></span></p>
+                    <p><strong>Category:</strong> <span id="todoCategoryDisplay"></span></p>
+                    <p><strong>Date:</strong> <span id="todoDateDisplay"></span></p>
+                    <p><strong>Duration:</strong> <span id="todoDurationDisplay"></span></p>
+                    <p><strong>Deadline:</strong> <span id="todoDeadlineDisplay"></span></p>
                 </div>
             </div>
 
-            <ul id="todoList"></ul>
         </div>
-
-
-        <div id="todoDetailsContainer" style="display: none;">
-            <div id="goBackButton">
-                <i class="fas fa-arrow-left"></i>
-            </div>
-            <div id="todoInfo">
-                <p><strong>Title:</strong> <span id="todoTitleDisplay"></span></p>
-                <p><strong>Description:</strong> <span id="todoDescriptionDisplay"></span></p>
-                <p><strong>Category:</strong> <span id="todoCategoryDisplay"></span></p>
-                <p><strong>Date:</strong> <span id="todoDateDisplay"></span></p>
-                <p><strong>Duration:</strong> <span id="todoDurationDisplay"></span></p>
-                <p><strong>Deadline:</strong> <span id="todoDeadlineDisplay"></span></p>
-            </div>
-        </div>
-
-    </div>
 
 
     </div>
