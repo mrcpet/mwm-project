@@ -2,14 +2,15 @@
 .startpage {
   margin: 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff)
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
     no-repeat;
   background-size: cover;
   min-height: 100vh;
   color: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 4.5rem;
   .pageContainer {
     display: flex;
     flex-direction: column;
@@ -40,6 +41,9 @@
           }
         }
       }
+    }
+    button {
+      @include button($button-main);
     }
     nav {
       ul {

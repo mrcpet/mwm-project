@@ -1,9 +1,10 @@
 /* Login Styles */
 .login {
   margin: 0;
+  margin-top: 0.5rem;
   padding: 2rem 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff)
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
     no-repeat;
   background-size: cover;
   height: 100vh;
@@ -93,7 +94,7 @@
       padding: 1rem;
       filter: drop-shadow(0 0 0.75rem gray);
       z-index: 1000;
-      background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #ffffff)
+      background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
         no-repeat;
       background-size: cover;
       @include desktop {
@@ -130,9 +131,9 @@
           font-size: 1rem;
         }
         input:focus.failed {
-            border-color: red;
-            outline: red;
-          }
+          border-color: red;
+          outline: red;
+        }
       }
     }
   }
