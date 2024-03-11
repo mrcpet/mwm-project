@@ -3,7 +3,7 @@ const addHabitsBtn = document.querySelector("#add-button");
 const inputField = document.querySelector("#input-field");
 const prioDropDown = document.querySelector("#habit-prio");
 const listEl = document.querySelector("#habit-list");
-const sortBtn = document.querySelector("#sort-btn");
+const sortPrioBtn = document.querySelector("#sort-prio-btn");
 const checkboxes = document.querySelectorAll("[name = 'filter']");
 const plusBtn = document.querySelector("#plus-sign");
 const refreshBtn = document.querySelector("#refresh-sign");
@@ -34,7 +34,7 @@ addHabitsBtn.addEventListener("click", () => {
   renderData(myList);
 });
 
-sortBtn.addEventListener("click", () => {
+sortPrioBtn.addEventListener("click", () => {
   booleanForSorting = !booleanForSorting;
   const listToSort = booleanForCheckingFilters ? myFilterList : myList;
   sortByPrio(listToSort, booleanForSorting);
