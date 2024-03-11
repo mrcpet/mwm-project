@@ -296,7 +296,6 @@
   z-index: 999;
 }
 
-html,
 body {
   margin: 0;
   padding: 0;
@@ -435,4 +434,7 @@ body.pomodoro p {
 }
 body.pomodoro .hidden {
   display: none;
+}
+body.pomodoro img {
+  width: 50px;
 }/*# sourceMappingURL=main.css.map */
