@@ -7,10 +7,10 @@
     <script src="/assets/script/pomodoro.js" defer></script>
     <link rel="stylesheet" href="/assets/scss/main.css" />
   </head>
-  <body>
-    <h1>Time to Focus</h1>
+  <body class="pomodoro">
+    <h1 id="title" class="title remove">Time to Focus</h1>
     <div class="pomodoro-container" id="pomodoro-container">
-      <div class="button-wrapper">
+      <div class="button-wrapper remove">
         <button id="pomodoro" class="button pomodoro" value="25">
           Pomodoro
         </button>
@@ -21,6 +21,14 @@
           Long break
         </button>
         <button id="custom-time" class="custom button">Custom Time</button>
+        <input
+          type="text"
+          id="custom-input"
+          class="hidden remove"
+          placeholder="Enter time in minutes"
+        />
+        <button id="add-custom-time" class="hidden">+</button>
+        <button id="cancel" class="hidden"></button>
       </div>
       <p id="timer-display"></p>
       <div class="button-wrapper">
@@ -28,6 +36,12 @@
           <img
             src="/assets/icons/Icon/pomodoro/Icon/Outline/play-circle.svg"
             alt="start"
+          />
+        </button>
+        <button id="next-button" class="hidden">
+          <img
+            src="/assets/Icons/Icon/pomodoro/Icon/Outline/skip-forward.svg"
+            alt="next button"
           />
         </button>
         <button id="restart-button" class="hidden">
