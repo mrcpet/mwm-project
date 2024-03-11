@@ -45,16 +45,13 @@
     button {
       @include button($button-main);
     }
-    nav {
-      ul {
-        display: flex;
-        gap: 1rem;
-        list-style: none;
-        // button {
-        //   @include button($button-main);
-        // }
-      }
-    }
+    // nav {
+    //   ul {
+    //     display: flex;
+    //     gap: 1rem;
+    //     list-style: none;
+    //   }
+    // }
   }
 }
 
