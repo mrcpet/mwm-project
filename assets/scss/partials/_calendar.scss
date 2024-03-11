@@ -28,10 +28,20 @@ main.calendar {
       padding: 0;
       list-style: none;
       li {
-        border-bottom: 1px solid #7451ff;
+        border: 1px solid #7451ff;
+        border-radius: 1rem;
+        padding: 1rem;
+        background-color: #937af4;
+        p {
+          margin: 0;
+        }
+        h3 {
+          margin: 0;
+        }
       }
       li:nth-of-type(1) {
         border: none;
+        background-color: #7451ff;
       }
       li.oldEvent {
         border-bottom: 1px solid red;

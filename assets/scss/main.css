@@ -656,10 +656,20 @@ main.calendar .listContainer ul {
   list-style: none;
 }
 main.calendar .listContainer ul li {
-  border-bottom: 1px solid #7451ff;
+  border: 1px solid #7451ff;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #937af4;
+}
+main.calendar .listContainer ul li p {
+  margin: 0;
+}
+main.calendar .listContainer ul li h3 {
+  margin: 0;
 }
 main.calendar .listContainer ul li:nth-of-type(1) {
   border: none;
+  background-color: #7451ff;
 }
 main.calendar .listContainer ul li.oldEvent {
   border-bottom: 1px solid red;
