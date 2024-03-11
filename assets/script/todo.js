@@ -498,6 +498,10 @@ editTodoBtn.addEventListener('click', () => {
 window.addEventListener('load', () => {
     loadTodos(); // Ladda sparade todos från localStorage
     renderAllTodos(); // Rendera alla todos för den inloggade användaren
+
+    // Visa todoListContainer och dölj todoForm när sidan laddas
+    todoListContainer.style.display = "block";
+    todoForm.style.display = "none";
 });
 
 
