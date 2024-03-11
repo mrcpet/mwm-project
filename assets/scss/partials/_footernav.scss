@@ -29,6 +29,9 @@
         #habitBtn {
             @include navButton($button-main, #ffffff);
         }
+        #pomodoroBtn {
+            @include navButton($button-main, #ffffff);
+        }
         #logOutBtn {
             @include navButton($button-main, #ffffff);
         }
