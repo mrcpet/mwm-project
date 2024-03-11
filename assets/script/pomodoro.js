@@ -8,10 +8,12 @@ const customTimeBtn = document.querySelector("#custom-time");
 const customInput = document.querySelector("#custom-input");
 const addCustomTimeBtn = document.querySelector("#add-custom-time");
 const cancelBtn = document.querySelector("#cancel");
+const nextBtn = document.querySelector("#next-button");
 let selectedtime = 0; // Ska alltid vara i sekunder
 let timeOption = 0; // Ska vara i minuter
 let countDown; // Intervallen
 let isTimerRunning = false; // true när timer tickar och annars false
+let isMiddleOfCountdown; // boolean som är true när selectedtime är mindre än timeOption.
 
 // ----------- Kod Flöde---------------------
 
@@ -40,13 +42,19 @@ addCustomTimeBtn.addEventListener("click", () => {
 startPauseBtn.addEventListener("click", () => {
   isTimerRunning ? stopTimer(countDown) : startTimer(selectedtime);
   playOrPauseTimer();
-  changeIconSet(isTimerRunning);
+  isMiddleOfCountdown = selectedtime < transformToSeconds(timeOption);
+  changeIconPlayOrPause(isTimerRunning);
+  whenToShowRestartButton(true);
 });
 restartBtn.addEventListener("click", () => {
   stopTimer(countDown);
-  playOrPauseTimer();
-  changeIconSet(isTimerRunning);
+  whenToShowRestartButton(false);
   startState(timeOption);
+});
+nextBtn.addEventListener("click", () => {
+  removeHidden(startPauseBtn);
+  addHidden(nextBtn);
+  startState(5);
 });
 
 //--------------Funktioner--------------
@@ -87,7 +95,11 @@ function startTimer(time) {
 
     if (seconds < 0) {
       clearInterval(countDown);
-      changeIconSet(false);
+      isTimerRunning = false;
+      changeIconPlayOrPause(isTimerRunning);
+      addHidden(startPauseBtn);
+      removeHidden(nextBtn);
+      messageWhenFinished("Good Work!");
     }
   }, 10);
 }
@@ -108,23 +120,27 @@ function playOrPauseTimer() {
   isTimerRunning = !isTimerRunning;
 }
 
-// Ändrar iconer i DOMen beroende om timer är igång eller inte.
-function changeIconSet(boolean) {
+function changeIconPlayOrPause(boolean) {
   boolean
-    ? ((startPauseBtn.innerHTML =
-        '<img src="/assets/icons/Icon/pomodoro/Icon/Outline/pause-circle.svg" />'),
-      removeHidden(restartBtn))
-    : ((startPauseBtn.innerHTML =
-        '<img src="/assets/icons/Icon/pomodoro/Icon/Outline/play-circle.svg" />'),
-      addHidden(restartBtn));
+    ? (startPauseBtn.innerHTML =
+        '<img src="/assets/icons/Icon/pomodoro/Icon/Outline/pause-circle.svg" />')
+    : (startPauseBtn.innerHTML =
+        '<img src="/assets/icons/Icon/pomodoro/Icon/Outline/play-circle.svg" />');
+}
+function whenToShowRestartButton(boolean) {
+  boolean ? removeHidden(restartBtn) : addHidden(restartBtn);
 }
 
 //  Startläge för hemsidan
 function startState(time) {
+  timeOption = time;
   selectedtime = transformToSeconds(time);
   updateDisplay(selectedtime);
 }
 
 function getValueFromInput(elem) {
   return parseInt(elem.value);
+}
+function messageWhenFinished(msg) {
+  timerDisplayEl.innerHTML = msg;
 }
