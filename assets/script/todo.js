@@ -157,6 +157,12 @@ function filterAndRenderTodos() {
         }
     });
 
+    // Om ingen kategori är vald, visa inga todos
+    if (selectedCategories.length === 0) {
+        return;
+    }
+
+
     // Om alla kategorier är markerade, markera "Select All"
     if (selectedCategories.length === categoryCheckboxes.length) {
         selectAllCheckbox.checked = true;
@@ -274,11 +280,41 @@ let addAndStoreTodo = () => {
 
 addTodoBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    todoForm.style.display = "none";
-    todoListContainer.style.display = "block";
-    addAndStoreTodo();
-    renderAllTodos();
+    // Kontrollera om det finns en redigerad todo
+    if (editedTodoIndex !== null && editedTodo !== null) {
+        // Uppdatera den befintliga todo med de nya värdena från formuläret
+        editedTodo.title = todoTitle.value;
+        editedTodo.description = todoDescription.value;
+        editedTodo.category = todoCategory.value;
+        editedTodo.date = todoDate.value;
+        editedTodo.duration = `${todoDuration.value} hours`;
+        editedTodo.deadline = todoDeadline.value;
+
+        // Spara ändringarna i localStorage
+        saveTodosToLocalStorage();
+
+        // Återställ redigeringsvariablerna till null
+        editedTodoIndex = null;
+        editedTodo = null;
+
+        // Visa todoListContainer och dölj todoForm
+        todoListContainer.style.display = "block";
+        todoForm.style.display = "none";
+
+        // Rendera alla todos för den inloggade användaren
+        renderAllTodos();
+
+    } else {
+        // Om det inte finns en redigerad todo, lägg till en ny todo som tidigare
+        todoForm.style.display = "none";
+        todoListContainer.style.display = "block";
+        addAndStoreTodo();
+        renderAllTodos();
+    }
 });
+
+
+
 
 
 let renderTodo = (todo, index) => {
@@ -374,6 +410,9 @@ function showTodoDetails(todoIndex) {
     todoDetailsContainer.style.display = "block";
     todoListContainer.style.display = "none";
 
+    // Visa editTodoBtn
+    editTodoBtn.style.display = "block";
+
 
 }
 
@@ -383,16 +422,23 @@ todoList.addEventListener('click', (event) => {
         // Hämta index från dataset-attributet på förälderelementet av todo-titeln
         let todoIndex = event.target.parentNode.dataset.index;
 
-        // Om redigeringsläget är aktiverat, visa formuläret för redigering av den valda todo
-        if (editTodoBtn.style.display === "inline") {
-            editTodo(todoIndex);
-        } else {
-            // Annars visa detaljer för den valda todo
+
+        // Hämta den valda todo baserat på index
+        let selectedTodo = arrayTodos[todoIndex];
+
+        // Kontrollera om todo.completed är false innan du tillåter redigering
+        if (!selectedTodo.completed) {
+            // Tilldela todoIndex till editedTodoIndex
+            editedTodoIndex = parseInt(todoIndex); // Se till att todoIndex är av rätt datatyp (typiskt ett nummer)
+
+            // Visa detaljerna för den valda todo
             showTodoDetails(todoIndex);
+        } else {
+            // Meddela användaren att de inte kan redigera en färdig todo
+            alert("You cannot edit a completed todo.");
         }
     }
 });
-
 
 // Rendera alla todos
 let renderAllTodos = () => {
@@ -406,57 +452,13 @@ let renderAllTodos = () => {
     });
 }
 
-
-// Variabler för att spåra den redigerade todo och dess index
+// Deklarera och tilldela initiala värden till redigeringsvariablerna
 let editedTodoIndex = null;
 let editedTodo = null;
-
-// Lägg till en eventlyssnare för klickhändelser på editTodoBtn
-editTodoBtn.addEventListener('click', () => {
-    console.log("Edit Todo button clicked");
-    // Kontrollera om en todo är vald för redigering
-    if (editedTodoIndex !== null) {
-        // Hämta värdena från formuläret
-        let title = todoTitle.value;
-        let description = todoDescription.value;
-        let category = todoCategory.value;
-        let date = todoDate.value;
-        let duration = `${todoDuration.value} hours`;
-        let deadline = todoDeadline.value;
-
-        // Uppdatera de aktuella todo-objektets egenskaper med de nya värdena
-        editedTodo.title = title;
-        editedTodo.description = description;
-        editedTodo.category = category;
-        editedTodo.date = date;
-        editedTodo.duration = duration;
-        editedTodo.deadline = deadline;
-
-        // Spara ändringarna i localStorage
-        saveTodosToLocalStorage();
-
-        // Uppdatera vyn för att visa de uppdaterade todos
-        renderAllTodos();
-
-        // Återställ editTodoBtn och todoForm
-        editTodoBtn.style.display = "none";
-        addTodoBtn.style.display = "inline";
-        todoForm.style.display = "none";
-        todoListContainer.style.display = "block";
-
-        // Återställ innehållet i todoForm
-        [...document.querySelectorAll('#todoForm input, #todoForm textarea')].forEach(field => field.value = "");
-
-        // Återställ redigeringsvariablerna
-        editedTodoIndex = null;
-        editedTodo = null;
-    }
-});
 
 // Funktion för att redigera en vald todo
 function editTodo(index) {
     console.log("Editing todo with index:", index);
-    console.log("Edited todo:", editedTodo);
     // Sätt index och todo som ska redigeras
     editedTodoIndex = index;
     editedTodo = arrayTodos[index];
@@ -471,13 +473,26 @@ function editTodo(index) {
     todoDeadline.value = editedTodo.deadline;
 
     // Dölj addTodoBtn och visa editTodoBtn
-    addTodoBtn.style.display = "none";
-    editTodoBtn.style.display = "inline";
+    addTodoBtn.style.display = "block";
+    editTodoBtn.style.display = "none";
 
     // Visa todoForm och dölj todoListContainer
     todoForm.style.display = "block";
     todoDetailsContainer.style.display = "none";
 }
+
+
+
+// Lägg till en eventlyssnare för klickhändelser på editTodoBtn
+editTodoBtn.addEventListener('click', () => {
+    console.log("du klickade på knappen");
+    // Kontrollera om det finns en vald todo för redigering
+    if (editedTodoIndex !== null) {
+        // Anropa editTodo-funktionen för den valda todo
+        editTodo(editedTodoIndex);
+    }
+});
+
 
 // Ladda sparade todos när sidan laddas
 window.addEventListener('load', () => {
