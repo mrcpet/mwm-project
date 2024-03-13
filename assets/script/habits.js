@@ -4,6 +4,7 @@ const inputField = document.querySelector("#input-field");
 const prioDropDown = document.querySelector("#habit-prio");
 const listEl = document.querySelector("#habit-list");
 const sortPrioBtn = document.querySelector("#sort-prio-btn");
+const sortStreakBtn = document.querySelector("#sort-streak-btn");
 const checkboxes = document.querySelectorAll("[name = 'filter']");
 const plusBtn = document.querySelector("#plus-sign");
 const refreshBtn = document.querySelector("#refresh-sign");
@@ -11,7 +12,7 @@ const removeBtn = document.querySelector("#trash-can");
 const closeBtn = document.querySelector("#close-sign");
 const listFromLocalStorage = JSON.parse(localStorage.getItem("habits"));
 const welcomeTitle = document.querySelector("#welcome-title");
-const setUser = setCurrentUser("wille"); // måste vara string;
+const setUser = setCurrentUser("wille"); // måste vara string, ska kommenteras ut senare.
 const username = getCurrentUser(); // localStorage.getItem("currentUser");
 let myList = [];
 let myFilterList = [];
@@ -39,6 +40,11 @@ sortPrioBtn.addEventListener("click", () => {
   const listToSort = booleanForCheckingFilters ? myFilterList : myList;
   sortByPrio(listToSort, booleanForSorting);
 });
+sortStreakBtn.addEventListener("click", () => {
+  booleanForSorting = !booleanForSorting;
+  const listToSort = booleanForCheckingFilters ? myFilterList : myList;
+  sortByPrio(listToSort, booleanForSorting);
+});
 
 addCheckboxEventListeners(checkboxes);
 
@@ -57,7 +63,19 @@ function sortByPrio(array, boolean) {
       return a.prio - b.prio;
     });
   }
-  cl(newList);
+  renderData(newList);
+}
+function sortByStreak(array, boolean) {
+  let newList = [];
+  if (boolean) {
+    newList = array.sort((a, b) => {
+      return b.streak - a.streak;
+    });
+  } else {
+    newList = array.sort((a, b) => {
+      return a.streak - b.streak;
+    });
+  }
   renderData(newList);
 }
 
