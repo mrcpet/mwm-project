@@ -325,6 +325,7 @@ let renderTodo = (todo, index) => {
     // Skapa en checkbox
     let checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
+    checkbox.classList.add('status-checkbox');
 
     // Om todo.completed är true, markera checkboxen som checked
     checkbox.checked = todo.completed;
@@ -342,6 +343,7 @@ let renderTodo = (todo, index) => {
     // Om todo är färdig, tillämpa överstrukning på titeln
     if (todo.completed) {
         titleElement.style.textDecoration = "line-through";
+
     }
 
 
@@ -423,8 +425,11 @@ function showTodoDetails(todoIndex) {
     todoDetailsContainer.style.display = "block";
     todoListContainer.style.display = "none";
 
+
+
     // Visa editTodoBtn
     editTodoBtn.style.display = "block";
+    goBackButton.style.display = "block";
 
 
 }
