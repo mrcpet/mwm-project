@@ -6,7 +6,8 @@
   margin: 0;
   padding: 2rem 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
   height: 100vh;
   color: #ffffff;
@@ -132,7 +133,8 @@
   padding: 1rem;
   filter: drop-shadow(0 0 0.75rem gray);
   z-index: 1000;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
 }
 @media (min-width: 1080px) {
@@ -251,7 +253,8 @@
 .startpage {
   margin: 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
   min-height: 100vh;
   color: #ffffff;
@@ -326,7 +329,8 @@
 .habits-body {
   margin: 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
   min-height: 100vh;
   color: #ffffff;
@@ -422,7 +426,8 @@
 .body-todo {
   margin: 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
   min-height: 100vh;
   color: #ffffff;
@@ -542,7 +547,12 @@
   flex-direction: row;
   justify-content: flex-start;
 }
-.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowOne input[type=checkbox] {
+.body-todo
+  .wrapper
+  #todoListContainer
+  #filterOptions
+  #checkboxRowOne
+  input[type="checkbox"] {
   margin-top: 5%;
   margin-bottom: 5%;
 }
@@ -556,7 +566,12 @@
   flex-direction: column;
   justify-content: center;
 }
-.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowTwo input[type=checkbox] {
+.body-todo
+  .wrapper
+  #todoListContainer
+  #filterOptions
+  #checkboxRowTwo
+  input[type="checkbox"] {
   margin-left: 5%;
 }
 .body-todo .wrapper #todoListContainer #filterOptions #checkboxRowTwo label {
@@ -624,7 +639,8 @@ body.pomodoro {
   margin: 0;
   padding: 2rem 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
   height: 100vh;
   color: #ffffff;
@@ -658,7 +674,7 @@ body.pomodoro #pomodoroBtn > img:nth-child(1) {
 
 #footerNav {
   width: 100%;
-  outline: 1px solid #5D50FA;
+  outline: 1px solid #5d50fa;
   position: fixed;
   height: 4.5rem;
   bottom: 0;
@@ -930,7 +946,8 @@ body.pomodoro {
   margin: 0;
   padding: 2rem 0;
   font-family: "Khula", sans-serif;
-  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
   background-size: cover;
   height: 100vh;
   color: #ffffff;
@@ -957,7 +974,4 @@ body.pomodoro p {
 }
 body.pomodoro .hidden {
   display: none;
-}
-body.pomodoro #pomodoroBtn > img:nth-child(1) {
-  color: red;
-}/*# sourceMappingURL=main.css.map */
+} /*# sourceMappingURL=main.css.map */
