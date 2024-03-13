@@ -1,0 +1,25 @@
+body.pomodoro {
+  margin: 0;
+  padding: 2rem 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff)
+    no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #ffffff;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  button {
+    @include button($button-main);
+  }
+  p {
+    font-size: 100px;
+  }
+  .hidden {
+    display: none;
+  }
+  #pomodoroBtn > img:nth-child(1) {
+    color: red;
+  }
+}
