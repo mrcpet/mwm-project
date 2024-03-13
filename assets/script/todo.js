@@ -339,6 +339,11 @@ let renderTodo = (todo, index) => {
     titleElement.classList.add('todoTitle');
     titleElement.textContent = todo.title;
 
+    // Om todo är färdig, tillämpa överstrukning på titeln
+    if (todo.completed) {
+        titleElement.style.textDecoration = "line-through";
+    }
+
 
     // Skapa ikon för delete
     let deleteIcon = document.createElement('i');
@@ -378,13 +383,18 @@ let renderTodo = (todo, index) => {
 
         // Uppdatera todo.completed baserat på checkboxens status
         arrayTodos[todoIndex].completed = event.target.checked;
-        // Spara ändringar i localStorage
-        saveTodosToLocalStorage();
+
 
         // Inaktivera checkboxen om den är markerad
         if (event.target.checked) {
             event.target.disabled = true;
+
+            // Överstryk todoTitle om checkboxen är markerad
+            todoElement.querySelector('.todoTitle').style.textDecoration = "line-through";
         }
+
+        // Spara ändringar i localStorage
+        saveTodosToLocalStorage();
 
     });
 
