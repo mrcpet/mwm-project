@@ -3,7 +3,8 @@ const addHabitsBtn = document.querySelector("#add-button");
 const inputField = document.querySelector("#input-field");
 const prioDropDown = document.querySelector("#habit-prio");
 const listEl = document.querySelector("#habit-list");
-const sortBtn = document.querySelector("#sort-btn");
+const sortPrioBtn = document.querySelector("#sort-prio-btn");
+const sortStreakBtn = document.querySelector("#sort-streak-btn");
 const checkboxes = document.querySelectorAll("[name = 'filter']");
 const plusBtn = document.querySelector("#plus-sign");
 const refreshBtn = document.querySelector("#refresh-sign");
@@ -11,7 +12,7 @@ const removeBtn = document.querySelector("#trash-can");
 const closeBtn = document.querySelector("#close-sign");
 const listFromLocalStorage = JSON.parse(localStorage.getItem("habits"));
 const welcomeTitle = document.querySelector("#welcome-title");
-const setUser = setCurrentUser("wille"); // måste vara string;
+const setUser = setCurrentUser("wille"); // måste vara string, ska kommenteras ut senare.
 const username = getCurrentUser(); // localStorage.getItem("currentUser");
 let myList = [];
 let myFilterList = [];
@@ -34,7 +35,12 @@ addHabitsBtn.addEventListener("click", () => {
   renderData(myList);
 });
 
-sortBtn.addEventListener("click", () => {
+sortPrioBtn.addEventListener("click", () => {
+  booleanForSorting = !booleanForSorting;
+  const listToSort = booleanForCheckingFilters ? myFilterList : myList;
+  sortByPrio(listToSort, booleanForSorting);
+});
+sortStreakBtn.addEventListener("click", () => {
   booleanForSorting = !booleanForSorting;
   const listToSort = booleanForCheckingFilters ? myFilterList : myList;
   sortByPrio(listToSort, booleanForSorting);
@@ -57,7 +63,19 @@ function sortByPrio(array, boolean) {
       return a.prio - b.prio;
     });
   }
-  cl(newList);
+  renderData(newList);
+}
+function sortByStreak(array, boolean) {
+  let newList = [];
+  if (boolean) {
+    newList = array.sort((a, b) => {
+      return b.streak - a.streak;
+    });
+  } else {
+    newList = array.sort((a, b) => {
+      return a.streak - b.streak;
+    });
+  }
   renderData(newList);
 }
 
@@ -78,8 +96,9 @@ function renderData(array) {
   listEl.innerHTML = "";
   listFilteredByUSer = filterArrayByUser(array, username);
   listFilteredByUSer.forEach((habit) => {
+    let prioMsg = setPrioWithNumber(habit.prio);
     let newLi = document.createElement("li");
-    newLi.innerHTML = `${habit.title} ${habit.streak}`;
+    newLi.innerHTML = `${habit.title} Streak: ${habit.streak} Prio: ${prioMsg}`;
     newLi.dataset.prio = habit.prio;
     newLi.dataset.id = habit.id;
     newLi.dataset.user = habit.user;
@@ -232,4 +251,21 @@ function handleRemove() {
 
 function handleClose() {
   OpenOrCloseActionBar(false);
+}
+function setPrioWithNumber(number) {
+  let output;
+  switch (number) {
+    case "1":
+      output = "Low";
+      break;
+    case "2":
+      output = "Medium";
+      break;
+    case "3":
+      output = "High";
+      break;
+    default:
+      output = "unknown"; // kommer nog ej behövas
+  }
+  return output;
 }

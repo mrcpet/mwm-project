@@ -8,12 +8,11 @@ const customTimeBtn = document.querySelector("#custom-time");
 const customInput = document.querySelector("#custom-input");
 const addCustomTimeBtn = document.querySelector("#add-custom-time");
 const cancelBtn = document.querySelector("#cancel");
-const nextBtn = document.querySelector("#next-button");
 let selectedtime = 0; // Ska alltid vara i sekunder
 let timeOption = 0; // Ska vara i minuter
 let countDown; // Intervallen
 let isTimerRunning = false; // true när timer tickar och annars false
-let isMiddleOfCountdown; // boolean som är true när selectedtime är mindre än timeOption.
+const UPDATE_INTERVAL = 10;
 
 // ----------- Kod Flöde---------------------
 
@@ -42,19 +41,15 @@ addCustomTimeBtn.addEventListener("click", () => {
 startPauseBtn.addEventListener("click", () => {
   isTimerRunning ? stopTimer(countDown) : startTimer(selectedtime);
   playOrPauseTimer();
-  isMiddleOfCountdown = selectedtime < transformToSeconds(timeOption);
   changeIconPlayOrPause(isTimerRunning);
-  whenToShowRestartButton(true);
+  focusFunction(isTimerRunning);
 });
 restartBtn.addEventListener("click", () => {
   stopTimer(countDown);
-  whenToShowRestartButton(false);
+  isTimerRunning = false;
+  changeIconPlayOrPause(isTimerRunning);
+  focusFunction(isTimerRunning);
   startState(timeOption);
-});
-nextBtn.addEventListener("click", () => {
-  removeHidden(startPauseBtn);
-  addHidden(nextBtn);
-  startState(5);
 });
 
 //--------------Funktioner--------------
@@ -75,15 +70,12 @@ function handleTimeSelection(value) {
   timeOption = value;
   selectedtime = transformToSeconds(value);
   updateDisplay(selectedtime);
+  changeIconPlayOrPause(false);
 }
 
 // Omvandlar minute till sekunder.
 function transformToSeconds(minutes) {
   return minutes * 60;
-}
-// Spara tid alternativet som väljs i global variable
-function transformToMinutes(seconds) {
-  return seconds / 60;
 }
 // Startar timer med värde och avslutar vid 0.
 function startTimer(time) {
@@ -97,12 +89,12 @@ function startTimer(time) {
       clearInterval(countDown);
       isTimerRunning = false;
       changeIconPlayOrPause(isTimerRunning);
-      addHidden(startPauseBtn);
-      removeHidden(nextBtn);
-      messageWhenFinished("Good Work!");
+      focusFunction(isTimerRunning);
+      message("Good Work!");
     }
-  }, 10);
+  }, UPDATE_INTERVAL);
 }
+
 // Stoppar intervallen och
 function stopTimer(interval) {
   clearInterval(interval);
@@ -127,9 +119,6 @@ function changeIconPlayOrPause(boolean) {
     : (startPauseBtn.innerHTML =
         '<img src="/assets/icons/Icon/pomodoro/Icon/Outline/play-circle.svg" />');
 }
-function whenToShowRestartButton(boolean) {
-  boolean ? removeHidden(restartBtn) : addHidden(restartBtn);
-}
 
 //  Startläge för hemsidan
 function startState(time) {
@@ -141,6 +130,14 @@ function startState(time) {
 function getValueFromInput(elem) {
   return parseInt(elem.value);
 }
-function messageWhenFinished(msg) {
+function message(msg) {
   timerDisplayEl.innerHTML = msg;
+}
+function getElementsByClass(className) {
+  let elements = Array.from(document.querySelectorAll("." + className));
+  return elements;
+}
+function focusFunction(boolean) {
+  let array = getElementsByClass("remove");
+  boolean ? addHidden(...array) : removeHidden(...array);
 }
