@@ -355,6 +355,9 @@ let renderTodo = (todo, index) => {
     todoElement.appendChild(titleElement);
     todoElement.appendChild(deleteIcon);
 
+    // Lägg till todoElement till #todoList
+    document.getElementById('todoList').appendChild(todoElement);
+
     // Lägg till en eventlistener för att hantera klickhändelsen på delete-ikonen för varje deleteIcon
     deleteIcon.addEventListener('click', (event) => {
         // Förhindra händelsen från att bubbla upp till förälderelementen
