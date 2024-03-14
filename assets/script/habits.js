@@ -43,7 +43,7 @@ sortPrioBtn.addEventListener("click", () => {
 sortStreakBtn.addEventListener("click", () => {
   booleanForSorting = !booleanForSorting;
   const listToSort = booleanForCheckingFilters ? myFilterList : myList;
-  sortByPrio(listToSort, booleanForSorting);
+  sortByStreak(listToSort, booleanForSorting);
 });
 
 addCheckboxEventListeners(checkboxes);
