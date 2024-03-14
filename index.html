@@ -4,8 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MWM-PROJEKT</MWM-PROJEKT></title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
     <link rel="stylesheet" href="/assets/scss/main.css" />
-    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Khula:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <script src="script.js"></script> -->
+    <script type="module" src="assets/script/login.js" defer></script>
   </head>
-  <body></body>
+  <body class="login">
+    <div class="pageContainer">
+      <img src="assets/images/zencat.png" alt="meditating cartoon cat" />
+      <h1>Welcome to MWM!</h1>
+      <p id="loginMessage">Please sign in to use our application.</p>
+      <main>
+        <!-- login form -->
+        <div class="loginContainer">
+          <form action="">
+            <label for="usernameInput">Username</label>
+            <input type="text" name="login" id="usernameInput" required />
+            <span class="required">* Required field</span>
+            <label for="passwordInput">Password</label>
+            <input type="password" name="login" id="passwordInput" required />
+            <span class="required">* Required field</span>
+            <button id="loginBtn" name="login" type="button">Log in</button>
+            <button id="registerBtn" type="button">Register new user</button>
+          </form>
+        </div>
+      </main>
+      <div class="error-message"></div>
+      <div class="overlayContainer"></div>
+      <!-- register form modal -->
+      <dialog class="register-modal hidden" id="registerModal">
+        <h2>Register for MWN</h2>
+        <p class="registerMsg">Fill in the required fields below.</p>
+        <form action="">
+          <label for="registerUser">Username</label>
+          <input type="text" name="register" id="registerUser" required />
+          <span class="required">* Required field</span>
+          <label for="registerPassword">Password</label>
+          <input
+            type="password"
+            name="register"
+            id="registerPassword"
+            required
+          />
+          <span class="required">* Required field</span>
+          <button id="registerUserBtn" type="button" name="register">
+            Register me!
+          </button>
+          <button id="closeModalBtn" type="button">Close</button>
+        </form>
+      </dialog>
+    </div>
+  </body>
 </html>

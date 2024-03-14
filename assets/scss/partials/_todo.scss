@@ -1,0 +1,283 @@
+.body-todo {
+    //   margin: 0;
+    //   padding: 0;
+    //   display: flex;
+    //   justify-content: center;
+    //   flex-direction: column;
+    //   align-items: center;
+    // min-height: 800px;
+    // max-width: 1400px;
+    margin: 0;
+    font-family: "Khula", sans-serif;
+    background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 4.5rem;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: auto;
+
+        // border: 2px solid black;
+        // background-color: #a48eff;
+
+        margin: 20px;
+
+        #todoForm {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                width: 15rem;
+                height: 2rem;
+                border: 1px solid black;
+                border-radius: 0.5rem;
+                padding-left: 0.5rem;
+                font-size: 1rem;
+            }
+
+            textarea {
+                font-size: 1rem;
+            }
+
+            input::placeholder {
+                font-family: "Khula", sans-serif;
+                font-size: 1rem;
+            }
+
+            button {
+                @include button($button-main);
+            }
+
+            #goToTodosButton {
+                margin-left: -50px;
+                margin-top: 10px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #9619c7;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #goToTodosButton i {
+                color: white;
+                /* Vit färg för att kontrastera mot bakgrundsfärgen */
+                font-size: 24px;
+                /* Justera storleken på ikonen efter behov */
+            }
+        }
+
+
+        #todoListContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+
+            #addIconDiv {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-start;
+
+                #addIcon {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #9619c7;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    i {
+                        color: white;
+                        /* Färg på ikonen */
+                        font-size: 20px;
+                        /* Storlek på ikonen */
+                    }
+                }
+            }
+
+            #filterOptions {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                #checkboxRowOne {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+
+                    input[type="checkbox"] {
+                        margin-top: 5%;
+                        margin-bottom: 5%;
+                    }
+
+                    label {
+                        cursor: pointer;
+                        /* Gör muspekaren till en hand när du hoverar över etiketterna */
+                    }
+                }
+
+                #checkboxRowTwo {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    input[type="checkbox"] {
+                        margin-left: 5%;
+                    }
+
+                    label {
+                        /* Avstånd mellan etiketterna */
+                        cursor: pointer;
+                        /* Gör muspekaren till en hand när du hoverar över etiketterna */
+                    }
+                }
+            }
+
+            #todoList {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                margin-left: -40px;
+
+
+
+                .todo {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 30px;
+                    padding: 5px;
+                    margin-top: 10px;
+                    height: 50px;
+                    position: relative;
+                    border-radius: 8px;
+                    background-color: rgba(136, 16, 136, 0.628);
+
+
+
+                    .status-checkbox {
+                        width: 20px;
+                        height: 20px;
+                        background-color: #fff;
+                        border: 2px solid #333;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        display: inline-block;
+
+                        &:after {
+                            content: '';
+                            display: block;
+                            width: 6px;
+                            height: 12px;
+                            border: solid #fff;
+                            border-width: 0 2px 2px 0;
+                            transform: rotate(45deg);
+                            position: relative;
+                            top: 3px;
+                            left: 5px;
+                            visibility: hidden;
+
+                        }
+
+                        &:checked:after {
+                            visibility: visible;
+                        }
+
+                        &:checked {
+                            background-color: #333
+                        }
+
+                    }
+
+
+
+                    .todoTitle {
+                        font-size: 15px;
+                    }
+
+
+                    .delete-icon {
+                        position: absolute;
+                        /* Gör ikonen absolut positionerad */
+                        top: 50%;
+                        /* Placera ikonen i mitten vertikalt */
+                        right: 20px;
+
+                        /* Placera ikonen 10px från högerkanten */
+                        transform: translateY(-50%);
+                        /* Justera ikonen för att placera den perfekt vertikalt i mitten */
+                        color: white;
+                        cursor: pointer;
+                        font-size: 30px;
+                    }
+
+                }
+            }
+        }
+
+
+
+        #todoDetailsContainer {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+
+
+
+
+
+            #todoInfo {
+
+
+                #todoDescriptionDisplay {
+                    width: 100%;
+                    word-wrap: break-word;
+                }
+            }
+
+
+
+            #goBackButton {
+                width: 40px;
+                height: 40px;
+                margin-left: -40px;
+                border-radius: 50%;
+                background-color: #9619c7;
+                border: none;
+                cursor: pointer;
+            }
+
+            #goBackButton i {
+                margin-top: 7px;
+                margin-left: 7px;
+                color: white;
+                /* Vit färg för att kontrastera mot bakgrundsfärgen */
+                font-size: 24px;
+                /* Justera storleken på ikonen efter behov */
+            }
+        }
+
+    }
+}

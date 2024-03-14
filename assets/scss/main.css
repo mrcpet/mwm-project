@@ -1,26 +1,357 @@
-html,
-body {
+@charset "UTF-8";
+/* Media Queries */
+/* Buttons */
+/* Login Styles */
+.login {
   margin: 0;
-  padding: 0;
-  font-family: "Rubik", sans-serif;
-  background-color: #eef0f4;
-  color: #432000;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  padding: 2rem 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 1080px) {
+  .login {
+    padding: 0;
+  }
+}
+.login .pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.login .pageContainer img {
+  width: 10rem;
+  padding-top: 1rem;
+}
+.login .pageContainer h1 {
+  text-align: center;
+  margin: 0;
+}
+.login .pageContainer p {
+  text-align: center;
+}
+.login .pageContainer main {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.login .pageContainer main .loginContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login .pageContainer main .loginContainer button:nth-of-type(1) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #3dbb9c;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #3dbb9c);
+}
+.login .pageContainer main .loginContainer button:nth-of-type(1):hover {
+  background-color: #30957c;
+}
+.login .pageContainer main .loginContainer button:nth-of-type(2) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.login .pageContainer main .loginContainer button:nth-of-type(2):hover {
+  background-color: #358281;
+}
+.login .pageContainer main .loginContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login .pageContainer main .loginContainer form input {
+  width: 15rem;
+  height: 2rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+.login .pageContainer main .loginContainer form input::-moz-placeholder {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+}
+.login .pageContainer main .loginContainer form input::placeholder {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+}
+.login .pageContainer main .loginContainer form input:focus.failed {
+  border-color: red;
+  outline: red;
+}
+.login .pageContainer .error-message {
+  height: 8rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.login .pageContainer .error-message p {
+  border: 2px dashed red;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.login .pageContainer .register-modal {
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: none;
+  height: 100vh;
+  top: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  filter: drop-shadow(0 0 0.75rem gray);
+  z-index: 1000;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+}
+@media (min-width: 1080px) {
+  .login .pageContainer .register-modal {
+    height: -moz-fit-content;
+    height: fit-content;
+    top: 4rem;
+    width: 20rem;
+    border-radius: 1rem;
+  }
+}
+.login .pageContainer .register-modal h2 {
+  text-align: center;
+}
+.login .pageContainer .register-modal button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.login .pageContainer .register-modal button:hover {
+  background-color: #358281;
+}
+.login .pageContainer .register-modal button:nth-of-type(1) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #3dbb9c;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #3dbb9c);
+}
+.login .pageContainer .register-modal button:nth-of-type(1):hover {
+  background-color: #30957c;
+}
+.login .pageContainer .register-modal button:nth-of-type(2) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #c22d34;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #c22d34);
+}
+.login .pageContainer .register-modal button:nth-of-type(2):hover {
+  background-color: #992329;
+}
+.login .pageContainer .register-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login .pageContainer .register-modal form input {
+  height: 2rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+.login .pageContainer .register-modal form input::-moz-placeholder {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+}
+.login .pageContainer .register-modal form input::placeholder {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+}
+.login .pageContainer .register-modal form input:focus.failed {
+  border-color: red;
+  outline: red;
 }
 
-.container {
+/* Global Styles */
+.hidden {
+  visibility: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.warning {
+  color: rgb(218, 0, 0);
+}
+
+.required {
+  font-size: 0.75rem;
+}
+
+/* Fonts */
+/* Login Styles */
+.startpage {
+  margin: 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 4.5rem;
+}
+.startpage .pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.startpage .pageContainer img {
+  width: 10rem;
+}
+.startpage .pageContainer h1 {
+  text-align: center;
+  margin: 0;
+}
+.startpage .pageContainer main {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.startpage .pageContainer main .quoteContainer blockquote {
+  border: 1px solid #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+  max-width: 20rem;
+  font-weight: bold;
+}
+.startpage .pageContainer main .quoteContainer blockquote footer {
+  font-weight: 400;
+  font-style: italic;
+}
+.startpage .pageContainer button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.startpage .pageContainer button:hover {
+  background-color: #358281;
+}
+
+/* Global Styles */
+.hidden {
+  visibility: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.habits-body {
+  margin: 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 4.5rem;
+  /* Stilar för action-container */
+  /* Stilar för fieldset */
+  /* Stilar för checkboxar */
+}
+.habits-body .container {
   display: flex;
   flex-direction: column;
   max-width: 320px;
   margin: 30px auto;
 }
-.container img {
+.habits-body .container #cat {
   width: 150px;
   margin: 0 auto;
 }
-.container #habit-prio {
+.habits-body .container #up-arrow {
+  width: 25px;
+}
+.habits-body .container #habit-prio {
   background-color: #dce1eb;
   border: 0;
   padding: 15px;
@@ -30,7 +361,7 @@ body {
   font-family: "Rubik", sans-serif;
   margin: 10px 0;
 }
-.container input {
+.habits-body .container input {
   color: #432000;
   background-color: #dce1eb;
   border: 0;
@@ -41,37 +372,659 @@ body {
   font-family: "Rubik", sans-serif;
   margin: 10px 0;
 }
-.container button {
-  color: #fdfdfd;
-  background-color: #ac485a;
-  border: 0;
-  padding: 15px;
-  border-radius: 8px;
-  font-size: 20px;
-  text-align: center;
-  font-family: "Rubik", sans-serif;
+.habits-body .container button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
 }
-.container button:hover {
+.habits-body .container button:hover {
+  background-color: #358281;
+}
+.habits-body .container button:hover {
   background-color: #432000;
   cursor: pointer;
 }
-.container ul {
+.habits-body .container ul {
   list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-.container ul li {
+.habits-body .container ul li {
   font-size: 20px;
-  background-color: #fffdf8;
+  background-color: #7451ff;
   padding: 15px;
   border-radius: 8px;
   flex-grow: 1;
   text-align: center;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
-.container ul li:hover {
-  background-color: #ffecc7;
+.habits-body .container ul li:hover {
   cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Lägger till en subtil skuggning */
+  color: black; /* Ändrar textfärgen för att göra den mer framträdande */
+}
+.habits-body .action-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px; /* Justera efter behov */
+}
+.habits-body .action-bar {
+  width: 30px; /* Justera bredden efter behov */
+  height: 30px; /* Justera höjden efter behov */
+  margin: 5px; /* Justera marginalen efter behov */
+  cursor: pointer;
+}
+.habits-body fieldset {
+  margin-top: 20px; /* Justera efter behov */
+  border: 2px solid black; /* Justera färg och tjocklek efter behov */
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%; /* Justera bredden efter behov */
+}
+.habits-body legend {
+  font-size: 18px; /* Justera storleken efter behov */
+  color: black; /* Justera färgen efter behov */
+  font-weight: bold;
+  margin-bottom: 10px; /* Justera efter behov */
+}
+.habits-body label {
+  margin-right: 10px; /* Justera efter behov */
+  color: #432000; /* Justera färgen efter behov */
+}
+.habits-body input[type=checkbox] {
+  width: 20px; /* Justera bredden efter behov */
+  height: 20px; /* Justera höjden efter behov */
+  margin: 5px; /* Justera avståndet efter behov */
+}
+.habits-body input[type=checkbox]:checked {
+  background-color: #432000; /* Justera färgen efter behov */
+}
+.habits-body .hidden {
+  display: none;
+}
+
+.body-todo {
+  margin: 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 4.5rem;
+}
+.body-todo .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: auto;
+  margin: 20px;
+}
+.body-todo .wrapper #todoForm {
+  display: flex;
+  flex-direction: column;
+}
+.body-todo .wrapper #todoForm input {
+  width: 15rem;
+  height: 2rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+.body-todo .wrapper #todoForm textarea {
+  font-size: 1rem;
+}
+.body-todo .wrapper #todoForm input::-moz-placeholder {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+}
+.body-todo .wrapper #todoForm input::placeholder {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+}
+.body-todo .wrapper #todoForm button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+.body-todo .wrapper #todoForm button:hover {
+  background-color: #358281;
+}
+.body-todo .wrapper #todoForm #goToTodosButton {
+  margin-left: -50px;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #9619c7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-todo .wrapper #todoForm #goToTodosButton i {
+  color: white;
+  /* Vit färg för att kontrastera mot bakgrundsfärgen */
+  font-size: 24px;
+  /* Justera storleken på ikonen efter behov */
+}
+.body-todo .wrapper #todoListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.body-todo .wrapper #todoListContainer #addIconDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.body-todo .wrapper #todoListContainer #addIconDiv #addIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #9619c7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-todo .wrapper #todoListContainer #addIconDiv #addIcon i {
+  color: white;
+  /* Färg på ikonen */
+  font-size: 20px;
+  /* Storlek på ikonen */
+}
+.body-todo .wrapper #todoListContainer #filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowOne {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowOne input[type=checkbox] {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowOne label {
+  cursor: pointer;
+  /* Gör muspekaren till en hand när du hoverar över etiketterna */
+}
+.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowTwo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowTwo input[type=checkbox] {
+  margin-left: 5%;
+}
+.body-todo .wrapper #todoListContainer #filterOptions #checkboxRowTwo label {
+  /* Avstånd mellan etiketterna */
+  cursor: pointer;
+  /* Gör muspekaren till en hand när du hoverar över etiketterna */
+}
+.body-todo .wrapper #todoListContainer #todoList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-left: -40px;
+}
+.body-todo .wrapper #todoListContainer #todoList .todo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 5px;
+  margin-top: 10px;
+  height: 50px;
+  position: relative;
+  border-radius: 8px;
+  background-color: rgba(136, 16, 136, 0.628);
+}
+.body-todo .wrapper #todoListContainer #todoList .todo .status-checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+}
+.body-todo .wrapper #todoListContainer #todoList .todo .status-checkbox:after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  position: relative;
+  top: 3px;
+  left: 5px;
+  visibility: hidden;
+}
+.body-todo .wrapper #todoListContainer #todoList .todo .status-checkbox:checked:after {
+  visibility: visible;
+}
+.body-todo .wrapper #todoListContainer #todoList .todo .status-checkbox:checked {
+  background-color: #333;
+}
+.body-todo .wrapper #todoListContainer #todoList .todo .todoTitle {
+  font-size: 15px;
+}
+.body-todo .wrapper #todoListContainer #todoList .todo .delete-icon {
+  position: absolute;
+  /* Gör ikonen absolut positionerad */
+  top: 50%;
+  /* Placera ikonen i mitten vertikalt */
+  right: 20px;
+  /* Placera ikonen 10px från högerkanten */
+  transform: translateY(-50%);
+  /* Justera ikonen för att placera den perfekt vertikalt i mitten */
+  color: white;
+  cursor: pointer;
+  font-size: 30px;
+}
+.body-todo .wrapper #todoDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.body-todo .wrapper #todoDetailsContainer #todoInfo #todoDescriptionDisplay {
+  width: 100%;
+  word-wrap: break-word;
+}
+.body-todo .wrapper #todoDetailsContainer #goBackButton {
+  width: 40px;
+  height: 40px;
+  margin-left: -40px;
+  border-radius: 50%;
+  background-color: #9619c7;
+  border: none;
+  cursor: pointer;
+}
+.body-todo .wrapper #todoDetailsContainer #goBackButton i {
+  margin-top: 7px;
+  margin-left: 7px;
+  color: white;
+  /* Vit färg för att kontrastera mot bakgrundsfärgen */
+  font-size: 24px;
+  /* Justera storleken på ikonen efter behov */
+}
+
+body.pomodoro {
+  margin: 0;
+  padding: 2rem 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #ffffff;
+}
+body.pomodoro button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+body.pomodoro button:hover {
+  background-color: #358281;
+}
+body.pomodoro p {
+  font-size: 100px;
+}
+body.pomodoro .hidden {
+  display: none;
+}
+body.pomodoro #pomodoroBtn > img:nth-child(1) {
+  color: red;
+}
+
+#footerNav {
+  width: 100%;
+  outline: 1px solid #5D50FA;
+  position: fixed;
+  height: 4.5rem;
+  bottom: 0;
+  background: linear-gradient(to bottom, #876cf4, #9983f3, #a48eff) no-repeat;
+  background-size: cover;
+}
+#footerNav ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 1080px) {
+  #footerNav ul {
+    justify-content: center;
+    gap: 0;
+  }
+}
+#footerNav ul li {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+#footerNav ul li #homeBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #homeBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #homeBtn:hover {
+    background-color: #358281;
+  }
+}
+#footerNav ul li #homeBtn img {
+  display: block;
+  margin: 0 auto 5px;
+  height: 2rem;
+  width: 2rem;
+}
+#footerNav ul li #homeBtn span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #todoBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #todoBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #todoBtn:hover {
+    background-color: #358281;
+  }
+}
+#footerNav ul li #todoBtn img {
+  display: block;
+  margin: 0 auto 5px;
+  height: 2rem;
+  width: 2rem;
+}
+#footerNav ul li #todoBtn span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #habitBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #habitBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #habitBtn:hover {
+    background-color: #358281;
+  }
+}
+#footerNav ul li #habitBtn img {
+  display: block;
+  margin: 0 auto 5px;
+  height: 2rem;
+  width: 2rem;
+}
+#footerNav ul li #habitBtn span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #pomodoroBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #pomodoroBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #pomodoroBtn:hover {
+    background-color: #358281;
+  }
+}
+#footerNav ul li #pomodoroBtn img {
+  display: block;
+  margin: 0 auto 5px;
+  height: 2rem;
+  width: 2rem;
+}
+#footerNav ul li #pomodoroBtn span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#footerNav ul li #logOutBtn {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 1080px) {
+  #footerNav ul li #logOutBtn {
+    background-color: #44a6a5;
+    border: 1px solid #44a6a5;
+    border-radius: 0.5rem;
+  }
+  #footerNav ul li #logOutBtn:hover {
+    background-color: #358281;
+  }
+}
+#footerNav ul li #logOutBtn img {
+  display: block;
+  margin: 0 auto 5px;
+  height: 2rem;
+  width: 2rem;
+}
+#footerNav ul li #logOutBtn span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+main.calendar {
+  font-size: 1rem;
+}
+main.calendar button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+main.calendar button:hover {
+  background-color: #358281;
+}
+main.calendar input {
+  font-size: 1rem;
+}
+main.calendar .calendarInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+main.calendar .calendarInputContainer input {
+  height: 2rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+main.calendar .calendarInputContainer h2 {
+  text-align: center;
+}
+main.calendar .listContainer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+main.calendar .listContainer ul li {
+  border: 1px solid #7451ff;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #937af4;
+}
+main.calendar .listContainer ul li p {
+  margin: 0;
+}
+main.calendar .listContainer ul li h3 {
+  margin: 0;
+}
+main.calendar .listContainer ul li:nth-of-type(1) {
+  border: none;
+  background-color: #7451ff;
+}
+main.calendar .listContainer ul li.oldEvent {
+  border-bottom: 1px solid red;
+  opacity: 0.7;
+}
+main.calendar .listContainer ul.hideList {
+  display: none;
+}
+main.calendar .listContainer button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+main.calendar .listContainer button:hover {
+  background-color: #358281;
+}
+main.calendar .listContainer h3 {
+  text-align: center;
+}
+
+body.pomodoro {
+  margin: 0;
+  padding: 2rem 0;
+  font-family: "Khula", sans-serif;
+  background: linear-gradient(to bottom, #7451ff, #9176ff, #a48eff, #a48eff) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #ffffff;
+}
+body.pomodoro button {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: #44a6a5;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem #44a6a5);
+}
+body.pomodoro button:hover {
+  background-color: #358281;
+}
+body.pomodoro p {
+  font-size: 100px;
+}
+body.pomodoro .hidden {
+  display: none;
+}
+body.pomodoro #pomodoroBtn > img:nth-child(1) {
+  color: red;
 }/*# sourceMappingURL=main.css.map */

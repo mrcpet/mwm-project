@@ -1,0 +1,68 @@
+/* Media Queries */
+
+@mixin desktop {
+  @media (min-width: 1080px) {
+    @content;
+  }
+}
+
+/* Buttons */
+
+@mixin button($color) {
+  font-family: "Khula", sans-serif;
+  font-size: 1rem;
+  background-color: $color;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  border: none;
+  filter: drop-shadow(0 0 0.125rem $color);
+  &:hover {
+    background-color: darken($color, 10%);
+  }
+}
+
+@mixin navButtons {
+  img {
+    width: 3rem;
+    height: 2rem;
+  }
+  span {
+    font-size: 0.75rem;
+  }
+}
+
+@mixin navButton($button-bg-color, $button-text-color) {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  // border: 1px solid $button-main;
+  border-radius: 0.5rem;
+  background-color: none;
+  color: $button-text-color;
+  text-align: center;
+  @include desktop {
+    background-color: $button-bg-color;
+    border: 1px solid $button-main;
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: darken($button-bg-color, 10%);
+    }
+  }
+  img {
+    display: block;
+    margin: 0 auto 5px;
+    height: 2rem;
+    width: 2rem;
+  }
+  span {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+}
