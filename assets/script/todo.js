@@ -34,18 +34,13 @@ let selectAllCheckbox = document.getElementById("selectAll");
 let hideDoneTasksCheckbox = document.getElementById("hideDoneTasks");
 selectedCategories = [];
 
-// Funktion för att ställa in den aktuella användaren
-//const setCurrentUser = (username) => {
-//  localStorage.setItem("currentUser", username);
-//};
+
 
 // Funktion för att hämta den aktuella användaren
 const getCurrentUser = () => {
     return localStorage.getItem("currentUser");
 };
 
-//Anropa setCurrentUser för att ställa in den aktuella användaren
-//setCurrentUser("Madde");
 
 
 function sortTodos(sortBy, sortOrder) {
@@ -256,6 +251,13 @@ let addAndStoreTodo = () => {
     let date = todoDate.value;
     let duration = `${todoDuration.value} hours`;
     let deadline = todoDeadline.value;
+
+
+    // Kontrollera om deadline är före datumet
+    if (new Date(deadline) < new Date(date)) {
+        alert("Deadline cannot be set before the date.");
+        return; // Avbryt funktionen om deadline är före datumet
+    }
 
     // Skapa ett nytt todo-objekt med användarens namn
     let newTodo = {
