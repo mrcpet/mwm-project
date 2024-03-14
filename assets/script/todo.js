@@ -35,17 +35,17 @@ let hideDoneTasksCheckbox = document.getElementById("hideDoneTasks");
 selectedCategories = [];
 
 // Funktion för att ställa in den aktuella användaren
-const setCurrentUser = (username) => {
-    localStorage.setItem("currentUser", username);
-};
+//const setCurrentUser = (username) => {
+//  localStorage.setItem("currentUser", username);
+//};
 
 // Funktion för att hämta den aktuella användaren
 const getCurrentUser = () => {
     return localStorage.getItem("currentUser");
 };
 
-// Anropa setCurrentUser för att ställa in den aktuella användaren
-setCurrentUser("Madde");
+//Anropa setCurrentUser för att ställa in den aktuella användaren
+//setCurrentUser("Madde");
 
 
 function sortTodos(sortBy, sortOrder) {
