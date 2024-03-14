@@ -35,17 +35,17 @@ let hideDoneTasksCheckbox = document.getElementById("hideDoneTasks");
 selectedCategories = [];
 
 // Funktion för att ställa in den aktuella användaren
-const setCurrentUser = (username) => {
-    localStorage.setItem("currentUser", username);
-};
+//const setCurrentUser = (username) => {
+//  localStorage.setItem("currentUser", username);
+//};
 
 // Funktion för att hämta den aktuella användaren
 const getCurrentUser = () => {
     return localStorage.getItem("currentUser");
 };
 
-// Anropa setCurrentUser för att ställa in den aktuella användaren
-setCurrentUser("Madde");
+//Anropa setCurrentUser för att ställa in den aktuella användaren
+//setCurrentUser("Madde");
 
 
 function sortTodos(sortBy, sortOrder) {
@@ -325,6 +325,7 @@ let renderTodo = (todo, index) => {
     // Skapa en checkbox
     let checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
+    checkbox.classList.add('status-checkbox');
 
     // Om todo.completed är true, markera checkboxen som checked
     checkbox.checked = todo.completed;
@@ -339,6 +340,12 @@ let renderTodo = (todo, index) => {
     titleElement.classList.add('todoTitle');
     titleElement.textContent = todo.title;
 
+    // Om todo är färdig, tillämpa överstrukning på titeln
+    if (todo.completed) {
+        titleElement.style.textDecoration = "line-through";
+
+    }
+
 
     // Skapa ikon för delete
     let deleteIcon = document.createElement('i');
@@ -349,6 +356,9 @@ let renderTodo = (todo, index) => {
     todoElement.appendChild(checkbox);
     todoElement.appendChild(titleElement);
     todoElement.appendChild(deleteIcon);
+
+    // Lägg till todoElement till #todoList
+    document.getElementById('todoList').appendChild(todoElement);
 
     // Lägg till en eventlistener för att hantera klickhändelsen på delete-ikonen för varje deleteIcon
     deleteIcon.addEventListener('click', (event) => {
@@ -378,13 +388,18 @@ let renderTodo = (todo, index) => {
 
         // Uppdatera todo.completed baserat på checkboxens status
         arrayTodos[todoIndex].completed = event.target.checked;
-        // Spara ändringar i localStorage
-        saveTodosToLocalStorage();
+
 
         // Inaktivera checkboxen om den är markerad
         if (event.target.checked) {
             event.target.disabled = true;
+
+            // Överstryk todoTitle om checkboxen är markerad
+            todoElement.querySelector('.todoTitle').style.textDecoration = "line-through";
         }
+
+        // Spara ändringar i localStorage
+        saveTodosToLocalStorage();
 
     });
 
@@ -410,8 +425,11 @@ function showTodoDetails(todoIndex) {
     todoDetailsContainer.style.display = "block";
     todoListContainer.style.display = "none";
 
+
+
     // Visa editTodoBtn
     editTodoBtn.style.display = "block";
+    goBackButton.style.display = "block";
 
 
 }
@@ -498,6 +516,10 @@ editTodoBtn.addEventListener('click', () => {
 window.addEventListener('load', () => {
     loadTodos(); // Ladda sparade todos från localStorage
     renderAllTodos(); // Rendera alla todos för den inloggade användaren
+
+    // Visa todoListContainer och dölj todoForm när sidan laddas
+    todoListContainer.style.display = "block";
+    todoForm.style.display = "none";
 });
 
 
