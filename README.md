@@ -2,6 +2,10 @@
 
 Frontend-projekt och Agila metoder med Madeleine, Wilhelm och Marcus
 
+Marcus gjorde Inloggning och Kalender
+Madeleine gjorde To Dos
+Wilhelm gjorde Habits och Pomodoro
+
 ## Google docs
 
 ### Anteckningar från retro och standups
